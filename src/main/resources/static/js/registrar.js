@@ -5,10 +5,13 @@ $(document).ready(function() {
 
 async function registrarUsuario() {
   let datos = {};
+  datos.login = document.getElementById('txtlogin').value;
   datos.nombre = document.getElementById('txtNombre').value;
-  datos.apellido = document.getElementById('txtApellido').value;
+  datos.telefono = document.getElementById('txtTelefono').value;
+  datos.direccion = document.getElementById('txtDireccion').value;
   datos.email = document.getElementById('txtEmail').value;
   datos.password = document.getElementById('txtPassword').value;
+  datos.id_rol = 2;
 
   let repetirPassword = document.getElementById('txtRepetirPassword').value;
 
