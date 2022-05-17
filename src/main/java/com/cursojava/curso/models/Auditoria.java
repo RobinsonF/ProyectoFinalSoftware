@@ -19,6 +19,8 @@ public class Auditoria implements Serializable {
 	@Column(name="id_auditoria")
 	private Integer idAuditoria;
 
+
+	@Column(name="estado")
 	private String estado;
 
 	private String evento;
