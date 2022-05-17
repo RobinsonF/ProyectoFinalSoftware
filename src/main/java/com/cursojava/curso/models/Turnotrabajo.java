@@ -18,9 +18,9 @@ public class Turnotrabajo implements Serializable {
 	@Id
 	@Column(name="id_turnotrabajo")
 	private Integer idTurnotrabajo;
-
+	@Column(name="estado")
 	private String estado;
-
+	@Column(name="nombre")
 	private String nombre;
 
 	//bi-directional many-to-one association to Cuadrilla

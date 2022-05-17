@@ -19,7 +19,7 @@ public class Ordentrabajo implements Serializable {
 	@Id
 	@Column(name="id_trabajo")
 	private Integer idTrabajo;
-
+	@Column(name="estado")
 	private String estado;
 
 	@Temporal(TemporalType.DATE)

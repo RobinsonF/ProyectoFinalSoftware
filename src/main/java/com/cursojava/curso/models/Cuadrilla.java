@@ -18,7 +18,7 @@ public class Cuadrilla implements Serializable {
 	@Id
 	@Column(name="id_cuadrilla")
 	private Integer idCuadrilla;
-
+	@Column(name="estado")
 	private String estado;
 
 	@Column(name="nombre_cuadrilla")

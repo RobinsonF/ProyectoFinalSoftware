@@ -17,13 +17,13 @@ public class Empleado implements Serializable {
 	@Id
 	@Column(name="id_empleado")
 	private Integer idEmpleado;
-
+	@Column(name="apellido")
 	private String apellido;
-
+	@Column(name="cedula")
 	private String cedula;
-
+	@Column(name="estado")
 	private String estado;
-
+	@Column(name="nombre")
 	private String nombre;
 
 	//bi-directional many-to-one association to Cuadrilla

@@ -18,9 +18,9 @@ public class Ciudad implements Serializable {
 	@Id
 	@Column(name="id_ciudad")
 	private Integer idCiudad;
-
+	@Column(name="estado")
 	private String estado;
-
+	@Column(name="nombre")
 	private String nombre;
 
 	//bi-directional many-to-one association to Departamento

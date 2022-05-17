@@ -18,11 +18,11 @@ public class Rol implements Serializable {
 	@Id
 	@Column(name="id_rol")
 	private Integer idRol;
-
+	@Column(name="descripcion")
 	private String descripcion;
-
+	@Column(name="estado")
 	private String estado;
-
+	@Column(name="nombre")
 	private String nombre;
 
 	//bi-directional many-to-one association to Usuario

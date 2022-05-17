@@ -23,8 +23,9 @@ public class Auditoria implements Serializable {
 	@Column(name="estado")
 	private String estado;
 
+	@Column(name="evento")
 	private String evento;
-
+	@Column(name="fecha")
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 

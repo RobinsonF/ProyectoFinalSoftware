@@ -14,33 +14,28 @@ import java.util.List;
  *
  */
 @Entity
-<<<<<<< HEAD
+
 @Table(name = "usuario")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
-=======
-@Table(name = "usuarios")
-@ToString @EqualsAndHashCode
-public class Usuario {
->>>>>>> 1d7d29fe5c44fe671cb1f795089a63fa42951b19
 
     @Id
     @Column(name="id_usuario")
     private Integer idUsuario;
-
+    @Column(name="correo")
     private String correo;
-
+    @Column(name="direccion")
     private String direccion;
-
+    @Column(name="estado")
     private String estado;
-
+    @Column(name="login")
     private String login;
-
+    @Column(name="nombre")
     private String nombre;
-
+    @Column(name="password")
     private String password;
-
+    @Column(name="telefono")
     private String telefono;
 
     //bi-directional many-to-one association to Auditoria

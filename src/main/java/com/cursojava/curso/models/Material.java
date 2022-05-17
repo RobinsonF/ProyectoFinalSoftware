@@ -17,9 +17,9 @@ public class Material implements Serializable {
 	@Id
 	@Column(name="id_material")
 	private Integer idMaterial;
-
+	@Column(name="cantidad")
 	private Integer cantidad;
-
+	@Column(name="estado")
 	private String estado;
 
 	@Column(name="nombre_material")

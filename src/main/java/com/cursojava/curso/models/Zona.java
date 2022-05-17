@@ -18,7 +18,7 @@ public class Zona implements Serializable {
 	@Id
 	@Column(name="id_zona")
 	private Integer idZona;
-
+	@Column(name="estado")
 	private String estado;
 
 	@Column(name="limite_norte")
