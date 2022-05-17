@@ -1,36 +1,172 @@
 package com.cursojava.curso.models;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.cursojava.curso.models.Auditoria;
+import com.cursojava.curso.models.Cuadrilla;
+import com.cursojava.curso.models.Rol;
 
+import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
+
+/**
+ * The persistent class for the usuario database table.
+ *
+ */
 @Entity
 @Table(name = "usuario")
-@ToString @EqualsAndHashCode
-public class Usuario {
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "id")
-    private Long id;
+    @Column(name="id_usuario")
+    private Integer idUsuario;
 
-    @Getter @Setter @Column(name = "nombre")
+    private String correo;
+
+    private String direccion;
+
+    private String estado;
+
+    private String login;
+
     private String nombre;
 
-    @Getter @Setter @Column(name = "apellido")
-    private String apellido;
-
-    @Getter @Setter @Column(name = "email")
-    private String email;
-
-    @Getter @Setter @Column(name = "telefono")
-    private String telefono;
-
-    @Getter @Setter @Column(name = "password")
     private String password;
 
+    private String telefono;
+
+    //bi-directional many-to-one association to Auditoria
+    @OneToMany(mappedBy="usuario")
+    private List<Auditoria> auditorias;
+
+    //bi-directional many-to-one association to Cuadrilla
+    @OneToMany(mappedBy="usuario")
+    private List<Cuadrilla> cuadrillas;
+
+    //bi-directional many-to-one association to Rol
+    @ManyToOne
+    @JoinColumn(name="id_rol")
+    private Rol rol;
+
+    public Usuario() {
+    }
+
+    public Integer getIdUsuario() {
+        return this.idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getCorreo() {
+        return this.correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDireccion() {
+        return this.direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public List<Auditoria> getAuditorias() {
+        return this.auditorias;
+    }
+
+    public void setAuditorias(List<Auditoria> auditorias) {
+        this.auditorias = auditorias;
+    }
+
+    public Auditoria addAuditoria(Auditoria auditoria) {
+        getAuditorias().add(auditoria);
+        auditoria.setUsuario(this);
+
+        return auditoria;
+    }
+
+    public Auditoria removeAuditoria(Auditoria auditoria) {
+        getAuditorias().remove(auditoria);
+        auditoria.setUsuario(null);
+
+        return auditoria;
+    }
+
+    public List<Cuadrilla> getCuadrillas() {
+        return this.cuadrillas;
+    }
+
+    public void setCuadrillas(List<Cuadrilla> cuadrillas) {
+        this.cuadrillas = cuadrillas;
+    }
+
+    public Cuadrilla addCuadrilla(Cuadrilla cuadrilla) {
+        getCuadrillas().add(cuadrilla);
+        cuadrilla.setUsuario(this);
+
+        return cuadrilla;
+    }
+
+    public Cuadrilla removeCuadrilla(Cuadrilla cuadrilla) {
+        getCuadrillas().remove(cuadrilla);
+        cuadrilla.setUsuario(null);
+
+        return cuadrilla;
+    }
+
+    public Rol getRol() {
+        return this.rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 
 }
