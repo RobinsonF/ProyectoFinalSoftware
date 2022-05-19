@@ -9,7 +9,7 @@ async function registrarUsuario() {
   datos.nombre = document.getElementById('txtNombre').value;
   datos.telefono = document.getElementById('txtTelefono').value;
   datos.direccion = document.getElementById('txtDireccion').value;
-  datos.email = document.getElementById('txtEmail').value;
+  datos.correo = document.getElementById('txtEmail').value;
   datos.password = document.getElementById('txtPassword').value;
   datos.id_rol = 2;
 
@@ -20,7 +20,7 @@ async function registrarUsuario() {
     return;
   }
 
-  const request = await fetch('api/usuarios', {
+  const request = await fetch('usuario/crearUsuario', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

@@ -11,7 +11,7 @@ function actualizarEmailDelUsuario() {
 
 
 async function cargarUsuarios() {
-  const request = await fetch('api/usuarios', {
+  const request = await fetch('usuario/listaUsuario', {
     method: 'GET',
     headers: getHeaders()
   });
@@ -20,10 +20,10 @@ async function cargarUsuarios() {
 
   let listadoHtml = '';
   for (let usuario of usuarios) {
-    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usuario.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usuario.id_usuario + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
 
     let telefonoTexto = usuario.telefono == null ? '-' : usuario.telefono;
-    let usuarioHtml = '<tr><td>'+usuario.id_usuario+'</td><td>' + usuario.nombre + ' ' + usuario.login + '</td><td>'
+    let usuarioHtml = '<tr><td>'+usuario.id_usuario+'</td><td>' + usuario.nombre + ' </td><td> ' + usuario.login + '</td><td>'
                     + usuario.direccion+'</td><td>'+usuario.telefono + '</td><td>' + usuario.correo
                     + '</td><td>' + botonEliminar + '</td></tr>';
     listadoHtml += usuarioHtml;

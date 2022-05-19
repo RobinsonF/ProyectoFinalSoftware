@@ -1,4 +1,4 @@
-package com.cursojava.curso.models;
+package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="rol")
+@Table(name="Rol")
 @NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
 public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;

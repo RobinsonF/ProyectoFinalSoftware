@@ -1,4 +1,4 @@
-package com.cursojava.curso.models;
+package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;

@@ -1,8 +1,4 @@
-package com.cursojava.curso.models;
-
-import com.cursojava.curso.models.Auditoria;
-import com.cursojava.curso.models.Cuadrilla;
-import com.cursojava.curso.models.Rol;
+package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -14,12 +10,12 @@ import java.util.List;
  *
  */
 @Entity
-
 @Table(name = "usuario")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id_usuario")
     private Integer idUsuario;
     @Column(name="correo")
@@ -51,6 +47,17 @@ public class Usuario implements Serializable {
     private Rol rol;
 
     public Usuario() {
+    }
+
+    public Usuario(String correo, String direccion, String estado, String login, String nombre, String password, String telefono) {
+        this.idUsuario = idUsuario;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.estado = estado;
+        this.login = login;
+        this.nombre = nombre;
+        this.password = password;
+        this.telefono = telefono;
     }
 
     public Integer getIdUsuario() {

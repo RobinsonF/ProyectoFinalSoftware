@@ -8,11 +8,11 @@
 		<version>2.5.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.cursojava</groupId>
-	<artifactId>curso</artifactId>
+	<groupId>co.edu.unbosque</groupId>
+	<artifactId>proyectofinalsoftware</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>curso</name>
+	<name>proyectofinalsoftware</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -60,6 +60,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.19</version>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.5</version>
 		</dependency>
 
 		<dependency>

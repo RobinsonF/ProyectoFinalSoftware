@@ -1,4 +1,4 @@
-package com.cursojava.curso.models;
+package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -29,7 +29,7 @@ public class Empleado implements Serializable {
 	//bi-directional many-to-one association to Cuadrilla
 	@ManyToOne
 	@JoinColumn(name="id_cuadrilla")
-	private Cuadrilla cuadrilla;
+	private co.edu.unbosque.entity.Cuadrilla cuadrilla;
 
 	public Empleado() {
 	}
@@ -74,7 +74,7 @@ public class Empleado implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Cuadrilla getCuadrilla() {
+	public co.edu.unbosque.entity.Cuadrilla getCuadrilla() {
 		return this.cuadrilla;
 	}
 

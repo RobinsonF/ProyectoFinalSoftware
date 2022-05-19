@@ -1,4 +1,4 @@
-package com.cursojava.curso.utils;
+package co.edu.unbosque.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
