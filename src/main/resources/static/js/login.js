@@ -8,7 +8,7 @@ async function iniciarSesion() {
   datos.email = document.getElementById('txtEmail').value;
   datos.password = document.getElementById('txtPassword').value;
 
-  const request = await fetch('api/login', {
+  const request = await fetch('usuario/loginUsuario', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

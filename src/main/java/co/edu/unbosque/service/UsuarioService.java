@@ -4,6 +4,8 @@ import co.edu.unbosque.entity.Rol;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.repository.RolRepository;
 import co.edu.unbosque.repository.UsuarioRespository;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,9 @@ public class UsuarioService {
     }
 
     public Usuario registrarUsuario(Usuario usuario, Integer id){
-        Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), usuario.getPassword(), usuario.getTelefono());
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hash = argon2.hash(1, 1024, 1, usuario.getPassword());
+        Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), hash, usuario.getTelefono());
         Optional<Rol> rol = rolRepository.buscarPorId(id);
         rol.ifPresent(a -> {
             a.addUsuario(usuario1);
@@ -36,4 +40,12 @@ public class UsuarioService {
         return usuario1;
     }
 
+
+    public UsuarioRespository getUsuarioRepository() {
+        return usuarioRepository;
+    }
+
+    public void setUsuarioRepository(UsuarioRespository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 }
