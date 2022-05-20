@@ -3,6 +3,7 @@ package co.edu.unbosque.repository;
 import co.edu.unbosque.entity.Usuario;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UsuarioRespository {
 
@@ -15,4 +16,6 @@ public interface UsuarioRespository {
     Usuario obtenerUsuarioPorCredenciales(Usuario usuario);;
 
     void editarEliminar(Integer id);
+
+    Optional<Usuario> buscarPorId(Integer id);
 }

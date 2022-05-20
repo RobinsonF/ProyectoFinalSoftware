@@ -5,18 +5,12 @@ import co.edu.unbosque.entity.Rol;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.repository.RolRepository;
 import co.edu.unbosque.repository.UsuarioRespository;
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
-
 import javax.transaction.Transactional;
-import java.nio.charset.Charset;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
+
 
 @Service
 @Transactional

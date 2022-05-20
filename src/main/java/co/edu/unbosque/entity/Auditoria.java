@@ -37,6 +37,12 @@ public class Auditoria implements Serializable {
 	public Auditoria() {
 	}
 
+	public Auditoria(String estado, String evento, Date fecha) {
+		this.estado = estado;
+		this.evento = evento;
+		this.fecha = fecha;
+	}
+
 	public Integer getIdAuditoria() {
 		return this.idAuditoria;
 	}

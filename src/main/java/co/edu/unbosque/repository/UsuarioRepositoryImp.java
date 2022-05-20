@@ -1,6 +1,7 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.UsuarioDTO;
+import co.edu.unbosque.entity.Auditoria;
 import co.edu.unbosque.entity.Usuario;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -10,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -68,5 +70,11 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
         Usuario usuario = entityManager.find(Usuario.class, id);
 
 
+    }
+
+    @Override
+    public Optional<Usuario> buscarPorId(Integer id) {
+        Usuario usuario = entityManager.find(Usuario.class, id);
+        return usuario != null ? Optional.of(usuario) : Optional.empty();
     }
 }
