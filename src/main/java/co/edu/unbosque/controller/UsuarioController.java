@@ -46,8 +46,9 @@ public class UsuarioController {
     }
 
     @PostMapping("/eliminarUsuario/{id}")
-    public void eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
+    public String eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         usuarioService.eliminarUsuario(usuarioDTO.getId_usuario());
+        return usuarioDTO.getId_usuario() + "";
     }
 
 }
