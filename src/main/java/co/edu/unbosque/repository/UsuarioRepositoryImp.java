@@ -22,12 +22,12 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
     @Override
     @Transactional
     public List<Usuario> getUsuarios() {
-        String query = "FROM Usuario";
+        String query = "FROM Usuario where estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminar(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
         entityManager.remove(usuario);
     }
@@ -61,5 +61,12 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public void editarEliminar(Integer id) {
+        Usuario usuario = entityManager.find(Usuario.class, id);
+
+
     }
 }

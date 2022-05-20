@@ -45,4 +45,9 @@ public class UsuarioController {
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
 
+    @PostMapping("/eliminarUsuario/{id}")
+    public void eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
+        usuarioService.eliminarUsuario(usuarioDTO.getId_usuario());
+    }
+
 }

@@ -8,9 +8,11 @@ public interface UsuarioRespository {
 
     List<Usuario> getUsuarios();
 
-    void eliminar(Long id);
+    void eliminar(Integer id);
 
     void registrar(Usuario usuario);
 
     Usuario obtenerUsuarioPorCredenciales(Usuario usuario);;
+
+    void editarEliminar(Integer id);
 }

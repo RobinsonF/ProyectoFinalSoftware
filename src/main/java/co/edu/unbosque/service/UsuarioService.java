@@ -53,6 +53,10 @@ public class UsuarioService {
         }
     }
 
+    public void eliminarUsuario(Integer id){
+        usuarioRepository.eliminar(id);
+    }
+
 
     public UsuarioRespository getUsuarioRepository() {
         return usuarioRepository;
@@ -61,4 +65,5 @@ public class UsuarioService {
     public void setUsuarioRepository(UsuarioRespository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
+
 }
