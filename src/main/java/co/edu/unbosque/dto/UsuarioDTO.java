@@ -1,5 +1,8 @@
 package co.edu.unbosque.dto;
 
+
+import java.security.MessageDigest;
+
 public class UsuarioDTO {
 
 private int id_usuario;
@@ -13,6 +16,9 @@ private Integer id_rol;
 
 private String password;
 
+    public UsuarioDTO(){
+
+    }
     public UsuarioDTO(int id_usuario, String nombre, String login, String direccion, String telefono, String correo) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
@@ -20,6 +26,29 @@ private String password;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
+    }
+
+    public  String shaEncode(String str) throws Exception {
+
+        MessageDigest sha = null;
+        try {
+            sha = MessageDigest.getInstance("SHA");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            e.getStackTrace();
+            return "";
+        }
+        byte[] byteArray = str.getBytes("utf-8");
+        byte[] md5Bytes = sha.digest(byteArray);
+        StringBuffer hexValue = new StringBuffer();
+        for (int i = 0; i < md5Bytes.length; i++) {
+            int val = ((int) md5Bytes[i]) & 0xff;
+            if (val < 16) {
+                hexValue.append("0");
+            }
+            hexValue.append(Integer.toHexString(val));
+        }
+        return hexValue.toString();
     }
 
     public int getId_usuario() {

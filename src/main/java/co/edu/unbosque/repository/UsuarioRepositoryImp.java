@@ -1,5 +1,6 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Usuario;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -15,6 +16,8 @@ import java.util.List;
 public class UsuarioRepositoryImp implements UsuarioRespository{
     @PersistenceContext
     EntityManager entityManager;
+
+    UsuarioDTO usuarioDTO;
 
     @Override
     @Transactional
@@ -36,19 +39,27 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
 
     @Override
     public Usuario obtenerUsuarioPorCredenciales(Usuario usuario) {
-        String query = "FROM Usuario WHERE correo = :correo";
-        List<Usuario> lista = entityManager.createQuery(query)
-                .setParameter("email", usuario.getCorreo())
-                .getResultList();
+        try {
+            usuarioDTO = new UsuarioDTO();
+            String query = "FROM Usuario WHERE correo = " + "'" + usuario.getCorreo() + "'";
 
-        if (lista.isEmpty()) {
+            List<Usuario> lista = entityManager.createQuery(query).getResultList();
+
+            if (lista.isEmpty()) {
+                return null;
+            }
+            String passwordHashed = lista.get(0).getPassword();
+            String passwordLocal = usuarioDTO.shaEncode(usuario.getPassword());
+
+            if(passwordLocal.equals(passwordHashed)){
+                return lista.get(0);
+            }else{
+                return null;
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
             return null;
         }
-        String passwordHashed = lista.get(0).getPassword();
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        if (argon2.verify(passwordHashed, usuario.getPassword())) {
-            return lista.get(0);
-        }
-        return null;
     }
 }

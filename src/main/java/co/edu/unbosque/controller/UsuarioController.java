@@ -20,9 +20,6 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    @Autowired
-    private JWTUtil2 jwtUtil;
-
     @GetMapping("/listaUsuario")
     public ResponseEntity<List<UsuarioDTO>> listaUsuarios(){
 
@@ -48,13 +45,4 @@ public class UsuarioController {
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
 
-    @PostMapping("/loginUsuario")
-    public String login(@RequestBody Usuario usuario){
-        Usuario usuarioLogueado = usuarioService.getUsuarioRepository().obtenerUsuarioPorCredenciales(usuario);
-        if (usuarioLogueado != null) {
-            String tokenJwt = jwtUtil.create(String.valueOf(usuarioLogueado.getIdUsuario()), usuarioLogueado.getCorreo());
-            return tokenJwt;
-        }
-        return "FAIL";
-    }
 }

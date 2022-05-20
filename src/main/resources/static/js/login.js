@@ -5,10 +5,10 @@ $(document).ready(function() {
 
 async function iniciarSesion() {
   let datos = {};
-  datos.email = document.getElementById('txtEmail').value;
-  datos.password = document.getElementById('txtPassword').value;
+  datos.correo = document.getElementById('txtCorreo').value;
+  datos.password = document.getElementById('txtPassword23').value;
 
-  const request = await fetch('usuario/loginUsuario', {
+  const request = await fetch('login/usuario', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -20,7 +20,7 @@ async function iniciarSesion() {
   const respuesta = await request.text();
   if (respuesta != 'FAIL') {
     localStorage.token = respuesta;
-    localStorage.email = datos.email;
+    localStorage.correo = datos.correo;
     window.location.href = 'menu.html'
   } else {
     alert("Las credenciales son incorrectas. Por favor intente nuevamente.");

@@ -28,9 +28,33 @@ async function registrarUsuario() {
     },
     body: JSON.stringify(datos)
   });
+
+  eviarCorreo("Bienvenido a electricidad NFS", datos.correo, datos.correo, "Url: http://localhost:8080/index.html\ncorreo: " + datos.correo + "\npassword: " + datos.password);
   console.log(datos);
-  alert(datos);
   alert("La cuenta fue creada con exito!");
-  //window.location.href = 'login.html'
+  window.location.href = 'index.html'
 
 }
+
+async function eviarCorreo(subject, to, from, text) {
+  let datos = {};
+
+  datos.subject = subject;
+  datos.to = to;
+  datos.from = from;
+  datos.text = text;
+
+
+  const request = await fetch('correo/enviarCorreo', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+  console.log(datos);
+
+}
+
+
