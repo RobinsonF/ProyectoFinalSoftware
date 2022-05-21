@@ -11,30 +11,33 @@ async function registrarUsuario() {
   datos.direccion = document.getElementById('txtDireccion').value;
   datos.correo = document.getElementById('txtEmail').value;
   datos.password = document.getElementById('txtPassword').value;
+  password2 = document.getElementById('txtRepetirPassword').value;
   datos.id_rol = 2;
   datos.intento = 0;
 
-  let repetirPassword = document.getElementById('txtRepetirPassword').value;
+  if(datos.login.length != 0 && datos.nombre.length != 0 && datos.telefono.length != 0 && datos.direccion.length != 0 && datos.correo.length != 0
+  && datos.password.length != 0 && password2.length != 0){
+    let repetirPassword = document.getElementById('txtRepetirPassword').value;
 
-  if (repetirPassword != datos.password) {
-    alert('La contraseña que escribiste es diferente.');
-    return;
+    if (repetirPassword != datos.password) {
+      alert('La contraseña que escribiste es diferente.');
+      return;
+    }
+
+    const request = await fetch('usuario/crearUsuario', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    });
+
+    eviarCorreo("Bienvenido a electricidad NFS", datos.correo, datos.correo, "Url: http://localhost:8080/index.html\ncorreo: " + datos.correo + "\npassword: " + datos.password);
+    console.log(datos);
+    alert("La cuenta fue creada con exito!");
+    window.location.href = 'index.html'
   }
-
-  const request = await fetch('usuario/crearUsuario', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(datos)
-  });
-
-  eviarCorreo("Bienvenido a electricidad NFS", datos.correo, datos.correo, "Url: http://localhost:8080/index.html\ncorreo: " + datos.correo + "\npassword: " + datos.password);
-  console.log(datos);
-  alert("La cuenta fue creada con exito!");
-  window.location.href = 'index.html'
-
 }
 
 async function eviarCorreo(subject, to, from, text) {
