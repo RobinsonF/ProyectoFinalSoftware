@@ -52,8 +52,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String correo, String direccion, String estado, String login, String nombre, String password, String telefono) {
-        this.idUsuario = idUsuario;
+    public Usuario(String correo, String direccion, String estado, String login, String nombre, String password, String telefono, Integer intentos) {
         this.correo = correo;
         this.direccion = direccion;
         this.estado = estado;
@@ -61,6 +60,7 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
         this.password = password;
         this.telefono = telefono;
+        this.intento = intentos;
     }
 
     public Integer getIdUsuario() {

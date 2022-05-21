@@ -24,4 +24,6 @@ public interface UsuarioRespository {
     String aumentarIntento(String correo);
 
     Integer obtenerIntentos(String correo);
+
+    void setearCeroIntentos(String correo);
 }

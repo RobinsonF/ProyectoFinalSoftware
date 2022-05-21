@@ -30,4 +30,9 @@ public class LoginController {
         return loginService.obtenerIntentos(usuarioDTO.getCorreo());
     }
 
+    @PostMapping("/usuarioCeroIntentos/{id}")
+    public void setearCeroIntentos(@RequestBody UsuarioDTO usuarioDTO){
+        loginService.setearCeroIntentos(usuarioDTO.getCorreo());
+    }
+
 }

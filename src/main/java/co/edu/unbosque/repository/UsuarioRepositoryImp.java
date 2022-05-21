@@ -102,4 +102,12 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
         Usuario usuario = buscarPorCorreo(correo);
         return usuario.getIntento();
     }
+
+    @Override
+    public void setearCeroIntentos(String correo) {
+        Usuario usuario1 = buscarPorCorreo(correo);
+        Usuario usuario = entityManager.find(Usuario.class, usuario1.getIdUsuario());
+        usuario.setIntento(0);
+        entityManager.merge(usuario);
+    }
 }

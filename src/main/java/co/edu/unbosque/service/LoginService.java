@@ -35,4 +35,8 @@ public class LoginService {
     public Integer obtenerIntentos(String correo){
         return usuarioRepository.obtenerIntentos(correo);
     }
+
+    public void setearCeroIntentos(String correo){
+    usuarioRepository.setearCeroIntentos(correo);
+    }
 }

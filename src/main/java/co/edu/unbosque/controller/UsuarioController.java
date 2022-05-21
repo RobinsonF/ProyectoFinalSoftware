@@ -40,7 +40,7 @@ public class UsuarioController {
 
     @PostMapping("/crearUsuario")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody UsuarioDTO usuarioDTO){
-        Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono());
+        Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos());
         usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
         return new ResponseEntity(usuario, HttpStatus.OK);
     }

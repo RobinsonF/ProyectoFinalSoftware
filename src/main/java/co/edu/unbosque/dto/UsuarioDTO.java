@@ -11,10 +11,10 @@ private String login;
 private String direccion;
 private String telefono;
 private String correo;
-
 private Integer id_rol;
-
 private String password;
+
+private Integer intentos;
 
     public UsuarioDTO(){
 
@@ -113,5 +113,13 @@ private String password;
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getIntentos() {
+        return intentos;
+    }
+
+    public void setIntentos(Integer intentos) {
+        this.intentos = intentos;
     }
 }
