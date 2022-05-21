@@ -125,6 +125,17 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gestión de Usuarios</h1>
 
+                    <div>
+                        <a onclick="reporteUsuario()" href="#" class="btn btn-primary btn-user btn-block" style="width: 170px; height:40px; display: inline-block">
+                            Exportar PDF
+                        </a>
+
+                        <a onclick="reporteUsuarioExcel()" href="#" class="btn btn-primary btn-user btn-block" style="width: 170px; height:40px; display: inline-block">
+                            Exportar EXCEL
+                        </a>
+                    </div>
+
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -215,6 +226,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/usuarios.js"></script>
+    <script src="js/reportes.js"></script>
 
 </body>
 

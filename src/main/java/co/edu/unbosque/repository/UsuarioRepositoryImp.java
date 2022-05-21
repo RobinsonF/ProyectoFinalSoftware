@@ -31,7 +31,8 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
     @Override
     public void eliminar(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
-        entityManager.remove(usuario);
+        usuario.setEstado("I");
+        entityManager.merge(usuario);
     }
 
     @Override

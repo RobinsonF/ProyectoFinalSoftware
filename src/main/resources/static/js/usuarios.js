@@ -42,7 +42,6 @@ function getHeaders() {
 
 async function eliminarUsuario(id) {
     let datos = {};
-    alert('Por lo menos llega acá');
   if (!confirm('¿Desea eliminar este usuario?')) {
     return;
   }
@@ -53,5 +52,5 @@ async function eliminarUsuario(id) {
     headers: getHeaders(),
      body: JSON.stringify(datos)
 });
-
+    location.reload()
 }
