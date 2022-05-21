@@ -69,13 +69,37 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
     @Override
     public void editarEliminar(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
-
-
     }
 
     @Override
     public Optional<Usuario> buscarPorId(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
         return usuario != null ? Optional.of(usuario) : Optional.empty();
+    }
+
+    @Override
+    public Usuario buscarPorCorreo(String correo) {
+        String query = "FROM Usuario where correo = '" + correo + "'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        return lista.get(0);
+    }
+
+    @Override
+    public String aumentarIntento(String correo) {
+        Usuario usuario1 = buscarPorCorreo(correo);
+        Usuario usuario = entityManager.find(Usuario.class, usuario1.getIdUsuario());
+        try{
+            usuario.setIntento(usuario.getIntento() + 1);
+            entityManager.merge(usuario);
+            return "Aumento";
+        }catch (Exception e){
+            return "No aumento";
+        }
+    }
+
+    @Override
+    public Integer obtenerIntentos(String correo){
+        Usuario usuario = buscarPorCorreo(correo);
+        return usuario.getIntento();
     }
 }

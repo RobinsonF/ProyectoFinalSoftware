@@ -6,6 +6,9 @@ import co.edu.unbosque.util.JWTUtil2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Optional;
+
 @Service
 public class LoginService {
 
@@ -23,5 +26,13 @@ public class LoginService {
         }else{
             return "FAIL";
         }
+    }
+
+    public String aumentarIntento(String correo){
+        return usuarioRepository.aumentarIntento(correo);
+    }
+
+    public Integer obtenerIntentos(String correo){
+        return usuarioRepository.obtenerIntentos(correo);
     }
 }

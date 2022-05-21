@@ -12,6 +12,7 @@ async function registrarUsuario() {
   datos.correo = document.getElementById('txtEmail').value;
   datos.password = document.getElementById('txtPassword').value;
   datos.id_rol = 2;
+  datos.intento = 0;
 
   let repetirPassword = document.getElementById('txtRepetirPassword').value;
 

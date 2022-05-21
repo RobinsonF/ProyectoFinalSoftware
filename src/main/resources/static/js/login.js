@@ -17,13 +17,50 @@ async function iniciarSesion() {
     body: JSON.stringify(datos)
   });
 
-  const respuesta = await request.text();
-  if (respuesta != 'FAIL') {
-    localStorage.token = respuesta;
-    localStorage.correo = datos.correo;
-    window.location.href = 'menu.html'
-  } else {
-    alert("Las credenciales son incorrectas. Por favor intente nuevamente.");
+  numero = numeroIntentos(datos.correo);
+
+  if(numero < 3){
+    const respuesta = await request.text();
+    if (respuesta != 'FAIL') {
+      localStorage.token = respuesta;
+      localStorage.correo = datos.correo;
+      window.location.href = 'menu.html'
+    } else {
+      aumentarIntento(datos.correo);
+      alert("Las credenciales son incorrectas. Por favor intente nuevamente");
+    }
+  }else{
+    alert("La cuenta del usuario " + correo + " se encuentra bloqueda")
   }
 
+}
+
+async function aumentarIntento(correo) {
+  let datos = {};
+  datos.correo = correo
+  const request = await fetch('login/usuarioIntento/' + correo, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+}
+
+async function numeroIntentos(correo) {
+  let datos = {};
+  datos.correo = correo
+  const request = await fetch('login/usuarioNumeroIntentos/' + correo, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+
+  const respuesta = await request.text();
+  numero = parseInt(respuesta, 10);
+  return numero;
 }

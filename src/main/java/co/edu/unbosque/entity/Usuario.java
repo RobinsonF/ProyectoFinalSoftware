@@ -33,6 +33,9 @@ public class Usuario implements Serializable {
     @Column(name="telefono")
     private String telefono;
 
+    @Column(name="intento")
+    private Integer intento;
+
     //bi-directional many-to-one association to Auditoria
     @OneToMany(mappedBy="usuario")
     private List<Auditoria> auditorias;
@@ -122,6 +125,14 @@ public class Usuario implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Integer getIntento() {
+        return intento;
+    }
+
+    public void setIntento(Integer intento) {
+        this.intento = intento;
     }
 
     public List<Auditoria> getAuditorias() {

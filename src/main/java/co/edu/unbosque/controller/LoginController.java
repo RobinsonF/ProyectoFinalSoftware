@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.service.LoginService;
 import co.edu.unbosque.service.UsuarioService;
@@ -18,4 +19,15 @@ public class LoginController {
     public String login(@RequestBody Usuario usuario){
         return loginService.login(usuario);
     }
+
+    @PostMapping("/usuarioIntento/{id}")
+    public String aumentarIntento(@RequestBody UsuarioDTO usuarioDTO){
+        return loginService.aumentarIntento(usuarioDTO.getCorreo());
+    }
+
+    @PostMapping("/usuarioNumeroIntentos/{id}")
+    public Integer obtenerIntentos(@RequestBody UsuarioDTO usuarioDTO){
+        return loginService.obtenerIntentos(usuarioDTO.getCorreo());
+    }
+
 }

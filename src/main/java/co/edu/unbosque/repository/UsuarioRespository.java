@@ -18,4 +18,10 @@ public interface UsuarioRespository {
     void editarEliminar(Integer id);
 
     Optional<Usuario> buscarPorId(Integer id);
+
+    Usuario buscarPorCorreo(String correo);
+
+    String aumentarIntento(String correo);
+
+    Integer obtenerIntentos(String correo);
 }
