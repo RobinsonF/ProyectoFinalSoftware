@@ -3,8 +3,6 @@ package co.edu.unbosque.repository;
 import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Auditoria;
 import co.edu.unbosque.entity.Usuario;
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -80,7 +78,7 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
 
     @Override
     public Usuario buscarPorId2(Integer id) {
-        String query = "FROM Usuario where id_usuario = '" + id + "'";
+        String query = "FROM Usuario where id_usuario = " + id;
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         return lista.get(0);
     }

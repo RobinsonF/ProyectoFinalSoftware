@@ -70,9 +70,7 @@ async function desbloquearUsuario(id) {
 
     numero2 = (await numero).toString();
 
-    alert(numero2);
-
-    if(numero2 >= 3){
+    if(numero2 < 3){
         alert("Este usuario no se encuentra bloqueado.")
     }else{
         if (!confirm('¿Desea desbloquear este usuario?')) {
@@ -91,7 +89,7 @@ async function desbloquearUsuario(id) {
 
 async function numeroIntentos(id) {
     let datos = {};
-    datos.correo = id
+    datos.id_usuario = id
     const request = await fetch('usuario/usuarioNumeroIntento/' + id, {
         method: 'POST',
         headers: {
