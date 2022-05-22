@@ -45,6 +45,14 @@ public class Zona implements Serializable {
 	public Zona() {
 	}
 
+	public Zona(String estado, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
+		this.estado = estado;
+		this.limiteNorte = limiteNorte;
+		this.limiteOccidente = limiteOccidente;
+		this.limiteOriente = limiteOriente;
+		this.limiteSur = limiteSur;
+	}
+
 	public Integer getIdZona() {
 		return this.idZona;
 	}

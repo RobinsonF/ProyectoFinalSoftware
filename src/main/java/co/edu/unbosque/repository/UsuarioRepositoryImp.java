@@ -1,7 +1,6 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.UsuarioDTO;
-import co.edu.unbosque.entity.Auditoria;
 import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public class UsuarioRepositoryImp implements UsuarioRespository{
+public class UsuarioRepositoryImp implements UsuarioRepository {
     @PersistenceContext
     EntityManager entityManager;
 

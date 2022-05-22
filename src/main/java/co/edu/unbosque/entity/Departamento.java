@@ -30,6 +30,11 @@ public class Departamento implements Serializable {
 	public Departamento() {
 	}
 
+	public Departamento(String estado, String nombre) {
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+
 	public Integer getIdDepartamento() {
 		return this.idDepartamento;
 	}

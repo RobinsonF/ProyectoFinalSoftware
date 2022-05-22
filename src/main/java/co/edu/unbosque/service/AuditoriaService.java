@@ -1,10 +1,9 @@
 package co.edu.unbosque.service;
 
 import co.edu.unbosque.entity.Auditoria;
-import co.edu.unbosque.entity.Rol;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.repository.AuditoriaRepository;
-import co.edu.unbosque.repository.UsuarioRespository;
+import co.edu.unbosque.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ public class AuditoriaService {
     AuditoriaRepository auditoriaRepository;
 
     @Autowired
-    UsuarioRespository usuarioRepository;
+    UsuarioRepository usuarioRepository;
 
 
     public List<Auditoria> listaAuditoria(){
@@ -54,11 +53,11 @@ public class AuditoriaService {
         this.auditoriaRepository = auditoriaRepository;
     }
 
-    public UsuarioRespository getUsuarioRepository() {
+    public UsuarioRepository getUsuarioRepository() {
         return usuarioRepository;
     }
 
-    public void setUsuarioRepository(UsuarioRespository usuarioRepository) {
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 }

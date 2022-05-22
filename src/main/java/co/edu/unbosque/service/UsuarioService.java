@@ -4,7 +4,7 @@ import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Rol;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.repository.RolRepository;
-import co.edu.unbosque.repository.UsuarioRespository;
+import co.edu.unbosque.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Transactional
 public class UsuarioService {
     @Autowired
-    UsuarioRespository usuarioRepository;
+    UsuarioRepository usuarioRepository;
 
     @Autowired
     RolRepository rolRepository;
@@ -56,11 +56,11 @@ public class UsuarioService {
     }
 
 
-    public UsuarioRespository getUsuarioRepository() {
+    public UsuarioRepository getUsuarioRepository() {
         return usuarioRepository;
     }
 
-    public void setUsuarioRepository(UsuarioRespository usuarioRepository) {
+    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 

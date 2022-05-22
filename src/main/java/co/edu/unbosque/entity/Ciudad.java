@@ -34,6 +34,11 @@ public class Ciudad implements Serializable {
 	public Ciudad() {
 	}
 
+	public Ciudad(String estado, String nombre) {
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+
 	public Integer getIdCiudad() {
 		return this.idCiudad;
 	}

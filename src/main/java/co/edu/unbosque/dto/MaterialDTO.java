@@ -21,12 +21,11 @@ public class MaterialDTO {
     public MaterialDTO() {
     }
 
-    public MaterialDTO(Integer idMaterial, Integer cantidad, String estado, String nombreMaterial, Integer ordentrabajo) {
+    public MaterialDTO(Integer idMaterial, Integer cantidad, String estado, String nombreMaterial) {
         this.idMaterial = idMaterial;
         this.cantidad = cantidad;
         this.estado = estado;
         this.nombreMaterial = nombreMaterial;
-        this.ordentrabajo = ordentrabajo;
     }
 
     public Integer getIdMaterial() {

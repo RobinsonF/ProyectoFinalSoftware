@@ -2,11 +2,7 @@ package co.edu.unbosque.repository;
 
 import co.edu.unbosque.commons.JasperReportManager;
 import co.edu.unbosque.commons.TipoReporteEnum;
-import co.edu.unbosque.dto.AuditoriaDTO;
 import co.edu.unbosque.dto.ReporteUsuarioDTO;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +16,7 @@ import java.util.Map;
 
 @Repository
 @Transactional
-public class ReporteUsuaioRepositoryImp implements ReporteUsuarioRepository{
+public class ReporteUsuarioRepositoryImp implements ReporteUsuarioRepository{
 
     @PersistenceContext
     EntityManager entityManager;
