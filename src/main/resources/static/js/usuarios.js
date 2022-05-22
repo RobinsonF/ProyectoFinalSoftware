@@ -20,12 +20,20 @@ async function cargarUsuarios() {
 
   let listadoHtml = '';
   for (let usuario of usuarios) {
-    let botonEliminar = '<a onclick="eliminarUsuario(' + usuario.id_usuario + ' )" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+    let botonEditar = '<a class="">' +
+        '<img src="img/editar.png" width="25" height="25" style="float: left;margin-left: 15px">'+
+        '</a>';
+    let botonEliminar = '<a onclick="eliminarUsuario(' + usuario.id_usuario + ')">' +
+        '<img src="img/eliminar.png" width="30" height="30" style="float: left;margin-left: 15px">' +
+        '</a>';
+    let botonDesbloquear = '<a onclick="desbloquearUsuario('+ usuario.id_usuario + ')">' +
+        '<img src="img/desbloquear.png" width="30" height="30" style="float: left;margin-left: 15px">' +
+        '</a>';
 
-    let telefonoTexto = usuario.telefono == null ? '-' : usuario.telefono;
+
     let usuarioHtml = '<tr><td>'+usuario.id_usuario+'</td><td>' + usuario.nombre + ' </td><td> ' + usuario.login + '</td><td>'
                     + usuario.direccion+'</td><td>'+usuario.telefono + '</td><td>' + usuario.correo
-                    + '</td><td>' + botonEliminar + '</td></tr>';
+                    + '</td><td>' + botonEditar + '</td><td>' + botonEliminar +  '</td><td>' + botonDesbloquear + '</td></tr>';
     listadoHtml += usuarioHtml;
   }
 
@@ -53,4 +61,47 @@ async function eliminarUsuario(id) {
      body: JSON.stringify(datos)
 });
     location.reload()
+}
+
+async function desbloquearUsuario(id) {
+    let datos = {};
+
+    var numero = numeroIntentos(id);
+
+    numero2 = (await numero).toString();
+
+    alert(numero2);
+
+    if(numero2 >= 3){
+        alert("Este usuario no se encuentra bloqueado.")
+    }else{
+        if (!confirm('¿Desea desbloquear este usuario?')) {
+            return;
+        }
+        datos.id_usuario = id;
+
+        const request = await fetch('usuario/desbloquearUsuario/' + id, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(datos)
+        });
+        location.reload()
+    }
+}
+
+async function numeroIntentos(id) {
+    let datos = {};
+    datos.correo = id
+    const request = await fetch('usuario/usuarioNumeroIntento/' + id, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    });
+    var numero = 0;
+    const respuesta = await request.text();
+    numero = parseInt(respuesta, 10);
+    return numero;
 }

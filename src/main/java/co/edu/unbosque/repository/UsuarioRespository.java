@@ -17,6 +17,8 @@ public interface UsuarioRespository {
 
     void editarEliminar(Integer id);
 
+    Usuario buscarPorId2(Integer id);
+
     Optional<Usuario> buscarPorId(Integer id);
 
     Usuario buscarPorCorreo(String correo);
@@ -25,5 +27,10 @@ public interface UsuarioRespository {
 
     Integer obtenerIntentos(String correo);
 
+    Integer obtenerIntentos(Integer id);
+
     void setearCeroIntentos(String correo);
+
+    void desbloquearUsuario(Integer id);
+
 }

@@ -51,6 +51,10 @@ public class UsuarioService {
         usuarioRepository.eliminar(id);
     }
 
+    public void desbloquearUsuario(Integer id){
+        usuarioRepository.desbloquearUsuario(id);
+    }
+
 
     public UsuarioRespository getUsuarioRepository() {
         return usuarioRepository;
@@ -59,5 +63,14 @@ public class UsuarioService {
     public void setUsuarioRepository(UsuarioRespository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
+
+    public Integer obtenerIntentos(String correo){
+        return usuarioRepository.obtenerIntentos(correo);
+    }
+
+    public Integer obtenerIntentos(Integer id){
+        return usuarioRepository.obtenerIntentos(id);
+    }
+
 
 }

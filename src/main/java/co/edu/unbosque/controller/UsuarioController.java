@@ -51,4 +51,15 @@ public class UsuarioController {
         return usuarioDTO.getId_usuario() + "";
     }
 
+    @PostMapping("/desbloquearUsuario/{id}")
+    public String desbloquearUsuario(@RequestBody UsuarioDTO usuarioDTO){
+        usuarioService.desbloquearUsuario(usuarioDTO.getId_usuario());
+        return usuarioDTO.getId_usuario() + "";
+    }
+
+    @PostMapping("/usuarioNumeroIntento/{id}")
+    public Integer obtenerIntentos(@RequestBody UsuarioDTO usuarioDTO){
+        return usuarioService.obtenerIntentos(usuarioDTO.getId_usuario());
+    }
+
 }

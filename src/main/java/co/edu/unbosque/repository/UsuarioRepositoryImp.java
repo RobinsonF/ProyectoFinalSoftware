@@ -71,10 +71,18 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
         Usuario usuario = entityManager.find(Usuario.class, id);
     }
 
+
     @Override
     public Optional<Usuario> buscarPorId(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
         return usuario != null ? Optional.of(usuario) : Optional.empty();
+    }
+
+    @Override
+    public Usuario buscarPorId2(Integer id) {
+        String query = "FROM Usuario where id_usuario = '" + id + "'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        return lista.get(0);
     }
 
     @Override
@@ -104,9 +112,22 @@ public class UsuarioRepositoryImp implements UsuarioRespository{
     }
 
     @Override
+    public Integer obtenerIntentos(Integer id) {
+        Usuario usuario = buscarPorId2(id);
+        return usuario.getIntento();
+    }
+
+    @Override
     public void setearCeroIntentos(String correo) {
         Usuario usuario1 = buscarPorCorreo(correo);
         Usuario usuario = entityManager.find(Usuario.class, usuario1.getIdUsuario());
+        usuario.setIntento(0);
+        entityManager.merge(usuario);
+    }
+
+    @Override
+    public void desbloquearUsuario(Integer id) {
+        Usuario usuario = entityManager.find(Usuario.class, id);
         usuario.setIntento(0);
         entityManager.merge(usuario);
     }
