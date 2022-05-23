@@ -44,6 +44,12 @@ public class Cuadrilla implements Serializable {
 	public Cuadrilla() {
 	}
 
+	public Cuadrilla(String estado, String nombreCuadrilla) {
+		this.estado = estado;
+		this.nombreCuadrilla = nombreCuadrilla;
+	}
+
+
 	public Integer getIdCuadrilla() {
 		return this.idCuadrilla;
 	}

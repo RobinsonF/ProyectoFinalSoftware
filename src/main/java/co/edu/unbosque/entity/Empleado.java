@@ -34,6 +34,13 @@ public class Empleado implements Serializable {
 	public Empleado() {
 	}
 
+	public Empleado(String apellido, String cedula, String estado, String nombre) {
+		this.apellido = apellido;
+		this.cedula = cedula;
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+
 	public Integer getIdEmpleado() {
 		return this.idEmpleado;
 	}

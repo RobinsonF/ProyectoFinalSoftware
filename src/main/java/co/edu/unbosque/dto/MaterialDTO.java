@@ -1,10 +1,5 @@
 package co.edu.unbosque.dto;
 
-import co.edu.unbosque.entity.Ordentrabajo;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 public class MaterialDTO {
 

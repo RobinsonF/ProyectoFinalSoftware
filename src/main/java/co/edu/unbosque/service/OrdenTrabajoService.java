@@ -21,7 +21,6 @@ public class OrdenTrabajoService {
     OrdenTrabajoRepository ordenTrabajoRepository;
     @Autowired
     ZonaRepository zonaRepository;
-
     @Autowired
     CuadrillaRepository cuadrillaRepository;
 

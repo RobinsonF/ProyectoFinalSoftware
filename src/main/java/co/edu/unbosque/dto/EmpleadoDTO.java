@@ -1,6 +1,5 @@
 package co.edu.unbosque.dto;
 
-import javax.persistence.Column;
 
 public class EmpleadoDTO {
 
@@ -14,6 +13,8 @@ public class EmpleadoDTO {
 
     private String nombre;
 
+    private Integer id_cuadrilla;
+
     public EmpleadoDTO(Integer idEmpleado, String apellido, String cedula, String estado, String nombre) {
         this.idEmpleado = idEmpleado;
         this.apellido = apellido;
@@ -23,6 +24,14 @@ public class EmpleadoDTO {
     }
 
     public EmpleadoDTO() {
+    }
+
+    public Integer getId_cuadrilla() {
+        return id_cuadrilla;
+    }
+
+    public void setId_cuadrilla(Integer id_cuadrilla) {
+        this.id_cuadrilla = id_cuadrilla;
     }
 
     public Integer getIdEmpleado() {

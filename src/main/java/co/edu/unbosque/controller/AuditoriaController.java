@@ -34,7 +34,7 @@ public class AuditoriaController {
 
     @PostMapping("/crearUsuario")
     public ResponseEntity<Usuario> crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
-        Auditoria auditoria = new Auditoria(auditoriaDTO.getEstado(),auditoriaDTO.getEvento(),auditoriaDTO.getFecha());
+        Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),auditoriaDTO.getFecha());
         auditoriaService.registrarAuditoria(auditoria, auditoriaDTO.getId_usuario());
         return new ResponseEntity(auditoria, HttpStatus.OK);
     }

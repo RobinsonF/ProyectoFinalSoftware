@@ -33,6 +33,12 @@ public class Material implements Serializable {
 	public Material() {
 	}
 
+	public Material(Integer cantidad, String estado, String nombreMaterial) {
+		this.cantidad = cantidad;
+		this.estado = estado;
+		this.nombreMaterial = nombreMaterial;
+	}
+
 	public Integer getIdMaterial() {
 		return this.idMaterial;
 	}

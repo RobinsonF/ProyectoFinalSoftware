@@ -30,6 +30,11 @@ public class Turnotrabajo implements Serializable {
 	public Turnotrabajo() {
 	}
 
+	public Turnotrabajo(String estado, String nombre) {
+		this.estado = estado;
+		this.nombre = nombre;
+	}
+
 	public Integer getIdTurnotrabajo() {
 		return this.idTurnotrabajo;
 	}

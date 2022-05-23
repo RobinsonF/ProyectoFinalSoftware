@@ -16,19 +16,13 @@ public class DepartamentoService {
     @Autowired
     DepartamentoRepository departamentoRepository;
 
-
     public List<Departamento> listaDepartamentos() {
         return departamentoRepository.listaDepartamentos();
     }
 
     public Departamento registrarDepartamento(Departamento departamento) {
-        String hash = "";
-
-
         Departamento departamento1 = new Departamento(departamento.getEstado(), departamento.getNombre());
-
         departamentoRepository.registrar(departamento1);
         return departamento1;
-
     }
 }
