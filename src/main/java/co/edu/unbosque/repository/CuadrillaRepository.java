@@ -10,6 +10,9 @@ public interface CuadrillaRepository {
     List<Cuadrilla> listaCuadrillas();
 
     void registrar(Cuadrilla cuadrilla);
-
     Optional<Cuadrilla> buscarPorId(Integer id);
+
+    Cuadrilla buscarPorNombre(String nombre);
+
+    Integer obtenerIdPorNombre(String nombre);
 }

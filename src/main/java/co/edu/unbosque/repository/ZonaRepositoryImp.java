@@ -24,7 +24,7 @@ public class ZonaRepositoryImp implements ZonaRepository{
 
     @Override
     public List<Zona> listaZonas() {
-        String query = "FROM zona";
+        String query = "FROM Zona";
         return entityManager.createQuery(query).getResultList();
     }
 

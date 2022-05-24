@@ -40,4 +40,8 @@ public class CuadrillaService {
         return cuadrilla1;
     }
 
+    public Integer obtenerIdPorNombre(String nombre){
+        return cuadrillaRepository.obtenerIdPorNombre(nombre);
+    }
+
 }

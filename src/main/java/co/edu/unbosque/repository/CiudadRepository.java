@@ -13,4 +13,8 @@ public interface CiudadRepository {
     void registrar(Ciudad ciudad);
 
     Optional<Ciudad> buscarPorId(Integer id);
+
+    Ciudad buscarPorNombre(String nombre);
+
+    Integer obtenerIdPorNombre(String nombre);
 }

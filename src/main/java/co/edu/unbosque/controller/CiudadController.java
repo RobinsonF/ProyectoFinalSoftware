@@ -41,4 +41,9 @@ public class CiudadController {
         return new ResponseEntity(ciudad, HttpStatus.OK);
     }
 
+    @PostMapping("/obtenerId/{id}")
+    public Integer obtenerId(@RequestBody CiudadDTO ciudadDTO){
+        return ciudadService.obtenerIdPorNombre(ciudadDTO.getNombre());
+    }
+
 }

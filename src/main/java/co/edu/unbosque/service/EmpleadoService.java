@@ -28,7 +28,7 @@ public class EmpleadoService {
 
     public Empleado registrarEmpleado(Empleado empleado, Integer id) {
 
-        Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),empleado.getEstado(),empleado.getNombre());
+        Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),"A",empleado.getNombre());
         Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id);
         cuadrilla.ifPresent(a -> {
             a.addEmpleado(empleado1);

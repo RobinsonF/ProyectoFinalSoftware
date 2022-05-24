@@ -38,7 +38,9 @@ public class CiudadService {
         });
         ciudadRepository.registrar(ciudad1);
         return ciudad1;
+    }
 
-
+    public Integer obtenerIdPorNombre(String nombre){
+        return ciudadRepository.obtenerIdPorNombre(nombre);
     }
 }

@@ -359,15 +359,12 @@
                                                            placeholder="Cédula del empleado">
                                                 </div>
                                                 <div style="float: top;margin-top: 30px; float: left; margin-left: 20px; width: 300px;">
-                                                    <select name="Turno de trabajo">
-                                                        <option value="value1">Seleccione el nombre de la cuadrilla</option>
-                                                        <option value="value1">Value 1</option>
-                                                        <option value="value2">Value 2</option>
-                                                        <option value="value3">Value 3</option>
+                                                    <select id="cuadrilla">
+                                                        <option></option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <a type="button"  onclick="registrarUsuario()" href="#" class="btn btn-primary btn-user btn-block" style="float:top;margin-top: 20px">
+                                            <a type="button"  onclick="registrarEmpleado()" href="#" class="btn btn-primary btn-user btn-block" style="float:top;margin-top: 20px">
                                                 Registrar
                                             </a>
 
@@ -466,6 +463,9 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+
+<script src="js/obtenerCudrillas.js"></script>
+<script src="js/registroEmpleado.js"></script>
 
 </body>
 

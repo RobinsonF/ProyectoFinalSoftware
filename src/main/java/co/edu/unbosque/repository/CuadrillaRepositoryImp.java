@@ -1,6 +1,7 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.entity.Cuadrilla;
+import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,22 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
     public Optional<Cuadrilla> buscarPorId(Integer id) {
         Cuadrilla cuadrilla = entityManager.find(Cuadrilla.class, id);
         return cuadrilla != null ? Optional.of(cuadrilla) : Optional.empty();
+    }
+
+    @Override
+    public Cuadrilla buscarPorNombre(String nombre) {
+        String query = "FROM Cuadrilla where nombre_cuadrilla = '" + nombre + "'";
+        List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Integer obtenerIdPorNombre(String nombre) {
+        return buscarPorNombre(nombre).getIdCuadrilla();
     }
 
     @Override

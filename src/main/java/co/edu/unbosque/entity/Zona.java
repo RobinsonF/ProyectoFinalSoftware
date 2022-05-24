@@ -16,10 +16,14 @@ public class Zona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_zona")
 	private Integer idZona;
 	@Column(name="estado")
 	private String estado;
+
+	@Column(name="nombre")
+	private String nombre;
 
 	@Column(name="limite_norte")
 	private String limiteNorte;
@@ -45,7 +49,8 @@ public class Zona implements Serializable {
 	public Zona() {
 	}
 
-	public Zona(String estado, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
+	public Zona(String nombre, String estado, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
+		this.nombre = nombre;
 		this.estado = estado;
 		this.limiteNorte = limiteNorte;
 		this.limiteOccidente = limiteOccidente;
@@ -131,4 +136,11 @@ public class Zona implements Serializable {
 		this.ciudad = ciudad;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

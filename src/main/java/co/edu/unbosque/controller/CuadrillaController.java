@@ -39,4 +39,9 @@ public class CuadrillaController {
         return new ResponseEntity(cuadrilla, HttpStatus.OK);
     }
 
+    @PostMapping("/obtenerId/{id}")
+    public Integer obtenerId(@RequestBody CuadrillaDTO cuadrillaDTO){
+        return cuadrillaService.obtenerIdPorNombre(cuadrillaDTO.getNombreCuadrilla());
+    }
+
 }

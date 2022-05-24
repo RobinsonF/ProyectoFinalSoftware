@@ -25,7 +25,7 @@ public class ZonaController {
         List<ZonaDTO> listaZonas = new ArrayList<>();
         for (Zona zona: zonas) {
             listaZonas.add(
-                    new ZonaDTO(zona.getIdZona(),zona.getEstado(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur())
+                    new ZonaDTO(zona.getIdZona(),zona.getNombre(), zona.getCiudad().getNombre(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur())
             );
         }
         return new ResponseEntity<List<ZonaDTO>>(listaZonas, HttpStatus.OK);
@@ -33,7 +33,7 @@ public class ZonaController {
 
     @PostMapping("/crearZona")
     public ResponseEntity<Ciudad> crearZona(@RequestBody ZonaDTO zonaDTO){
-        Zona zona = new Zona("A",zonaDTO.getLimiteNorte(),zonaDTO.getLimiteOccidente(),zonaDTO.getLimiteOriente(),zonaDTO.getLimiteSur());
+        Zona zona = new Zona(zonaDTO.getNombre(), "A",zonaDTO.getLimiteNorte(),zonaDTO.getLimiteOccidente(),zonaDTO.getLimiteOriente(),zonaDTO.getLimiteSur());
         zonaService.registrarZona(zona, zonaDTO.getId_ciudad());
         return new ResponseEntity(zona, HttpStatus.OK);
     }

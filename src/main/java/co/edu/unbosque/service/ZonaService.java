@@ -26,7 +26,7 @@ public class ZonaService {
 
     public Zona registrarZona(Zona zona, Integer id) {
 
-        Zona zona1 = new Zona(zona.getEstado(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur());
+        Zona zona1 = new Zona(zona.getNombre(), zona.getEstado(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur());
         Optional<Ciudad> ciudad = ciudadRepository.buscarPorId(id);
         ciudad.ifPresent(a -> {
             a.addZona(zona1);

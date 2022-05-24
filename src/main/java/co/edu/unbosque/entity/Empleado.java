@@ -15,6 +15,7 @@ public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_empleado")
 	private Integer idEmpleado;
 	@Column(name="apellido")
