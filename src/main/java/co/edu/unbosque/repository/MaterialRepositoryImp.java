@@ -21,7 +21,7 @@ public class MaterialRepositoryImp implements MaterialRepository {
 
     @Override
     public List<Material> listaMateriales() {
-        String query = "FROM material";
+        String query = "FROM Material";
         return entityManager.createQuery(query).getResultList();
     }
 

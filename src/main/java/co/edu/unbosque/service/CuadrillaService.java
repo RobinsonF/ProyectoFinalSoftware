@@ -38,8 +38,6 @@ public class CuadrillaService {
         });
         cuadrillaRepository.registrar(cuadrilla1);
         return cuadrilla1;
-
-
     }
 
 }

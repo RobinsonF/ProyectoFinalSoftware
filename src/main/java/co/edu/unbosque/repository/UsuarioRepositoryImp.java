@@ -21,7 +21,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     @Override
     @Transactional
     public List<Usuario> getUsuarios() {
-        String query = "FROM Usuario where estado = 'A'";
+        String query = "FROM Usuario where estado = 'A' and rol = 2";
         return entityManager.createQuery(query).getResultList();
     }
 
@@ -71,6 +71,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Optional<Usuario> buscarPorId(Integer id) {
+        System.out.println(id);
         Usuario usuario = entityManager.find(Usuario.class, id);
         return usuario != null ? Optional.of(usuario) : Optional.empty();
     }
@@ -86,7 +87,33 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     public Usuario buscarPorCorreo(String correo) {
         String query = "FROM Usuario where correo = '" + correo + "'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
-        return lista.get(0);
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorLogin(String login) {
+        String query = "FROM Usuario where login = '" + login + "'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorNombre(String nombre) {
+        String query = "FROM Usuario where nombre = '" + nombre + "'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -115,6 +142,18 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
+    public String obtenerRol(String correo) {
+        Usuario usuario = buscarPorCorreo(correo);
+        return usuario.getRol().getNombre();
+    }
+
+    @Override
+    public Integer obtenerId(String nombre) {
+        Usuario usuario = buscarPorNombre(nombre);
+        return usuario.getIdUsuario();
+    }
+
+    @Override
     public void setearCeroIntentos(String correo) {
         Usuario usuario1 = buscarPorCorreo(correo);
         Usuario usuario = entityManager.find(Usuario.class, usuario1.getIdUsuario());
@@ -127,5 +166,25 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         Usuario usuario = entityManager.find(Usuario.class, id);
         usuario.setIntento(0);
         entityManager.merge(usuario);
+    }
+
+    @Override
+    public Integer validarCorreo(String correo) {
+        Usuario usuario = buscarPorCorreo(correo);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
+    public Integer validarLogin(String login) {
+        Usuario usuario = buscarPorLogin(login);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 }

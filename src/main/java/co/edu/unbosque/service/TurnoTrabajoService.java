@@ -23,4 +23,8 @@ public class TurnoTrabajoService {
         turnoTrabajoRepository.registrar(turnotrabajo1);
         return turnotrabajo1;
     }
+
+    public Integer obtenerId(String nombre){
+        return turnoTrabajoRepository.obtenerId(nombre);
+    }
 }

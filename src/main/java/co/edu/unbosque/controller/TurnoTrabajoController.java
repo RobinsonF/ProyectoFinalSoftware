@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.TurnoTrabajoDTO;
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Turnotrabajo;
 import co.edu.unbosque.service.TurnoTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class TurnoTrabajoController {
         Turnotrabajo turnotrabajo = new Turnotrabajo("A",turnoTrabajoDTO.getNombre());
         turnoTrabajoService.registrarTurno(turnotrabajo);
         return new ResponseEntity(turnotrabajo, HttpStatus.OK);
+    }
+
+    @PostMapping("/turnoId/{id}")
+    public Integer obtenerId(@RequestBody TurnoTrabajoDTO turnoTrabajoDTO){
+        return turnoTrabajoService.obtenerId(turnoTrabajoDTO.getNombre());
     }
 }

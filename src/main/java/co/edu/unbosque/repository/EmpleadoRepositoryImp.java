@@ -23,7 +23,7 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
 
     @Override
     public List<Empleado> listaEmpleados() {
-        String query = "FROM empleado";
+        String query = "FROM Empleado";
         return entityManager.createQuery(query).getResultList();
     }
 

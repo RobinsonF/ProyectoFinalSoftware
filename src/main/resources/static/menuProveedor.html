@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="menu.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="menuProveedor.html">
             <div>
                 <img src="img/rayo.png" width="40" height="40" style="float: left;margin-left: 15px">
             </div>
@@ -43,7 +43,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="menu.html">
+            <a class="nav-link" href="menuProveedor.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Inicio</span></a>
         </li>
@@ -66,14 +66,10 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Entidades:</h6>
-                    <a class="collapse-item" href="registroProveedor.html">Proveedores</a>
-                    <a class="collapse-item" href="registroCuadrilla.html">Cuadrillas</a>
-                    <a class="collapse-item" href="registroZona.html">Zonas</a>
-                    <a class="collapse-item" href="registroDepartamento.html">Departamentos</a>
-                    <a class="collapse-item" href="registroCiudad.html">Ciudades</a>
-                    <a class="collapse-item" href="registroMaterial.html">Materiales</a>
-                    <a class="collapse-item" href="registroOrden.html">Ordenes de trabajo</a>
+                    <a class="collapse-item" href="registroCuadrilla.html"  >Cuadrillas</a>
                     <a class="collapse-item" href="registroEmpleado.html">Empleados</a>
+                    <a class="collapse-item" href="registroOrden.html">Ordenes de trabajo</a>
+                    <a class="collapse-item" href="registroMaterial.html">Materiales</a>
                 </div>
             </div>
         </li>
@@ -96,14 +92,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Entidades:</h6>
-                    <a class="collapse-item" href="usuarios.html">Proveedores</a>
                     <a class="collapse-item" href="cuadrilla.html">Cuadrillas</a>
-                    <a class="collapse-item" href="zona.html">Zonas</a>
-                    <a class="collapse-item" href="departamento.html">Departamentos</a>
-                    <a class="collapse-item" href="ciudad.html">Ciudades</a>
-                    <a class="collapse-item" href="material.html">Materiales</a>
                     <a class="collapse-item" href="orden.html">Ordenes de trabajo</a>
-                    <a class="collapse-item" href="empleado.html">Empleados</a>
+                    <a class="collapse-item" href="material.html">Materiales</a>
                 </div>
             </div>
         </li>
@@ -295,7 +286,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Proveedor</span>
                             <img class="img-profile rounded-circle"
                                  src="img/undraw_profile.svg">
                         </a>
@@ -331,49 +322,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Registro de cuadrillas</h1>
-
-                <div class="container">
-
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="image">
-                                    <img src="img/cuadrilla.png" width="310" height="310" style="float: left;margin-left:55px; float: top; margin-top:35px" alt="">
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="p-5">
-                                        <form class="user">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" class="form-control form-control-user" id="txtNombre" required
-                                                           placeholder="Nombre de la cuadrilla">
-                                                </div>
-                                                <div style=" float: top;margin-top: 30px; float: left; margin-left: 20px; width: 300px;">
-                                                    <select id="proveedor">
-                                                        <option></option>
-                                                    </select>
-                                                </div>
-                                                <div  style="float: top;margin-top: 30px; float: left; margin-left: 20px; width: 300px;">
-                                                    <select id ="turnoTrabajo">
-                                                        <option></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <a type="button"  onclick="registrarCuadrilla()" href="#" class="btn btn-primary btn-user btn-block" style="float:top;margin-top: 20px">
-                                                Registrar
-                                            </a>
-
-                                        </form>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <h1 class="h3 mb-4 text-gray-800">¡Bienvenido!</h1>
 
             </div>
             <!-- /.container-fluid -->
@@ -460,8 +409,7 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
-<script src="js/turnoTrabajo.js"></script>
-<script src="js/registrarCuadrilla.js"></script>
+
 </body>
 
 </html>

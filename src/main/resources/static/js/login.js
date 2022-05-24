@@ -24,13 +24,24 @@ async function iniciarSesion() {
 
     numero2 = (await numero).toString();
 
+    rol = usuarioRol(datos.correo);
+
+    rol2 = (await rol).toString();
+
     if(numero2 < 3){
       const respuesta = await request.text();
       if (respuesta != 'FAIL') {
         setearCero(datos.correo);
-        localStorage.token = respuesta;
-        localStorage.correo = datos.correo;
-        window.location.href = 'menu.html'
+        if(rol2 == 'Proveedor'){
+          localStorage.token = respuesta;
+          localStorage.correo = datos.correo;
+          window.location.href = 'menuProveedor.html?correo='+datos.correo
+        }else{
+          localStorage.token = respuesta;
+          localStorage.correo = datos.correo;
+          window.location.href = 'menu.html?correo='+datos.correo
+        }
+
       } else {
         aumentarIntento(datos.correo);
         alert("Las credenciales son incorrectas. Por favor intente nuevamente");
@@ -82,5 +93,22 @@ async function setearCero(correo) {
     },
     body: JSON.stringify(datos)
   });
+}
+
+async function usuarioRol(correo) {
+  let datos = {};
+  datos.correo = correo
+  const request = await fetch('usuario/usuarioRol/' + correo, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+  });
+
+  const respuesta = await request.text();
+
+  return respuesta;
 }
 

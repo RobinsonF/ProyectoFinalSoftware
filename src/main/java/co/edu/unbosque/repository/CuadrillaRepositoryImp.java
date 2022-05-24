@@ -22,7 +22,7 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
 
     @Override
     public List<Cuadrilla> listaCuadrillas() {
-        String query = "FROM cuadrilla";
+        String query = "FROM Cuadrilla";
         return entityManager.createQuery(query).getResultList();
     }
 

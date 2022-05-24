@@ -62,4 +62,24 @@ public class UsuarioController {
         return usuarioService.obtenerIntentos(usuarioDTO.getId_usuario());
     }
 
+    @PostMapping("/usuarioRol/{id}")
+    public String obtenerRol(@RequestBody UsuarioDTO usuarioDTO){
+        return usuarioService.obtenerRol(usuarioDTO.getCorreo());
+    }
+
+    @PostMapping("/validarCorreo/{id}")
+    public Integer validarCorreo(@RequestBody UsuarioDTO usuarioDTO){
+        return usuarioService.validarCorreo(usuarioDTO.getCorreo());
+    }
+
+    @PostMapping("/validarLogin/{id}")
+    public Integer validarLogin(@RequestBody UsuarioDTO usuarioDTO){
+        return usuarioService.validarLogin(usuarioDTO.getLogin());
+    }
+
+    @PostMapping("/obtenerId/{id}")
+    public Integer obtenerId(@RequestBody UsuarioDTO usuarioDTO){
+        return usuarioService.obtenerId(usuarioDTO.getNombre());
+    }
+
 }

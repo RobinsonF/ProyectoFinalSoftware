@@ -72,5 +72,20 @@ public class UsuarioService {
         return usuarioRepository.obtenerIntentos(id);
     }
 
+    public String obtenerRol(String correo){
+        return usuarioRepository.obtenerRol(correo);
+    }
+
+    public Integer validarCorreo(String correo){
+        return usuarioRepository.validarCorreo(correo);
+    }
+
+    public Integer validarLogin(String login){
+        return usuarioRepository.validarLogin(login);
+    }
+
+    public Integer obtenerId(String nombre){
+        return usuarioRepository.obtenerId(nombre);
+    }
 
 }

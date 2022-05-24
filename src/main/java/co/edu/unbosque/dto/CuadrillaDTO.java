@@ -18,10 +18,21 @@ public class CuadrillaDTO {
 
     private Integer usuario;
 
+    private String nombreProveedor;
+
+    private String nombreTurno;
+
     public CuadrillaDTO(Integer idCuadrilla, String estado, String nombreCuadrilla) {
         this.idCuadrilla = idCuadrilla;
         this.estado = estado;
         this.nombreCuadrilla = nombreCuadrilla;
+    }
+
+    public CuadrillaDTO(Integer idCuadrilla, String nombreCuadrilla, String nombreProveedor, String nombreTurno) {
+        this.idCuadrilla = idCuadrilla;
+        this.nombreCuadrilla = nombreCuadrilla;
+        this.nombreProveedor = nombreProveedor;
+        this.nombreTurno = nombreTurno;
     }
 
     public CuadrillaDTO() {
@@ -65,5 +76,21 @@ public class CuadrillaDTO {
 
     public void setUsuario(Integer usuario) {
         this.usuario = usuario;
+    }
+
+    public String getNombreProveedor() {
+        return nombreProveedor;
+    }
+
+    public void setNombreProveedor(String nombreProveedor) {
+        this.nombreProveedor = nombreProveedor;
+    }
+
+    public String getNombreTurno() {
+        return nombreTurno;
+    }
+
+    public void setNombreTurno(String nombreTurno) {
+        this.nombreTurno = nombreTurno;
     }
 }

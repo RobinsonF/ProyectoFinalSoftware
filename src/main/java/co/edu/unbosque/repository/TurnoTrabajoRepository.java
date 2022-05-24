@@ -11,4 +11,8 @@ public interface TurnoTrabajoRepository {
     void registrar(Turnotrabajo turnotrabajo);
 
     Optional<Turnotrabajo> buscarPorId(Integer id);
+
+    Turnotrabajo buscarPorNombre(String nombre);
+
+    Integer obtenerId(String nombre);
 }

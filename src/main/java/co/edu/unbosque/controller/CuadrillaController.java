@@ -25,14 +25,14 @@ public class CuadrillaController {
         List<CuadrillaDTO> listaCuadrillas = new ArrayList<>();
         for (Cuadrilla cuadrilla: cuadrillas) {
             listaCuadrillas.add(
-                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla())
+                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getNombreCuadrilla(),cuadrilla.getUsuario().getNombre(), cuadrilla.getTurnotrabajo().getNombre())
             );
         }
         return new ResponseEntity<List<CuadrillaDTO>>(listaCuadrillas, HttpStatus.OK);
     }
 
     @PostMapping("/crearCuadrilla")
-    public ResponseEntity<Cuadrilla> crearZona(@RequestBody CuadrillaDTO cuadrillaDTO){
+    public ResponseEntity<Cuadrilla> crearCuadrilla(@RequestBody CuadrillaDTO cuadrillaDTO){
         Cuadrilla cuadrilla = new Cuadrilla("A",cuadrillaDTO.getNombreCuadrilla());
         cuadrillaService.registrarCuadrilla(cuadrilla, cuadrillaDTO.getUsuario(),cuadrillaDTO.getTurnotrabajo());
         return new ResponseEntity(cuadrilla, HttpStatus.OK);
