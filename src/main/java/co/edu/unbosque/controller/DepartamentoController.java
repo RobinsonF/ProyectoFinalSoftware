@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.DepartamentoDTO;
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Departamento;
 import co.edu.unbosque.service.DepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class DepartamentoController {
         Departamento departamento = new Departamento("A",departamentoDTO.getNombre());
         departamentoService.registrarDepartamento(departamento);
         return new ResponseEntity(departamento, HttpStatus.OK);
+    }
+
+    @PostMapping("/obtenerId/{id}")
+    public Integer obtenerId(@RequestBody DepartamentoDTO departamentoDTO){
+        return departamentoService.obtenerIdPorNombre(departamentoDTO.getNombre());
     }
 }

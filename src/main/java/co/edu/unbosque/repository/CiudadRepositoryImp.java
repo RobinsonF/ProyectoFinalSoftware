@@ -23,7 +23,7 @@ public class CiudadRepositoryImp implements CiudadRepository{
 
     @Override
     public List<Ciudad> listaCiudades() {
-        String query = "FROM ciudad";
+        String query = "FROM Ciudad";
         return entityManager.createQuery(query).getResultList();
     }
 

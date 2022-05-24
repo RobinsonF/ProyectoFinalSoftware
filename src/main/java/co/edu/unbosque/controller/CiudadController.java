@@ -28,7 +28,7 @@ public class CiudadController {
         List<CiudadDTO> listaCiudades = new ArrayList<>();
         for (Ciudad ciudad: ciudades) {
             listaCiudades.add(
-                    new CiudadDTO(ciudad.getIdCiudad(),ciudad.getEstado(),ciudad.getNombre())
+                    new CiudadDTO(ciudad.getIdCiudad(),ciudad.getNombre(),ciudad.getDepartamento().getNombre())
             );
         }
         return new ResponseEntity<List<CiudadDTO>>(listaCiudades, HttpStatus.OK);
@@ -40,4 +40,5 @@ public class CiudadController {
         ciudadService.registrarCiudad(ciudad, ciudadDTO.getId_departamento());
         return new ResponseEntity(ciudad, HttpStatus.OK);
     }
+
 }

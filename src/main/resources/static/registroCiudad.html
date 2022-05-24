@@ -347,19 +347,16 @@
                     <form class="user">
                       <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user" id="txtlogin" required
+                          <input type="text" class="form-control form-control-user" id="nombreCiudad" required
                                  placeholder="Nombre de la ciudad">
                         </div>
                         <div style=" float: top;margin-top: 30px; float: left; margin-left: 20px; width: 300px;">
-                          <select name="Nombre del proveedor">
-                            <option value="value1">Seleccione el nombre del departamento</option>
-                            <option value="value1">Value 1</option>
-                            <option value="value2">Value 2</option>
-                            <option value="value3">Value 3</option>
+                          <select id="departamento">
+                            <option></option>
                           </select>
                         </div>
                       </div>
-                      <a type="button"  onclick="registrarUsuario()" href="#" class="btn btn-primary btn-user btn-block" style="float:top;margin-top: 20px">
+                      <a type="button"  onclick="registrarCiudades()" href="#" class="btn btn-primary btn-user btn-block" style="float:top;margin-top: 20px">
                         Registrar
                       </a>
 
@@ -458,6 +455,9 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+
+<script src="js/cargarDepartamento.js"></script>
+<script src="js/registroCiudades.js"></script>
 
 </body>
 

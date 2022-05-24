@@ -1,6 +1,7 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.entity.Departamento;
+import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -23,12 +24,28 @@ public class DepartamentoRepositoryImp implements DepartamentoRepository{
 
     @Override
     public List<Departamento> listaDepartamentos() {
-        String query = "FROM departamento";
+        String query = "FROM Departamento";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
     public void registrar(Departamento departamento) {
         entityManager.merge(departamento);
+    }
+
+    @Override
+    public Departamento buscarPorNombre(String nombre) {
+        String query = "FROM Departamento where nombre = '" + nombre + "'";
+        List<Departamento> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Integer obtenerIdPorNombre(String nombre) {
+        return buscarPorNombre(nombre).getIdDepartamento();
     }
 }

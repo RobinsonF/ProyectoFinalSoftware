@@ -25,4 +25,8 @@ public class DepartamentoService {
         departamentoRepository.registrar(departamento1);
         return departamento1;
     }
+
+    public Integer obtenerIdPorNombre(String nombre){
+        return departamentoRepository.obtenerIdPorNombre(nombre);
+    }
 }

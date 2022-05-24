@@ -30,7 +30,7 @@ public class CiudadService {
 
     public Ciudad registrarCiudad(Ciudad ciudad, Integer id) {
 
-        Ciudad ciudad1 = new Ciudad(ciudad.getEstado(),ciudad.getNombre());
+        Ciudad ciudad1 = new Ciudad("A",ciudad.getNombre());
         Optional<Departamento> departamento = departamentoRepository.buscarPorId(id);
         departamento.ifPresent(a -> {
             a.addCiudad(ciudad1);

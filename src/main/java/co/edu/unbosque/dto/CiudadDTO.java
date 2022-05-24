@@ -11,13 +11,15 @@ public class CiudadDTO {
 
     private Integer id_departamento;
 
+    private String nombreDepartamento;
+
     public CiudadDTO() {
     }
 
-    public CiudadDTO(Integer idCiudad, String estado, String nombre) {
+    public CiudadDTO(Integer idCiudad, String nombre, String nombreDepartamento) {
         this.idCiudad = idCiudad;
-        this.estado = estado;
         this.nombre = nombre;
+        this.nombreDepartamento = nombreDepartamento;
     }
 
     public Integer getIdCiudad() {
@@ -50,5 +52,13 @@ public class CiudadDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getNombreDepartamento() {
+        return nombreDepartamento;
+    }
+
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
     }
 }

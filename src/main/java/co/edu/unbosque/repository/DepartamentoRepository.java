@@ -10,6 +10,9 @@ public interface DepartamentoRepository {
 
     Optional<Departamento> buscarPorId(Integer id);
     List<Departamento> listaDepartamentos();
-
     void registrar (Departamento departamento);
+
+    Departamento buscarPorNombre(String nombre);
+
+    Integer obtenerIdPorNombre(String nombre);
 }

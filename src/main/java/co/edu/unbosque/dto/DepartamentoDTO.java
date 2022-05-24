@@ -15,6 +15,7 @@ public class DepartamentoDTO {
         this.nombre = nombre;
     }
 
+
     public DepartamentoDTO() {
     }
 

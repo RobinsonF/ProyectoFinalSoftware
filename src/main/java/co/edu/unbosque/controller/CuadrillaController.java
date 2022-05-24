@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.service.CuadrillaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,5 @@ public class CuadrillaController {
         cuadrillaService.registrarCuadrilla(cuadrilla, cuadrillaDTO.getUsuario(),cuadrillaDTO.getTurnotrabajo());
         return new ResponseEntity(cuadrilla, HttpStatus.OK);
     }
+
 }
