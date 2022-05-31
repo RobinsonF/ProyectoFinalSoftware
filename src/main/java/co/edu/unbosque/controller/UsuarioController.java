@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.service.UsuarioService;
@@ -46,9 +47,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/eliminarUsuario/{id}")
-    public String eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
+    public EstadoDTO eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         usuarioService.eliminarUsuario(usuarioDTO.getId_usuario());
-        return usuarioDTO.getId_usuario() + "";
+        EstadoDTO estadoDTO = new EstadoDTO(usuarioDTO.getId_usuario() + "", "Funciona");
+        return estadoDTO;
     }
 
     @PostMapping("/desbloquearUsuario/{id}")
