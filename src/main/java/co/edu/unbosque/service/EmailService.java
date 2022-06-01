@@ -20,22 +20,22 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public ResponseEntity<String> enviarCorreo(CorreoDTO correo){
+    public ResponseEntity<String> enviarCorreo(CorreoDTO correo) {
         SimpleMailMessage mail = new SimpleMailMessage();
 
-        try{
-        mail.setFrom("electricidad023@gmail.com");
-        mail.setTo(correo.getTo());
-        mail.setSubject(correo.getSubject());
-        mail.setText(correo.getText());
+        try {
+            mail.setFrom("electricidad023@gmail.com");
+            mail.setTo(correo.getTo());
+            mail.setSubject(correo.getSubject());
+            mail.setText(correo.getText());
 
-        javaMailSender.send(mail);
+            javaMailSender.send(mail);
 
-    } catch (MailException e) {
-        log.info("error in sending mail, detail: [{}]", e.getMessage());
-        return new ResponseEntity<>("Error in sending mail", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-		return ResponseEntity.ok("Mail send");
+        } catch (MailException e) {
+            log.info("error in sending mail, detail: [{}]", e.getMessage());
+            return new ResponseEntity<>("Error in sending mail", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return ResponseEntity.ok("Mail send");
 
     }
 

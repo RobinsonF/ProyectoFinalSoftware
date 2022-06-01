@@ -46,10 +46,10 @@ public class UsuarioController {
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
 
-    @PostMapping("/eliminarUsuario/{id}")
-    public EstadoDTO eliminarUsuario(@RequestBody UsuarioDTO usuarioDTO){
-        usuarioService.eliminarUsuario(usuarioDTO.getId_usuario());
-        EstadoDTO estadoDTO = new EstadoDTO(usuarioDTO.getId_usuario() + "", "Funciona");
+    @PutMapping("/eliminarUsuario")
+    public EstadoDTO eliminarUsuario(@RequestParam Integer id){
+        usuarioService.eliminarUsuario(id);
+        EstadoDTO estadoDTO = new EstadoDTO(id + "", "Funciona");
         return estadoDTO;
     }
 
