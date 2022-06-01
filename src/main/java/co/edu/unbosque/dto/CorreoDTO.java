@@ -1,6 +1,6 @@
 package co.edu.unbosque.dto;
 
-public class CorreoDTO {
+public class    CorreoDTO {
     private String subject;
     private String to;
     private String from;
