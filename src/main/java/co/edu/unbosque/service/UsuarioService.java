@@ -46,6 +46,9 @@ public class UsuarioService {
             return null;
         }
     }
+    public Usuario obtenerUsuario(Integer id){
+        return usuarioRepository.buscarPorId2(id);
+    }
 
     public void eliminarUsuario(Integer id){
         usuarioRepository.eliminar(id);
@@ -76,6 +79,10 @@ public class UsuarioService {
 
     public Integer obtenerId(String nombre){
         return usuarioRepository.obtenerId(nombre);
+    }
+
+    public void editarUsuario(UsuarioDTO usuarioDTO){
+        usuarioRepository.editarUsuario(usuarioDTO);
     }
 
 }

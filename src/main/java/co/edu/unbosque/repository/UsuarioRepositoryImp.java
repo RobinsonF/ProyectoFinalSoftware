@@ -187,4 +187,15 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
             return 1;
         }
     }
+
+    @Override
+    public void editarUsuario(UsuarioDTO usuarioDTO) {
+        Usuario usuario = entityManager.find(Usuario.class, usuarioDTO.getId_usuario());
+        usuario.setLogin(usuarioDTO.getLogin());
+        usuario.setNombre(usuarioDTO.getNombre());
+        usuario.setDireccion(usuarioDTO.getDireccion());
+        usuario.setTelefono(usuarioDTO.getTelefono());
+        usuario.setCorreo(usuarioDTO.getCorreo());
+        entityManager.merge(usuario);
+    }
 }

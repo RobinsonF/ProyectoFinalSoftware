@@ -22,65 +22,84 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @GetMapping("/listaUsuario")
-    public ResponseEntity<List<UsuarioDTO>> listaUsuarios(){
+    public ResponseEntity<List<UsuarioDTO>> listaUsuarios() {
 
         List<Usuario> usuarios = usuarioService.listaUsuario();
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
-        for (Usuario usuario: usuarios) {
+        for (Usuario usuario : usuarios) {
             listaUsuarios.add(
-            new UsuarioDTO(usuario.getIdUsuario(),
-                    usuario.getNombre(),
-                    usuario.getLogin(),
-                    usuario.getDireccion(),
-                    usuario.getTelefono(),
-                    usuario.getCorreo())
+                    new UsuarioDTO(usuario.getIdUsuario(),
+                            usuario.getNombre(),
+                            usuario.getLogin(),
+                            usuario.getDireccion(),
+                            usuario.getTelefono(),
+                            usuario.getCorreo())
             );
         }
         return new ResponseEntity<List<UsuarioDTO>>(listaUsuarios, HttpStatus.OK);
     }
 
+    @GetMapping("/obtenerUsuario")
+    public UsuarioDTO obtenerUsuario(@RequestParam Integer id) {
+        Usuario usuario = usuarioService.obtenerUsuario(id);
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsuario(), usuario.getNombre(), usuario.getLogin(), usuario.getDireccion(), usuario.getTelefono(), usuario. getCorreo());
+        return usuarioDTO;
+    }
+
     @PostMapping("/crearUsuario")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<Usuario> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos());
         usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
 
     @PutMapping("/eliminarUsuario")
-    public EstadoDTO eliminarUsuario(@RequestParam Integer id){
+    public EstadoDTO eliminarUsuario(@RequestParam Integer id) {
         usuarioService.eliminarUsuario(id);
         EstadoDTO estadoDTO = new EstadoDTO(id + "", "Funciona");
         return estadoDTO;
     }
 
+    @PutMapping("/editarUsuario")
+    public String editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        try{
+            usuarioService.editarUsuario(usuarioDTO);
+            return "Editado Correctamente";
+        }catch (Exception e){
+            return "No se pudo editar el usuario";
+        }
+    }
+
+
+
     @PostMapping("/desbloquearUsuario/{id}")
-    public String desbloquearUsuario(@RequestBody UsuarioDTO usuarioDTO){
+    public String desbloquearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         usuarioService.desbloquearUsuario(usuarioDTO.getId_usuario());
         return usuarioDTO.getId_usuario() + "";
     }
 
     @PostMapping("/usuarioNumeroIntento/{id}")
-    public Integer obtenerIntentos(@RequestBody UsuarioDTO usuarioDTO){
+    public Integer obtenerIntentos(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.obtenerIntentos(usuarioDTO.getId_usuario());
     }
 
     @PostMapping("/usuarioRol/{id}")
-    public String obtenerRol(@RequestBody UsuarioDTO usuarioDTO){
+    public String obtenerRol(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.obtenerRol(usuarioDTO.getCorreo());
     }
 
     @PostMapping("/validarCorreo/{id}")
-    public Integer validarCorreo(@RequestBody UsuarioDTO usuarioDTO){
+    public Integer validarCorreo(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.validarCorreo(usuarioDTO.getCorreo());
     }
 
     @PostMapping("/validarLogin/{id}")
-    public Integer validarLogin(@RequestBody UsuarioDTO usuarioDTO){
+    public Integer validarLogin(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.validarLogin(usuarioDTO.getLogin());
     }
 
     @PostMapping("/obtenerId/{id}")
-    public Integer obtenerId(@RequestBody UsuarioDTO usuarioDTO){
+    public Integer obtenerId(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.obtenerId(usuarioDTO.getNombre());
     }
 

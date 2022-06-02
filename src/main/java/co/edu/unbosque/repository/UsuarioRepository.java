@@ -1,5 +1,6 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Usuario;
 
 import java.util.List;
@@ -44,5 +45,7 @@ public interface UsuarioRepository {
     Integer validarCorreo(String correo);
 
     Integer validarLogin(String login);
+
+    void editarUsuario(UsuarioDTO usuarioDTO);
 
 }
