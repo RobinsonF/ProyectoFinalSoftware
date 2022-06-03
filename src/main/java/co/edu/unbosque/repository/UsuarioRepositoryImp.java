@@ -106,6 +106,28 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
+    public Usuario buscarPorCorreo2(String correo, String correo2) {
+        String query = "FROM Usuario where correo not in ('" + correo2 + "') and correo = '" + correo +"'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorLogin2(String login, String login2) {
+        String query = "FROM Usuario where login not in ('" + login2 + "') and login = '" + login +"'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
     public Usuario buscarPorNombre(String nombre) {
         String query = "FROM Usuario where nombre = '" + nombre + "'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
@@ -179,8 +201,28 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
+    public Integer validarCorreo2(String correo, String correo2) {
+        Usuario usuario = buscarPorCorreo2(correo, correo2);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
     public Integer validarLogin(String login) {
         Usuario usuario = buscarPorLogin(login);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
+    public Integer validarLogin2(String login, String login2) {
+        Usuario usuario = buscarPorLogin2(login, login2);
         if(usuario == null){
             return 0;
         }else{

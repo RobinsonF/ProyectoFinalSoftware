@@ -27,23 +27,28 @@ public class UsuarioService {
         return  usuarioRepository.getUsuarios();
     }
 
-    public Usuario registrarUsuario(Usuario usuario, Integer id) {
+    public String registrarUsuario(Usuario usuario, Integer id) {
         String hash = "";
-
-        try {
-            usuarioDTO = new UsuarioDTO();
-            hash = usuarioDTO.shaEncode(usuario.getPassword());
-            Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), hash, usuario.getTelefono(), 0);
-            Optional<Rol> rol = rolRepository.buscarPorId(id);
-            rol.ifPresent(a -> {
-                a.addUsuario(usuario1);
-                rolRepository.registrar(a);
-            });
-            usuarioRepository.registrar(usuario1);
-            return usuario1;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return null;
+        if(validarCorreo(usuario.getCorreo()) == 1){
+            return "El correo ya se encuentra registrado";
+        }else if(validarLogin(usuario.getLogin()) == 1){
+            return "El login ya se encuentra registrado";
+        }else{
+            try {
+                usuarioDTO = new UsuarioDTO();
+                hash = usuarioDTO.shaEncode(usuario.getPassword());
+                Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), hash, usuario.getTelefono(), 0);
+                Optional<Rol> rol = rolRepository.buscarPorId(id);
+                rol.ifPresent(a -> {
+                    a.addUsuario(usuario1);
+                    rolRepository.registrar(a);
+                });
+                usuarioRepository.registrar(usuario1);
+                return "Registro correcto";
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "Error al registrar usuario";
+            }
         }
     }
     public Usuario obtenerUsuario(Integer id){
@@ -77,12 +82,29 @@ public class UsuarioService {
         return usuarioRepository.validarLogin(login);
     }
 
+    public Integer validarCorreo2(String correo, String correo2){
+        return usuarioRepository.validarCorreo2(correo, correo2);
+    }
+
+    public Integer validarLogin2(String login, String login2){
+        return usuarioRepository.validarLogin2(login, login2);
+    }
+
     public Integer obtenerId(String nombre){
         return usuarioRepository.obtenerId(nombre);
     }
 
-    public void editarUsuario(UsuarioDTO usuarioDTO){
-        usuarioRepository.editarUsuario(usuarioDTO);
+    public String editarUsuario(UsuarioDTO usuarioDTO){
+        Usuario usuario = usuarioRepository.buscarPorId2(usuarioDTO.getId_usuario());
+        if(validarCorreo2(usuarioDTO.getCorreo(), usuario.getCorreo())==1){
+            return "El correo ya se encuentra registrado";
+        }else if(validarLogin2(usuarioDTO.getLogin(), usuario.getLogin())==1){
+            return "El login ya se encuentra registrado";
+        }else{
+            usuarioRepository.editarUsuario(usuarioDTO);
+            return "Guardado Correctamente";
+        }
+
     }
 
 }

@@ -16,18 +16,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auditoria")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuditoriaController {
     @Autowired
     AuditoriaService auditoriaService;
 
     @GetMapping("/listaAuditoria")
-    public ResponseEntity<List<AuditoriaDTO>> listaAuditoria(){
+    public ResponseEntity<List<AuditoriaDTO>> listaAuditoria(@RequestParam Integer id){
 
-        List<Auditoria> auditorias = auditoriaService.listaAuditoria();
+        List<Auditoria> auditorias = auditoriaService.listaAuditoria(id);
         List<AuditoriaDTO> listaAuditorias = new ArrayList<>();
         for (Auditoria auditoria: auditorias) {
-            listaAuditorias.add(new AuditoriaDTO(auditoria.getIdAuditoria(), auditoria.getEvento(), auditoria.getFecha()));
+            listaAuditorias.add(new AuditoriaDTO(auditoria.getEvento(), auditoria.getUsuario().getNombre(), auditoria.getFecha().toString()));
         }
         return new ResponseEntity<List<AuditoriaDTO>>(listaAuditorias, HttpStatus.OK);
     }

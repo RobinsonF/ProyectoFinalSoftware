@@ -26,6 +26,10 @@ public interface UsuarioRepository {
 
     Usuario buscarPorLogin(String login);
 
+    Usuario buscarPorCorreo2(String correo, String correo2);
+
+    Usuario buscarPorLogin2(String login, String correo2);
+
     Usuario buscarPorNombre(String nombre);
 
     String aumentarIntento(String correo);
@@ -44,7 +48,11 @@ public interface UsuarioRepository {
 
     Integer validarCorreo(String correo);
 
+    Integer validarCorreo2(String correo, String correo2);
+
     Integer validarLogin(String login);
+
+    Integer validarLogin2(String login, String login2);
 
     void editarUsuario(UsuarioDTO usuarioDTO);
 

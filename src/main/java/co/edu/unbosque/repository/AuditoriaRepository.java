@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AuditoriaRepository {
 
     Optional<Auditoria> buscarPorId(Integer id);
-    List<Auditoria> getAuditorias();
+    List<Auditoria> getAuditorias(Integer id);
 
     void eliminar(Integer id);
 

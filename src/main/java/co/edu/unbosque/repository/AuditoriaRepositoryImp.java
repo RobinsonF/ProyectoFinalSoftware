@@ -28,8 +28,8 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
     }
     @Override
     @Transactional
-    public List<Auditoria> getAuditorias() {
-        String query = "FROM Usuario where estado = 'A'";
+    public List<Auditoria> getAuditorias(Integer id) {
+        String query = "FROM Auditoria where id_usuario = " + id;
         return entityManager.createQuery(query).getResultList();
     }
 

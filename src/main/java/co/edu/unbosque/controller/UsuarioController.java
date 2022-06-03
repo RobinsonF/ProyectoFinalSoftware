@@ -47,10 +47,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/crearUsuario")
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+    public EstadoDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
         Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos());
-        usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
-        return new ResponseEntity(usuario, HttpStatus.OK);
+        String mensajeCrear = usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
+        if(mensajeCrear.equals("El correo ya se encuentra registrado")){
+            estadoDTO.setMensaje("El correo ya se encuentra registrado");
+        }else if(mensajeCrear.equals("El login ya se encuentra registrado")){
+            estadoDTO.setMensaje("El login ya se encuentra registrado");
+        }else{
+            estadoDTO.setMensaje("Usuario registrado correctamente");
+        }
+        return estadoDTO;
     }
 
     @PutMapping("/eliminarUsuario")
@@ -61,16 +69,18 @@ public class UsuarioController {
     }
 
     @PutMapping("/editarUsuario")
-    public String editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        try{
-            usuarioService.editarUsuario(usuarioDTO);
-            return "Editado Correctamente";
-        }catch (Exception e){
-            return "No se pudo editar el usuario";
+    public EstadoDTO editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = usuarioService.editarUsuario(usuarioDTO);
+        if(mensaje.equals("El correo ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else if(mensaje.equals("El login ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
         }
+        return estadoDTO;
     }
-
-
 
     @PostMapping("/desbloquearUsuario/{id}")
     public String desbloquearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
@@ -86,16 +96,6 @@ public class UsuarioController {
     @PostMapping("/usuarioRol/{id}")
     public String obtenerRol(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.obtenerRol(usuarioDTO.getCorreo());
-    }
-
-    @PostMapping("/validarCorreo/{id}")
-    public Integer validarCorreo(@RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioService.validarCorreo(usuarioDTO.getCorreo());
-    }
-
-    @PostMapping("/validarLogin/{id}")
-    public Integer validarLogin(@RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioService.validarLogin(usuarioDTO.getLogin());
     }
 
     @PostMapping("/obtenerId/{id}")

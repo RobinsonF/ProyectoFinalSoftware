@@ -22,8 +22,8 @@ public class AuditoriaService {
     UsuarioRepository usuarioRepository;
 
 
-    public List<Auditoria> listaAuditoria(){
-        return  auditoriaRepository.getAuditorias();
+    public List<Auditoria> listaAuditoria(Integer id){
+        return  auditoriaRepository.getAuditorias(id);
     }
 
     public Auditoria registrarAuditoria(Auditoria auditoria, Integer id) {

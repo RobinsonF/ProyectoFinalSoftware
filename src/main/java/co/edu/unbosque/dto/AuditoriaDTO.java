@@ -13,12 +13,22 @@ public class AuditoriaDTO {
     private Integer id_usuario;
     private String evento;
 
+    private String nombreUsuario;
+
     private Date fecha;
+
+    private String fecha2;
 
     public AuditoriaDTO(Integer idAuditoria, String evento, Date fecha) {
         this.idAuditoria = idAuditoria;
         this.evento = evento;
         this.fecha = fecha;
+    }
+
+    public AuditoriaDTO(String evento, String nombreUsuario, String fecha) {
+        this.evento = evento;
+        this.nombreUsuario = nombreUsuario;
+        this.fecha2 = fecha;
     }
 
     public AuditoriaDTO(){
@@ -63,5 +73,21 @@ public class AuditoriaDTO {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(String fecha2) {
+        this.fecha2 = fecha2;
     }
 }

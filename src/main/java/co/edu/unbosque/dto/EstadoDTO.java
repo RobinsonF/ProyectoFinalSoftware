@@ -9,6 +9,10 @@ public class EstadoDTO {
         this.mensaje = mensaje;
     }
 
+    public EstadoDTO() {
+
+    }
+
     public String getEstado() {
         return estado;
     }
