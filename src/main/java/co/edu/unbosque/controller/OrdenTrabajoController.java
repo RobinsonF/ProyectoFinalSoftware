@@ -36,7 +36,7 @@ public class OrdenTrabajoController {
     }
 
     @PostMapping("/crearOrden")
-    public ResponseEntity<Ordentrabajo> crearZona(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO){
+    public ResponseEntity<Ordentrabajo> crearOrden(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO){
         Ordentrabajo ordentrabajo = new Ordentrabajo("A",ordenTrabajoDTO.getFechaTrabajof(),ordenTrabajoDTO.getFechaTrabajoi(),ordenTrabajoDTO.getNombreTrabajo());
         ordenTrabajoService.registrarOrden(ordentrabajo, ordenTrabajoDTO.getZona(),ordenTrabajoDTO.getCuadrilla());
         return new ResponseEntity(ordentrabajo, HttpStatus.OK);
