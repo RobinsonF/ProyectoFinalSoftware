@@ -14,5 +14,7 @@ public interface DepartamentoRepository {
 
     Departamento buscarPorNombre(String nombre);
 
+    Integer validarNombre(String nombre);
+
     Integer obtenerIdPorNombre(String nombre);
 }

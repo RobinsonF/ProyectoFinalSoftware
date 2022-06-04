@@ -16,5 +16,7 @@ public interface CiudadRepository {
 
     Ciudad buscarPorNombre(String nombre);
 
+    Integer validarNombre(String nombre);
+
     Integer obtenerIdPorNombre(String nombre);
 }

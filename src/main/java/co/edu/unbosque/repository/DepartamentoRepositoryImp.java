@@ -45,6 +45,16 @@ public class DepartamentoRepositoryImp implements DepartamentoRepository{
     }
 
     @Override
+    public Integer validarNombre(String nombre) {
+        Departamento departamento = buscarPorNombre(nombre);
+        if(departamento!=null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @Override
     public Integer obtenerIdPorNombre(String nombre) {
         return buscarPorNombre(nombre).getIdDepartamento();
     }

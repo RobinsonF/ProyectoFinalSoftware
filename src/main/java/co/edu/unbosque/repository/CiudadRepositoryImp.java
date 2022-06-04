@@ -34,6 +34,11 @@ public class CiudadRepositoryImp implements CiudadRepository{
     }
 
     @Override
+    public Integer validarNombre(String nombre) {
+        return null;
+    }
+
+    @Override
     public Integer obtenerIdPorNombre(String nombre) {
         return buscarPorNombre(nombre).getIdCiudad();
     }

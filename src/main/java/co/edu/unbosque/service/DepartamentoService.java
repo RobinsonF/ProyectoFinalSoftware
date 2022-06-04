@@ -20,13 +20,20 @@ public class DepartamentoService {
         return departamentoRepository.listaDepartamentos();
     }
 
-    public Departamento registrarDepartamento(Departamento departamento) {
+    public String registrarDepartamento(Departamento departamento) {
         Departamento departamento1 = new Departamento(departamento.getEstado(), departamento.getNombre());
-        departamentoRepository.registrar(departamento1);
-        return departamento1;
+        if(validarNombre(departamento.getNombre())==1){
+            return "El nombre del departamento se encuentra en uso";
+        }else{
+            departamentoRepository.registrar(departamento1);
+            return "Registrado correctamente";
+        }
     }
-
     public Integer obtenerIdPorNombre(String nombre){
         return departamentoRepository.obtenerIdPorNombre(nombre);
+    }
+
+    public Integer validarNombre(String nombre){
+        return departamentoRepository.validarNombre(nombre);
     }
 }

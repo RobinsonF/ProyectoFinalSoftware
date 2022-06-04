@@ -35,7 +35,6 @@ public class CuadrillaController {
 
     @PostMapping("/crearCuadrilla")
     public EstadoDTO crearCuadrilla(@RequestBody CuadrillaDTO cuadrillaDTO){
-        System.out.println(cuadrillaDTO.getNombreCuadrilla());
         EstadoDTO estadoDTO = new EstadoDTO();
         String mensaje = cuadrillaService.registrarCuadrilla(cuadrillaDTO);
         estadoDTO.setMensaje(mensaje);
