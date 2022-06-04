@@ -1,90 +1,95 @@
 package co.edu.unbosque.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
+
+/**
+ * The persistent class for the tipomaterial database table.
+ * 
+ */
 @Entity
-@Table(name="tipomaterial")
-@NamedQuery(name="TipoMaterial.findAll", query="SELECT m FROM TipoMaterial m")
-public class TipoMaterial {
-    @Id
-    @GeneratedValue
-    @Column(name="id_tipoMaterial")
-    private Integer idMaterial;
+@NamedQuery(name="Tipomaterial.findAll", query="SELECT t FROM TipoMaterial t")
+public class TipoMaterial implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Column(name="estado")
-    private String estado;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_tipomaterial")
+	private Integer idTipomaterial;
 
-    @Column(name="nombre")
-    private String nombre;
+	private String descripcion;
 
-    @Column(name="descripcion")
-    private String descripcion;
+	private String estado;
 
-    //bi-directional many-to-one association to material
-    @OneToMany(mappedBy="tipomaterial")
-    private List<Material> materials;
+	private String nombre;
 
-    public TipoMaterial() {
-    }
+	//bi-directional many-to-one association to Material
+	@OneToMany(mappedBy="tipomaterial")
+	private List<Material> materials;
 
-    public TipoMaterial(String estado, String nombre, String descripcion) {
-        this.estado = estado;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-    }
+	public TipoMaterial() {
+	}
 
-    public Integer getIdMaterial() {
-        return idMaterial;
-    }
+	public TipoMaterial(String estado, String nombre, String descripcion) {
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.nombre = nombre;
+	}
 
-    public void setIdMaterial(Integer idMaterial) {
-        this.idMaterial = idMaterial;
-    }
+	public Integer getIdTipoMaterial() {
+		return this.idTipomaterial;
+	}
 
-    public String getEstado() {
-        return estado;
-    }
+	public void setIdTipomaterial(Integer idTipomaterial) {
+		this.idTipomaterial = idTipomaterial;
+	}
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+	public String getDescripcion() {
+		return this.descripcion;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getEstado() {
+		return this.estado;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getNombre() {
+		return this.nombre;
+	}
 
-    public List<Material> getMaterials() {
-        return materials;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setMaterials(List<Material> materials) {
-        this.materials = materials;
-    }
+	public List<Material> getMaterials() {
+		return this.materials;
+	}
 
-    public Material addMaterial(Material material) {
-        getMaterials().add(material);
-        material.setTipoMaterial(this);
+	public void setMaterials(List<Material> materials) {
+		this.materials = materials;
+	}
 
-        return material;
-    }
+	public Material addMaterial(Material material) {
+		getMaterials().add(material);
+		material.setTipomaterial(this);
 
-    public Material removeMaterial(Material material) {
-        getMaterials().remove(material);
-        material.setTipoMaterial(null);
+		return material;
+	}
 
-        return material;
-    }
+	public Material removeMaterial(Material material) {
+		getMaterials().remove(material);
+		material.setTipomaterial(null);
+
+		return material;
+	}
+
 }

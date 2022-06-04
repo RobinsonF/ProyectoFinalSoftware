@@ -9,28 +9,27 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="empleado")
 @NamedQuery(name="Empleado.findAll", query="SELECT e FROM Empleado e")
 public class Empleado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_empleado")
 	private Integer idEmpleado;
-	@Column(name="apellido")
+
 	private String apellido;
-	@Column(name="cedula")
+
 	private String cedula;
-	@Column(name="estado")
+
 	private String estado;
-	@Column(name="nombre")
+
 	private String nombre;
 
 	//bi-directional many-to-one association to Cuadrilla
 	@ManyToOne
 	@JoinColumn(name="id_cuadrilla")
-	private co.edu.unbosque.entity.Cuadrilla cuadrilla;
+	private Cuadrilla cuadrilla;
 
 	public Empleado() {
 	}
@@ -82,7 +81,7 @@ public class Empleado implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public co.edu.unbosque.entity.Cuadrilla getCuadrilla() {
+	public Cuadrilla getCuadrilla() {
 		return this.cuadrilla;
 	}
 

@@ -10,22 +10,19 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name = "auditoria")
 @NamedQuery(name="Auditoria.findAll", query="SELECT a FROM Auditoria a")
 public class Auditoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_auditoria")
 	private Integer idAuditoria;
 
-
-	@Column(name="estado")
 	private String estado;
 
-	@Column(name="evento")
 	private String evento;
-	@Column(name="fecha")
+
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 

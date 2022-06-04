@@ -1,5 +1,4 @@
 package co.edu.unbosque.entity;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -10,18 +9,17 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="departamento")
 @NamedQuery(name="Departamento.findAll", query="SELECT d FROM Departamento d")
 public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_departamento")
 	private Integer idDepartamento;
-	@Column(name="estado")
+
 	private String estado;
-	@Column(name="nombre")
+
 	private String nombre;
 
 	//bi-directional many-to-one association to Ciudad

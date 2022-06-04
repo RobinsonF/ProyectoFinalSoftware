@@ -52,7 +52,7 @@ public class UsuarioController {
     @PostMapping("/crearUsuario")
     public EstadoDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         EstadoDTO estadoDTO = new EstadoDTO();
-        Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos());
+        Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos(), new Date());
         String mensajeCrear = usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
         if(mensajeCrear.equals("El correo ya se encuentra registrado")){
             estadoDTO.setMensaje("El correo ya se encuentra registrado");

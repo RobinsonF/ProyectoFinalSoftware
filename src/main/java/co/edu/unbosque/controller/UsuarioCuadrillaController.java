@@ -26,7 +26,7 @@ public class UsuarioCuadrillaController {
         List<UsuarioCuadrillaDTO> listaUsuarioCuadrillas = new ArrayList<>();
         for (UsuarioCuadrilla usuarioCuadrilla: usuarioCuadrillas) {
             listaUsuarioCuadrillas.add(
-                    new UsuarioCuadrillaDTO(usuarioCuadrilla.getIdUsuarioCuadrilla(),usuarioCuadrilla.getEstado())
+                    new UsuarioCuadrillaDTO(usuarioCuadrilla.getIdUsuariocuadrilla(),usuarioCuadrilla.getEstado())
             );
         }
         return new ResponseEntity<List<UsuarioCuadrillaDTO>>(listaUsuarioCuadrillas, HttpStatus.OK);

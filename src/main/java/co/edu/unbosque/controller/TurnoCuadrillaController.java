@@ -26,7 +26,7 @@ public class TurnoCuadrillaController {
         List<TurnoCuadrillaDTO> listaTurnoCuadrillas = new ArrayList<>();
         for (TurnoCuadrilla turnoCuadrilla: turnoCuadrillas) {
             listaTurnoCuadrillas.add(
-                    new TurnoCuadrillaDTO(turnoCuadrilla.getIdTurnoCuadrilla(),turnoCuadrilla.getEstado())
+                    new TurnoCuadrillaDTO(turnoCuadrilla.getIdTurnocuadrilla(),turnoCuadrilla.getEstado())
             );
         }
         return new ResponseEntity<List<TurnoCuadrillaDTO>>(listaTurnoCuadrillas, HttpStatus.OK);

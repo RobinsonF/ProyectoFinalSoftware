@@ -10,16 +10,15 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="zona")
 @NamedQuery(name="Zona.findAll", query="SELECT z FROM Zona z")
 public class Zona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_zona")
 	private Integer idZona;
-	@Column(name="estado")
+
 	private String estado;
 
 	@Column(name="nombre")
@@ -50,8 +49,8 @@ public class Zona implements Serializable {
 	}
 
 	public Zona(String nombre, String estado, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
-		this.nombre = nombre;
 		this.estado = estado;
+		this.nombre = nombre;
 		this.limiteNorte = limiteNorte;
 		this.limiteOccidente = limiteOccidente;
 		this.limiteOriente = limiteOriente;
@@ -102,6 +101,14 @@ public class Zona implements Serializable {
 		return this.limiteSur;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public void setLimiteSur(String limiteSur) {
 		this.limiteSur = limiteSur;
 	}
@@ -136,11 +143,4 @@ public class Zona implements Serializable {
 		this.ciudad = ciudad;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 }

@@ -28,7 +28,7 @@ public class TipoMaterialController {
         List<TipoMaterialDTO> listaTipoMaterials = new ArrayList<>();
         for (TipoMaterial tipoMaterial : tipoMaterials) {
             listaTipoMaterials.add(
-                    new TipoMaterialDTO(tipoMaterial.getIdMaterial(),tipoMaterial.getEstado(),tipoMaterial.getNombre(),tipoMaterial.getDescripcion())
+                    new TipoMaterialDTO(tipoMaterial.getIdTipoMaterial(),tipoMaterial.getEstado(),tipoMaterial.getNombre(),tipoMaterial.getDescripcion())
             );
         }
         return new ResponseEntity<List<TipoMaterialDTO>>(listaTipoMaterials, HttpStatus.OK);

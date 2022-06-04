@@ -10,19 +10,19 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="Rol")
 @NamedQuery(name="Rol.findAll", query="SELECT r FROM Rol r")
 public class Rol implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_rol")
 	private Integer idRol;
-	@Column(name="descripcion")
+
 	private String descripcion;
-	@Column(name="estado")
+
 	private String estado;
-	@Column(name="nombre")
+
 	private String nombre;
 
 	//bi-directional many-to-one association to Usuario

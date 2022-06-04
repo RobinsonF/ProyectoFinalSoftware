@@ -1,79 +1,74 @@
 package co.edu.unbosque.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 
+
+/**
+ * The persistent class for the parametro database table.
+ * 
+ */
 @Entity
-@Table(name = "parametro")
 @NamedQuery(name="Parametro.findAll", query="SELECT p FROM Parametro p")
 public class Parametro implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name="id_parametro")
-    private Integer idParametro;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_parametro")
+	private Integer idParametro;
 
-    @Column(name="descripcion")
-    private String descripcion;
+	private String descripcion;
 
-    @Column(name="tipo")
-    private String tipo;
+	private String tipo;
 
-    @Column(name="valor_int")
-    private Integer valor_int;
+	@Column(name="valor_char")
+	private String valorChar;
 
-    @Column(name="valor_char")
-    private String valor_char;
+	@Column(name="valor_int")
+	private Integer valorInt;
 
-    public Parametro(Integer idParametro, String descripcion, String tipo, Integer valor_int, String valor_char) {
-        this.idParametro = idParametro;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.valor_int = valor_int;
-        this.valor_char = valor_char;
-    }
+	public Parametro() {
+	}
 
-    public Parametro() {
+	public Integer getIdParametro() {
+		return this.idParametro;
+	}
 
-    }
+	public void setIdParametro(Integer idParametro) {
+		this.idParametro = idParametro;
+	}
 
-    public Integer getIdParametro() {
-        return idParametro;
-    }
+	public String getDescripcion() {
+		return this.descripcion;
+	}
 
-    public void setIdParametro(Integer idParametro) {
-        this.idParametro = idParametro;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public String getTipo() {
+		return this.tipo;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-    public String getTipo() {
-        return tipo;
-    }
+	public String getValorChar() {
+		return this.valorChar;
+	}
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+	public void setValorChar(String valorChar) {
+		this.valorChar = valorChar;
+	}
 
-    public Integer getValor_int() {
-        return valor_int;
-    }
+	public Integer getValorInt() {
+		return this.valorInt;
+	}
 
-    public void setValor_int(Integer valor_int) {
-        this.valor_int = valor_int;
-    }
+	public void setValorInt(Integer valorInt) {
+		this.valorInt = valorInt;
+	}
 
-    public String getValor_char() {
-        return valor_char;
-    }
-
-    public void setValor_char(String valor_char) {
-        this.valor_char = valor_char;
-    }
 }

@@ -1,65 +1,72 @@
 package co.edu.unbosque.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
+
+/**
+ * The persistent class for the detalleordentrabajo database table.
+ * 
+ */
 @Entity
-@Table(name="detalleordentrabajo")
-@NamedQuery(name="DetalleOrdenTrabajo.findAll", query="SELECT c FROM DetalleOrdenTrabajo c")
-public class DetalleOrdenTrabajo {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id_detalle")
-    private Integer idDetalle;
+@NamedQuery(name="Detalleordentrabajo.findAll", query="SELECT d FROM DetalleOrdenTrabajo d")
+public class DetalleOrdenTrabajo implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Column(name="estado")
-    private String estado;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_detalle")
+	private Integer idDetalle;
 
-    //bi-directional many-to-one association to OrdenTrabajo
-    @ManyToOne
-    @JoinColumn(name="id_trabajo")
-    private Ordentrabajo ordentrabajo;
+	private String estado;
 
-    //bi-directional many-to-one association to Material
-    @ManyToOne
-    @JoinColumn(name="id_material")
-    private Material material;
+	//bi-directional many-to-one association to Material
+	@ManyToOne
+	@JoinColumn(name="id_material")
+	private Material material;
 
-    public DetalleOrdenTrabajo() {
-    }
+	//bi-directional many-to-one association to Ordentrabajo
+	@ManyToOne
+	@JoinColumn(name="id_trabajoorden")
+	private Ordentrabajo ordentrabajo;
 
-    public DetalleOrdenTrabajo(String estado) {
-        this.estado = estado;
-    }
+	public DetalleOrdenTrabajo() {
+	}
 
-    public Integer getIdDetalle() {
-        return idDetalle;
-    }
+	public DetalleOrdenTrabajo(String estado) {
+		this.estado = estado;
+	}
 
-    public void setIdDetalle(Integer idDetalle) {
-        this.idDetalle = idDetalle;
-    }
+	public Integer getIdDetalle() {
+		return this.idDetalle;
+	}
 
-    public String getEstado() {
-        return estado;
-    }
+	public void setIdDetalle(Integer idDetalle) {
+		this.idDetalle = idDetalle;
+	}
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+	public String getEstado() {
+		return this.estado;
+	}
 
-    public Ordentrabajo getOrdentrabajo() {
-        return ordentrabajo;
-    }
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
-    public void setOrdentrabajo(Ordentrabajo ordentrabajo) {
-        this.ordentrabajo = ordentrabajo;
-    }
+	public Material getMaterial() {
+		return this.material;
+	}
 
-    public Material getMaterial() {
-        return material;
-    }
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
 
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
+	public Ordentrabajo getOrdentrabajo() {
+		return this.ordentrabajo;
+	}
+
+	public void setOrdentrabajo(Ordentrabajo ordentrabajo) {
+		this.ordentrabajo = ordentrabajo;
+	}
+
 }

@@ -11,15 +11,15 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="ordentrabajo")
 @NamedQuery(name="Ordentrabajo.findAll", query="SELECT o FROM Ordentrabajo o")
 public class Ordentrabajo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_trabajo")
 	private Integer idTrabajo;
-	@Column(name="estado")
+
 	private String estado;
 
 	@Temporal(TemporalType.DATE)
@@ -33,7 +33,7 @@ public class Ordentrabajo implements Serializable {
 	@Column(name="nombre_trabajo")
 	private String nombreTrabajo;
 
-	//bi-directional many-to-one association to DetalleOrdenTrabajo
+	//bi-directional many-to-one association to Detalleordentrabajo
 	@OneToMany(mappedBy="ordentrabajo")
 	private List<DetalleOrdenTrabajo> detalleOrdenTrabajos;
 
@@ -97,27 +97,26 @@ public class Ordentrabajo implements Serializable {
 		this.nombreTrabajo = nombreTrabajo;
 	}
 
-
-	public List<DetalleOrdenTrabajo> getDetalleOrdenTrabajos() {
-		return detalleOrdenTrabajos;
+	public List<DetalleOrdenTrabajo> getDetalleordentrabajos() {
+		return this.detalleOrdenTrabajos;
 	}
 
-	public void setDetalleOrdenTrabajos(List<DetalleOrdenTrabajo> detalleOrdenTrabajos) {
+	public void setDetalleordentrabajos(List<DetalleOrdenTrabajo> detalleOrdenTrabajos) {
 		this.detalleOrdenTrabajos = detalleOrdenTrabajos;
 	}
 
-	public DetalleOrdenTrabajo addDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
-		getDetalleOrdenTrabajos().add(detalleOrdenTrabajo);
-		detalleOrdenTrabajo.setOrdentrabajo(this);
+	public DetalleOrdenTrabajo addDetalleOrdentrabajo(DetalleOrdenTrabajo detalleordentrabajo) {
+		getDetalleordentrabajos().add(detalleordentrabajo);
+		detalleordentrabajo.setOrdentrabajo(this);
 
-		return detalleOrdenTrabajo;
+		return detalleordentrabajo;
 	}
 
-	public DetalleOrdenTrabajo removeDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
-		getDetalleOrdenTrabajos().remove(detalleOrdenTrabajo);
-		detalleOrdenTrabajo.setOrdentrabajo(null);
+	public DetalleOrdenTrabajo removeDetalleordentrabajo(DetalleOrdenTrabajo detalleordentrabajo) {
+		getDetalleordentrabajos().remove(detalleordentrabajo);
+		detalleordentrabajo.setOrdentrabajo(null);
 
-		return detalleOrdenTrabajo;
+		return detalleordentrabajo;
 	}
 
 	public Cuadrilla getCuadrilla() {

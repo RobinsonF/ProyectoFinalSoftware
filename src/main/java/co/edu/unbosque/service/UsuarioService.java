@@ -38,7 +38,7 @@ public class UsuarioService {
             try {
                 usuarioDTO = new UsuarioDTO();
                 hash = usuarioDTO.shaEncode(usuario.getPassword());
-                Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), hash, usuario.getTelefono(), 0);
+                Usuario usuario1 = new Usuario(usuario.getCorreo(), usuario.getDireccion(), usuario.getEstado(), usuario.getLogin(), usuario.getNombre(), hash, usuario.getTelefono(), 0, new Date());
                 Optional<Rol> rol = rolRepository.buscarPorId(id);
                 rol.ifPresent(a -> {
                     a.addUsuario(usuario1);

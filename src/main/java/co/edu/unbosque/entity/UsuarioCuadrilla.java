@@ -1,68 +1,72 @@
 package co.edu.unbosque.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
+
+
 /**
  * The persistent class for the usuariocuadrilla database table.
- *
+ * 
  */
 @Entity
-@Table(name="usuariocuadrilla")
-@NamedQuery(name="UsuarioCuadrilla.findAll", query="SELECT c FROM UsuarioCuadrilla c")
-public class UsuarioCuadrilla {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id_usuariocuadrilla")
-    private Integer idUsuarioCuadrilla;
+@NamedQuery(name="Usuariocuadrilla.findAll", query="SELECT u FROM UsuarioCuadrilla u")
+public class UsuarioCuadrilla implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Column(name="estado")
-    private String estado;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_usuariocuadrilla")
+	private Integer idUsuariocuadrilla;
 
-    //bi-directional many-to-one association to Usuario
-    @ManyToOne
-    @JoinColumn(name="id_usuario")
-    private Usuario usuario;
+	private String estado;
 
-    //bi-directional many-to-one association to Cuadrilla
-    @ManyToOne
-    @JoinColumn(name="id_cuadrilla")
-    private Cuadrilla cuadrilla;
+	//bi-directional many-to-one association to Cuadrilla
+	@ManyToOne
+	@JoinColumn(name="id_cuadrilla")
+	private Cuadrilla cuadrilla;
 
-    public UsuarioCuadrilla(String estado) {
-        this.estado = estado;
-    }
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
 
-    public UsuarioCuadrilla() {
-    }
+	public UsuarioCuadrilla() {
+	}
 
-    public Integer getIdUsuarioCuadrilla() {
-        return idUsuarioCuadrilla;
-    }
+	public UsuarioCuadrilla(String estado) {
+		this.estado = estado;
+	}
 
-    public void setIdUsuarioCuadrilla(Integer idUsuarioCuadrilla) {
-        this.idUsuarioCuadrilla = idUsuarioCuadrilla;
-    }
+	public Integer getIdUsuariocuadrilla() {
+		return this.idUsuariocuadrilla;
+	}
 
-    public String getEstado() {
-        return estado;
-    }
+	public void setIdUsuariocuadrilla(Integer idUsuariocuadrilla) {
+		this.idUsuariocuadrilla = idUsuariocuadrilla;
+	}
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+	public String getEstado() {
+		return this.estado;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public Cuadrilla getCuadrilla() {
+		return this.cuadrilla;
+	}
 
-    public Cuadrilla getCuadrilla() {
-        return cuadrilla;
-    }
+	public void setCuadrilla(Cuadrilla cuadrilla) {
+		this.cuadrilla = cuadrilla;
+	}
 
-    public void setCuadrilla(Cuadrilla cuadrilla) {
-        this.cuadrilla = cuadrilla;
-    }
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }

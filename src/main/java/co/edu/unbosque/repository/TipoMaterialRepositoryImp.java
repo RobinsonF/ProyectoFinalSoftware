@@ -44,6 +44,6 @@ public class TipoMaterialRepositoryImp implements TipoMaterialRepository {
 
     @Override
     public Integer obtenerIdPorNombre(String nombre) {
-        return buscarPorNombre(nombre).getIdMaterial();
+        return buscarPorNombre(nombre).getIdTipoMaterial();
     }
 }
