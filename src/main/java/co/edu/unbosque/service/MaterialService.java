@@ -2,9 +2,9 @@ package co.edu.unbosque.service;
 
 
 import co.edu.unbosque.entity.Material;
-import co.edu.unbosque.entity.Ordentrabajo;
+import co.edu.unbosque.entity.TipoMaterial;
 import co.edu.unbosque.repository.MaterialRepository;
-import co.edu.unbosque.repository.OrdenTrabajoRepository;
+import co.edu.unbosque.repository.TipoMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class MaterialService {
     MaterialRepository materialRepository;
 
     @Autowired
-    OrdenTrabajoRepository ordenTrabajoRepository;
+    TipoMaterialRepository tipoMaterialRepository;
 
 
     public List<Material> listaMaterial(){
@@ -28,10 +28,10 @@ public class MaterialService {
     public Material registrarMaterial(Material material, Integer id) {
 
         Material material1 = new Material(material.getCantidad(),material.getEstado(),material.getNombreMaterial());
-        Optional<Ordentrabajo> ordentrabajo = ordenTrabajoRepository.buscarPorId(id);
-        ordentrabajo.ifPresent(a -> {
+        Optional<TipoMaterial> tipoMaterial = tipoMaterialRepository.buscarPorId(id);
+        tipoMaterial.ifPresent(a -> {
             a.addMaterial(material1);
-            ordenTrabajoRepository.registrar(a);
+            tipoMaterialRepository.registrar(a);
         });
         materialRepository.registrar(material1);
         return material1;

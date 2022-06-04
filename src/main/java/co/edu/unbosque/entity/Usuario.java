@@ -45,7 +45,7 @@ public class Usuario implements Serializable {
 
     //bi-directional many-to-one association to Cuadrilla
     @OneToMany(mappedBy = "usuario")
-    private List<Cuadrilla> cuadrillas;
+    private List<UsuarioCuadrilla> usuarioCuadrillas;
 
     //bi-directional many-to-one association to Rol
     @ManyToOne
@@ -168,26 +168,26 @@ public class Usuario implements Serializable {
         return auditoria;
     }
 
-    public List<Cuadrilla> getCuadrillas() {
-        return this.cuadrillas;
+    public List<UsuarioCuadrilla> getUsuarioCuadrillas() {
+        return this.usuarioCuadrillas;
     }
 
-    public void setCuadrillas(List<Cuadrilla> cuadrillas) {
-        this.cuadrillas = cuadrillas;
+    public void setUsuarioCuadrillas(List<UsuarioCuadrilla> usuarioCuadrillas) {
+        this.usuarioCuadrillas = usuarioCuadrillas;
     }
 
-    public Cuadrilla addCuadrilla(Cuadrilla cuadrilla) {
-        getCuadrillas().add(cuadrilla);
-        cuadrilla.setUsuario(this);
+    public UsuarioCuadrilla addUsuarioCuadrilla(UsuarioCuadrilla usuarioCuadrilla) {
+        getUsuarioCuadrillas().add(usuarioCuadrilla);
+        usuarioCuadrilla.setUsuario(this);
 
-        return cuadrilla;
+        return usuarioCuadrilla;
     }
 
-    public Cuadrilla removeCuadrilla(Cuadrilla cuadrilla) {
-        getCuadrillas().remove(cuadrilla);
-        cuadrilla.setUsuario(null);
+    public UsuarioCuadrilla removeUsuarioCuadrilla(UsuarioCuadrilla usuarioCuadrilla) {
+        getUsuarioCuadrillas().remove(usuarioCuadrilla);
+        usuarioCuadrilla.setUsuario(null);
 
-        return cuadrilla;
+        return usuarioCuadrilla;
     }
 
     public Rol getRol() {

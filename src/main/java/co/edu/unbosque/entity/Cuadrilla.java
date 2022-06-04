@@ -24,15 +24,6 @@ public class Cuadrilla implements Serializable {
 	@Column(name="nombre_cuadrilla")
 	private String nombreCuadrilla;
 
-	//bi-directional many-to-one association to Turnotrabajo
-	@ManyToOne
-	@JoinColumn(name="id_turnotrabajo")
-	private Turnotrabajo turnotrabajo;
-
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
-	@JoinColumn(name="id_usuario")
-	private Usuario usuario;
 
 	//bi-directional many-to-one association to Empleado
 	@OneToMany(mappedBy="cuadrilla")
@@ -42,6 +33,14 @@ public class Cuadrilla implements Serializable {
 	@OneToMany(mappedBy="cuadrilla")
 	private List<Ordentrabajo> ordentrabajos;
 
+	//bi-directional many-to-one association to UsuarioCuadrilla
+	@OneToMany(mappedBy="cuadrilla")
+	private List<UsuarioCuadrilla> usuarioCuadrillas;
+
+	//bi-directional many-to-one association to TurnoCuadrilla
+	@OneToMany(mappedBy="cuadrilla")
+	private List<TurnoCuadrilla> turnoCuadrillas;
+
 	public Cuadrilla() {
 	}
 
@@ -50,6 +49,21 @@ public class Cuadrilla implements Serializable {
 		this.nombreCuadrilla = nombreCuadrilla;
 	}
 
+	public List<UsuarioCuadrilla> getUsuarioCuadrillas() {
+		return usuarioCuadrillas;
+	}
+
+	public void setUsuarioCuadrillas(List<UsuarioCuadrilla> usuarioCuadrillas) {
+		this.usuarioCuadrillas = usuarioCuadrillas;
+	}
+
+	public List<TurnoCuadrilla> getTurnoCuadrillas() {
+		return turnoCuadrillas;
+	}
+
+	public void setTurnoCuadrillas(List<TurnoCuadrilla> turnoCuadrillas) {
+		this.turnoCuadrillas = turnoCuadrillas;
+	}
 
 	public Integer getIdCuadrilla() {
 		return this.idCuadrilla;
@@ -75,21 +89,6 @@ public class Cuadrilla implements Serializable {
 		this.nombreCuadrilla = nombreCuadrilla;
 	}
 
-	public Turnotrabajo getTurnotrabajo() {
-		return this.turnotrabajo;
-	}
-
-	public void setTurnotrabajo(Turnotrabajo turnotrabajo) {
-		this.turnotrabajo = turnotrabajo;
-	}
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	public List<Empleado> getEmpleados() {
 		return this.empleados;
@@ -111,6 +110,33 @@ public class Cuadrilla implements Serializable {
 		empleado.setCuadrilla(null);
 
 		return empleado;
+	}
+	public TurnoCuadrilla addTurnoCuadrilla(TurnoCuadrilla turnoCuadrilla) {
+		getTurnoCuadrillas().add(turnoCuadrilla);
+		turnoCuadrilla.setCuadrilla(this);
+
+		return turnoCuadrilla;
+	}
+
+	public TurnoCuadrilla removeTurnoTrabajo(TurnoCuadrilla turnoCuadrilla) {
+		getTurnoCuadrillas()	.remove(turnoCuadrilla);
+		turnoCuadrilla.setCuadrilla(null);
+
+		return turnoCuadrilla;
+	}
+
+	public UsuarioCuadrilla addUsuarioCuadrilla(UsuarioCuadrilla usuarioCuadrilla) {
+		getUsuarioCuadrillas().add(usuarioCuadrilla);
+		usuarioCuadrilla.setCuadrilla(this);
+
+		return usuarioCuadrilla;
+	}
+
+	public UsuarioCuadrilla removeUsuarioCuadrilla(UsuarioCuadrilla usuarioCuadrilla) {
+		getUsuarioCuadrillas().remove(usuarioCuadrilla);
+		usuarioCuadrilla.setCuadrilla(null);
+
+		return usuarioCuadrilla;
 	}
 
 	public List<Ordentrabajo> getOrdentrabajos() {

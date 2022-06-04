@@ -1,6 +1,7 @@
 package co.edu.unbosque.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -15,6 +16,7 @@ public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	@Column(name="id_material")
 	private Integer idMaterial;
 	@Column(name="cantidad")
@@ -27,8 +29,12 @@ public class Material implements Serializable {
 
 	//bi-directional many-to-one association to Ordentrabajo
 	@ManyToOne
-	@JoinColumn(name="id_trabajo")
-	private Ordentrabajo ordentrabajo;
+	@JoinColumn(name="id_tipo")
+	private TipoMaterial tipoMaterial;
+
+	//bi-directional many-to-one association to DetalleOrdenTrabajo
+	@OneToMany(mappedBy="material")
+	private List<DetalleOrdenTrabajo> detalleOrdenTrabajos;
 
 	public Material() {
 	}
@@ -37,6 +43,22 @@ public class Material implements Serializable {
 		this.cantidad = cantidad;
 		this.estado = estado;
 		this.nombreMaterial = nombreMaterial;
+	}
+
+	public TipoMaterial getTipoMaterial() {
+		return tipoMaterial;
+	}
+
+	public void setTipoMaterial(TipoMaterial tipoMaterial) {
+		this.tipoMaterial = tipoMaterial;
+	}
+
+	public List<DetalleOrdenTrabajo> getDetalleOrdenTrabajos() {
+		return detalleOrdenTrabajos;
+	}
+
+	public void setDetalleOrdenTrabajos(List<DetalleOrdenTrabajo> detalleOrdenTrabajos) {
+		this.detalleOrdenTrabajos = detalleOrdenTrabajos;
 	}
 
 	public Integer getIdMaterial() {
@@ -71,12 +93,17 @@ public class Material implements Serializable {
 		this.nombreMaterial = nombreMaterial;
 	}
 
-	public Ordentrabajo getOrdentrabajo() {
-		return this.ordentrabajo;
+	public DetalleOrdenTrabajo addDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
+		getDetalleOrdenTrabajos().add(detalleOrdenTrabajo);
+		detalleOrdenTrabajo.setMaterial(this);
+
+		return detalleOrdenTrabajo;
 	}
 
-	public void setOrdentrabajo(Ordentrabajo ordentrabajo) {
-		this.ordentrabajo = ordentrabajo;
-	}
+	public DetalleOrdenTrabajo removeDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
+		getDetalleOrdenTrabajos().remove(detalleOrdenTrabajo);
+		detalleOrdenTrabajo.setMaterial(null);
 
+		return detalleOrdenTrabajo;
+	}
 }

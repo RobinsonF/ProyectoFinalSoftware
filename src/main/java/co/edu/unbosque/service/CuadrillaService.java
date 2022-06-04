@@ -23,19 +23,10 @@ public class CuadrillaService {
         return cuadrillaRepository.listaCuadrillas();
     }
 
-    public Cuadrilla registrarCuadrilla(Cuadrilla cuadrilla, Integer id_pro, Integer id_turno) {
+    public Cuadrilla registrarCuadrilla(Cuadrilla cuadrilla) {
 
         Cuadrilla cuadrilla1 = new Cuadrilla(cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla());
-        Optional<Usuario> usuario = usuarioRepository.buscarPorId(id_pro);
-        usuario.ifPresent(a -> {
-            a.addCuadrilla(cuadrilla1);
-            usuarioRepository.registrar(a);
-        });
-        Optional<Turnotrabajo> turnotrabajo = turnoTrabajoRepository.buscarPorId(id_turno);
-        turnotrabajo.ifPresent(a -> {
-            a.addCuadrilla(cuadrilla1);
-            turnoTrabajoRepository.registrar(a);
-        });
+
         cuadrillaRepository.registrar(cuadrilla1);
         return cuadrilla1;
     }

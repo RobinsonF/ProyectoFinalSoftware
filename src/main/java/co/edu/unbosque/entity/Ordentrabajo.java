@@ -33,9 +33,9 @@ public class Ordentrabajo implements Serializable {
 	@Column(name="nombre_trabajo")
 	private String nombreTrabajo;
 
-	//bi-directional many-to-one association to Material
+	//bi-directional many-to-one association to DetalleOrdenTrabajo
 	@OneToMany(mappedBy="ordentrabajo")
-	private List<Material> materials;
+	private List<DetalleOrdenTrabajo> detalleOrdenTrabajos;
 
 	//bi-directional many-to-one association to Cuadrilla
 	@ManyToOne
@@ -97,26 +97,27 @@ public class Ordentrabajo implements Serializable {
 		this.nombreTrabajo = nombreTrabajo;
 	}
 
-	public List<Material> getMaterials() {
-		return this.materials;
+
+	public List<DetalleOrdenTrabajo> getDetalleOrdenTrabajos() {
+		return detalleOrdenTrabajos;
 	}
 
-	public void setMaterials(List<Material> materials) {
-		this.materials = materials;
+	public void setDetalleOrdenTrabajos(List<DetalleOrdenTrabajo> detalleOrdenTrabajos) {
+		this.detalleOrdenTrabajos = detalleOrdenTrabajos;
 	}
 
-	public Material addMaterial(Material material) {
-		getMaterials().add(material);
-		material.setOrdentrabajo(this);
+	public DetalleOrdenTrabajo addDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
+		getDetalleOrdenTrabajos().add(detalleOrdenTrabajo);
+		detalleOrdenTrabajo.setOrdentrabajo(this);
 
-		return material;
+		return detalleOrdenTrabajo;
 	}
 
-	public Material removeMaterial(Material material) {
-		getMaterials().remove(material);
-		material.setOrdentrabajo(null);
+	public DetalleOrdenTrabajo removeDetalleOrdentrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo) {
+		getDetalleOrdenTrabajos().remove(detalleOrdenTrabajo);
+		detalleOrdenTrabajo.setOrdentrabajo(null);
 
-		return material;
+		return detalleOrdenTrabajo;
 	}
 
 	public Cuadrilla getCuadrilla() {

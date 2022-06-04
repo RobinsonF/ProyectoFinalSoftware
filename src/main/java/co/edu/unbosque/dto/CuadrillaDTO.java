@@ -16,7 +16,6 @@ public class CuadrillaDTO {
 
     private Integer turnotrabajo;
 
-    private Integer usuario;
 
     private String nombreProveedor;
 
@@ -70,13 +69,6 @@ public class CuadrillaDTO {
         this.turnotrabajo = turnotrabajo;
     }
 
-    public Integer getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Integer usuario) {
-        this.usuario = usuario;
-    }
 
     public String getNombreProveedor() {
         return nombreProveedor;
