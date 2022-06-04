@@ -3,6 +3,7 @@ package co.edu.unbosque.repository;
 import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Usuario;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +15,7 @@ public interface UsuarioRepository {
 
     void registrar(Usuario usuario);
 
-    Usuario obtenerUsuarioPorCredenciales(Usuario usuario);;
-
-    void editarEliminar(Integer id);
+    Usuario obtenerUsuarioPorCredenciales(Usuario usuario);
 
     Usuario buscarPorId2(Integer id);
 
@@ -29,6 +28,8 @@ public interface UsuarioRepository {
     Usuario buscarPorCorreo2(String correo, String correo2);
 
     Usuario buscarPorLogin2(String login, String correo2);
+
+    Usuario buscarPorPass(String pass, String pass2, String correo);
 
     Usuario buscarPorNombre(String nombre);
 
@@ -54,6 +55,12 @@ public interface UsuarioRepository {
 
     Integer validarLogin2(String login, String login2);
 
+    Integer validarPassword(String pass, String pass2, String correo);
+
     void editarUsuario(UsuarioDTO usuarioDTO);
+
+    Date obtenerFechaPass(String correo);
+
+    void cambiarPassword(String correo, String pass);
 
 }

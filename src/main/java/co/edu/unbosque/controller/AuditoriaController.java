@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +24,11 @@ public class AuditoriaController {
 
     @GetMapping("/listaAuditoria")
     public ResponseEntity<List<AuditoriaDTO>> listaAuditoria(@RequestParam Integer id){
-
+        SimpleDateFormat formato = new SimpleDateFormat("hh: mm: ss a dd-MM-YYYY");
         List<Auditoria> auditorias = auditoriaService.listaAuditoria(id);
         List<AuditoriaDTO> listaAuditorias = new ArrayList<>();
         for (Auditoria auditoria: auditorias) {
-            listaAuditorias.add(new AuditoriaDTO(auditoria.getEvento(), auditoria.getUsuario().getNombre(), auditoria.getFecha().toString()));
+            listaAuditorias.add(new AuditoriaDTO(auditoria.getEvento(), auditoria.getUsuario().getNombre(), formato.format(auditoria.getFecha())));
         }
         return new ResponseEntity<List<AuditoriaDTO>>(listaAuditorias, HttpStatus.OK);
     }

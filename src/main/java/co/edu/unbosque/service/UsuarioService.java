@@ -8,6 +8,7 @@ import co.edu.unbosque.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,6 +87,14 @@ public class UsuarioService {
         return usuarioRepository.validarCorreo2(correo, correo2);
     }
 
+    public Integer validarPassword(String pass, String pass2, String correo){
+        return usuarioRepository.validarPassword(pass, pass2, correo);
+    }
+
+    public Date obtenerFechaPass(String correo){
+        return usuarioRepository.obtenerFechaPass(correo);
+    }
+
     public Integer validarLogin2(String login, String login2){
         return usuarioRepository.validarLogin2(login, login2);
     }
@@ -103,6 +112,22 @@ public class UsuarioService {
         }else{
             usuarioRepository.editarUsuario(usuarioDTO);
             return "Guardado Correctamente";
+        }
+    }
+
+    public String cambiarPass(UsuarioDTO usuarioDTO, String newPass) {
+        try{
+            Usuario usuario = usuarioRepository.buscarPorCorreo(usuarioDTO.getCorreo());
+            UsuarioDTO usuarioDTO1 = new UsuarioDTO();
+            Integer numero = validarPassword(usuarioDTO1.shaEncode(usuarioDTO.getPassword()), usuarioDTO1.shaEncode(newPass), usuarioDTO.getCorreo());
+            if(numero==1){
+                return "No se puede colocar el mismo password";
+            }else{
+                usuarioRepository.cambiarPassword(usuarioDTO.getCorreo(), usuarioDTO1.shaEncode(newPass));
+                return "El password ha sido cambiado correctamente";
+            }
+        } catch (Exception e){
+            return e.getMessage() + e.getCause();
         }
 
     }

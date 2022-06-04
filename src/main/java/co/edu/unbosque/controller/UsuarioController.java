@@ -10,8 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/usuario")
@@ -101,6 +104,26 @@ public class UsuarioController {
     @PostMapping("/obtenerId/{id}")
     public Integer obtenerId(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.obtenerId(usuarioDTO.getNombre());
+    }
+
+    @GetMapping("/fechaPass")
+    public EstadoDTO obtenerFechaPass(@RequestParam String correo){
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-DD");
+        EstadoDTO estadoDTO = new EstadoDTO();
+        Date fecha = usuarioService.obtenerFechaPass(correo);
+        Date fecha1 = new Date();
+        TimeUnit time = TimeUnit.DAYS;
+        long diffrence = time.convert(fecha1.getTime()-fecha.getTime(), TimeUnit.MILLISECONDS);
+        estadoDTO.setMensaje(""+diffrence);
+        return estadoDTO;
+    }
+
+    @PostMapping("/cambiarPass")
+    public EstadoDTO cambiarPass(@RequestBody UsuarioDTO usuarioDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = usuarioService.cambiarPass(usuarioDTO, usuarioDTO.getPassword2());
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 
 }

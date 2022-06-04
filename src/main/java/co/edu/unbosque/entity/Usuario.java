@@ -2,12 +2,12 @@ package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
 /**
  * The persistent class for the usuario database table.
- *
  */
 @Entity
 @Table(name = "usuario")
@@ -15,38 +15,41 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer idUsuario;
-    @Column(name="correo")
+    @Column(name = "correo")
     private String correo;
-    @Column(name="direccion")
+    @Column(name = "direccion")
     private String direccion;
-    @Column(name="estado")
+    @Column(name = "estado")
     private String estado;
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="telefono")
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column(name="intento")
+    @Column(name = "intento")
     private Integer intento;
 
+    @Column(name="fecha_pass")
+    private Date fechaPass;
+
     //bi-directional many-to-one association to Auditoria
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Auditoria> auditorias;
 
     //bi-directional many-to-one association to Cuadrilla
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Cuadrilla> cuadrillas;
 
     //bi-directional many-to-one association to Rol
     @ManyToOne
-    @JoinColumn(name="id_rol")
+    @JoinColumn(name = "id_rol")
     private Rol rol;
 
     public Usuario() {
@@ -133,6 +136,14 @@ public class Usuario implements Serializable {
 
     public void setIntento(Integer intento) {
         this.intento = intento;
+    }
+
+    public Date getFechaPass() {
+        return fechaPass;
+    }
+
+    public void setFechaPass(Date fechaPass) {
+        this.fechaPass = fechaPass;
     }
 
     public List<Auditoria> getAuditorias() {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,12 +65,6 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public void editarEliminar(Integer id) {
-        Usuario usuario = entityManager.find(Usuario.class, id);
-    }
-
-
-    @Override
     public Optional<Usuario> buscarPorId(Integer id) {
         System.out.println(id);
         Usuario usuario = entityManager.find(Usuario.class, id);
@@ -120,6 +115,19 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     public Usuario buscarPorLogin2(String login, String login2) {
         String query = "FROM Usuario where login not in ('" + login2 + "') and login = '" + login +"'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorPass(String pass, String pass2, String correo) {
+        String query = "FROM Usuario where correo = '" + correo +"' and password = '" + pass2 + "'";
+        System.out.println(query);
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        System.out.println(lista.size());
         if(lista.size()!= 0){
             return lista.get(0);
         }else{
@@ -231,6 +239,16 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
+    public Integer validarPassword(String pass, String pass2, String correo) {
+        Usuario usuario = buscarPorPass(pass, pass2, correo);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
     public void editarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = entityManager.find(Usuario.class, usuarioDTO.getId_usuario());
         usuario.setLogin(usuarioDTO.getLogin());
@@ -238,6 +256,19 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         usuario.setDireccion(usuarioDTO.getDireccion());
         usuario.setTelefono(usuarioDTO.getTelefono());
         usuario.setCorreo(usuarioDTO.getCorreo());
+        entityManager.merge(usuario);
+    }
+    @Override
+    public Date obtenerFechaPass(String correo) {
+        Usuario usuario = buscarPorCorreo(correo);
+        return usuario.getFechaPass();
+    }
+
+    @Override
+    public void cambiarPassword(String correo, String pass) {
+        Usuario usuario = buscarPorCorreo(correo);
+        usuario.setPassword(pass);
+        usuario.setFechaPass(new Date());
         entityManager.merge(usuario);
     }
 }
