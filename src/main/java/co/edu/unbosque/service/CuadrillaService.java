@@ -1,5 +1,6 @@
 package co.edu.unbosque.service;
 
+import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.entity.*;
 import co.edu.unbosque.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +24,21 @@ public class CuadrillaService {
         return cuadrillaRepository.listaCuadrillas();
     }
 
-    public Cuadrilla registrarCuadrilla(Cuadrilla cuadrilla) {
-
-        Cuadrilla cuadrilla1 = new Cuadrilla(cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla());
-
-        cuadrillaRepository.registrar(cuadrilla1);
-        return cuadrilla1;
+    public String registrarCuadrilla(CuadrillaDTO cuadrillaDTO) {
+        Cuadrilla cuadrilla1 = new Cuadrilla("A",cuadrillaDTO.getNombreCuadrilla());
+        if(validarNombre(cuadrillaDTO.getNombreCuadrilla())==1){
+            return "El nombre de la cuadrilla se encuentra en uso";
+        }else{
+            cuadrillaRepository.registrar(cuadrilla1);
+            return "Registrado  correctamente";
+        }
     }
 
     public Integer obtenerIdPorNombre(String nombre){
         return cuadrillaRepository.obtenerIdPorNombre(nombre);
     }
 
+    public Integer validarNombre(String nombre){
+        return cuadrillaRepository.validarNombre(nombre);
+    }
 }

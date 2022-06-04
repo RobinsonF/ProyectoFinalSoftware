@@ -33,6 +33,16 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
     }
 
     @Override
+    public Integer validarNombre(String nombre) {
+        Cuadrilla cuadrilla = buscarPorNombre(nombre);
+        if(cuadrilla != null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @Override
     public Integer obtenerIdPorNombre(String nombre) {
         return buscarPorNombre(nombre).getIdCuadrilla();
     }
