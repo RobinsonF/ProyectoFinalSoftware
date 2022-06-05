@@ -15,6 +15,8 @@ public class MaterialDTO {
 
     private String nombreOrden;
 
+    private String nombreTipoMaterial;
+
     public MaterialDTO() {
     }
 
@@ -71,5 +73,13 @@ public class MaterialDTO {
 
     public void setNombreOrden(String nombreOrden) {
         this.nombreOrden = nombreOrden;
+    }
+
+    public String getNombreTipoMaterial() {
+        return nombreTipoMaterial;
+    }
+
+    public void setNombreTipoMaterial(String nombreTipoMaterial) {
+        this.nombreTipoMaterial = nombreTipoMaterial;
     }
 }

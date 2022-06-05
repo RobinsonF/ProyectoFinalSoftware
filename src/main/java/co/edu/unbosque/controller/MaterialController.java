@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Material;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/material")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MaterialController {
     @Autowired
     MaterialService materialService;
@@ -33,9 +34,10 @@ public class MaterialController {
     }
 
     @PostMapping("/crearMaterial")
-    public ResponseEntity<Ciudad> crearZona(@RequestBody MaterialDTO materialDTO) {
-        Material material = new Material(materialDTO.getCantidad(),"A",materialDTO.getNombreMaterial());
-        materialService.registrarMaterial(material, materialDTO.getOrdentrabajo());
-        return new ResponseEntity(material, HttpStatus.OK);
+    public EstadoDTO crearZona(@RequestBody MaterialDTO materialDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = materialService.registrarMaterial(materialDTO);
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 }

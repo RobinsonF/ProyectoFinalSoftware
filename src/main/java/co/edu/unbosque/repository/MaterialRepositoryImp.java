@@ -2,6 +2,7 @@ package co.edu.unbosque.repository;
 
 import co.edu.unbosque.entity.Material;
 
+import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,16 @@ public class MaterialRepositoryImp implements MaterialRepository {
     }
 
     @Override
+    public Integer validarNombre(String nombre) {
+        Material material = buscarPorNombre(nombre);
+        if(material!=null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @Override
     public List<Material> listaMateriales() {
         String query = "FROM Material";
         return entityManager.createQuery(query).getResultList();
@@ -28,5 +39,16 @@ public class MaterialRepositoryImp implements MaterialRepository {
     @Override
     public void registrar(Material material) {
         entityManager.merge(material);
+    }
+
+    @Override
+    public Material buscarPorNombre(String nombre) {
+        String query = "FROM Material where nombreMaterial = '" + nombre + "'";
+        List<Material> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
     }
 }

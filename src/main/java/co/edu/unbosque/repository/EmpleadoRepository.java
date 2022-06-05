@@ -11,4 +11,5 @@ public interface EmpleadoRepository {
     void registrar(Empleado empleado);
 
     Optional<Empleado> buscarPorId(Integer id);
+
 }

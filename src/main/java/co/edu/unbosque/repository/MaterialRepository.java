@@ -10,5 +10,9 @@ public interface MaterialRepository {
 
     void registrar(Material material);
 
+    Material buscarPorNombre(String nombre);
+
     Optional<Material> buscarPorId(Integer id);
+
+    Integer validarNombre(String nombre);
 }

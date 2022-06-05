@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.EmpleadoDTO;
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/empleado")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
@@ -32,9 +33,10 @@ public class EmpleadoController {
     }
 
     @PostMapping("/crearEmpleado")
-    public ResponseEntity<Empleado> crearEmpleado(@RequestBody EmpleadoDTO empleadoDTO){
-        Empleado empleado = new Empleado(empleadoDTO.getApellido(),empleadoDTO.getCedula(),empleadoDTO.getEstado(),empleadoDTO.getNombre());
-        empleadoService.registrarEmpleado(empleado,empleadoDTO.getId_cuadrilla());
-        return new ResponseEntity(empleado, HttpStatus.OK);
+    public EstadoDTO crearEmpleado(@RequestBody EmpleadoDTO empleadoDTO){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = empleadoService.registrarEmpleado(empleadoDTO);
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 }

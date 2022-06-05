@@ -13,6 +13,8 @@ public class EmpleadoDTO {
 
     private String nombre;
 
+    private String nombreCuadrilla;
+
     private Integer id_cuadrilla;
 
     public EmpleadoDTO(Integer idEmpleado, String apellido, String cedula, String estado, String nombre) {
@@ -72,5 +74,13 @@ public class EmpleadoDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getNombreCuadrilla() {
+        return nombreCuadrilla;
+    }
+
+    public void setNombreCuadrilla(String nombreCuadrilla) {
+        this.nombreCuadrilla = nombreCuadrilla;
     }
 }

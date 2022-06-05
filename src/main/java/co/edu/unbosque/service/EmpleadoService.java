@@ -1,6 +1,7 @@
 package co.edu.unbosque.service;
 
 
+import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.repository.CuadrillaRepository;
@@ -26,8 +27,8 @@ public class EmpleadoService {
         return  empleadoRepository.listaEmpleados();
     }
 
-    public Empleado registrarEmpleado(Empleado empleado, Integer id) {
-
+    public String registrarEmpleado(EmpleadoDTO empleado) {
+        Integer id = cuadrillaRepository.obtenerIdPorNombre(empleado.getNombreCuadrilla());
         Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),"A",empleado.getNombre());
         Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id);
         cuadrilla.ifPresent(a -> {
@@ -35,8 +36,7 @@ public class EmpleadoService {
             cuadrillaRepository.registrar(a);
         });
         empleadoRepository.registrar(empleado1);
-        return empleado1;
-
+        return "Registrado correctamente";
 
     }
 }

@@ -1,6 +1,7 @@
 package co.edu.unbosque.service;
 
 
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Tipomaterial;
 import co.edu.unbosque.repository.MaterialRepository;
@@ -25,16 +26,24 @@ public class MaterialService {
         return  materialRepository.listaMateriales();
     }
 
-    public Material registrarMaterial(Material material, Integer id) {
+    public String registrarMaterial(MaterialDTO material) {
 
-        Material material1 = new Material(material.getCantidad(),material.getEstado(),material.getNombreMaterial());
-        Optional<Tipomaterial> tipoMaterial = tipoMaterialRepository.buscarPorId(id);
-        tipoMaterial.ifPresent(a -> {
-            a.addMaterial(material1);
-            tipoMaterialRepository.registrar(a);
-        });
-        materialRepository.registrar(material1);
-        return material1;
+        Integer id = tipoMaterialRepository.obtenerIdPorNombre(material.getNombreTipoMaterial());
+        if(validarNombre(material.getNombreMaterial())==1){
+            return "El nombre del material se encuentra en uso";
+        }else {
+            Material material1 = new Material(material.getCantidad(), "A", material.getNombreMaterial());
+            Optional<Tipomaterial> tipoMaterial = tipoMaterialRepository.buscarPorId(id);
+            tipoMaterial.ifPresent(a -> {
+                a.addMaterial(material1);
+                tipoMaterialRepository.registrar(a);
+            });
+            materialRepository.registrar(material1);
+            return "Registrado correctamente";
+        }
+    }
 
+    public Integer validarNombre(String nombre){
+        return materialRepository.validarNombre(nombre);
     }
 }

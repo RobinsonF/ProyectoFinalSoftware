@@ -33,7 +33,7 @@ public class TipoMaterialRepositoryImp implements TipoMaterialRepository {
 
     @Override
     public Tipomaterial buscarPorNombre(String nombre) {
-        String query = "FROM TipoMaterial where nombre = '" + nombre + "'";
+        String query = "FROM Tipomaterial where nombre = '" + nombre + "'";
         List<Tipomaterial> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
