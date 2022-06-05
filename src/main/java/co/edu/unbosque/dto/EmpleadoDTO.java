@@ -17,12 +17,13 @@ public class EmpleadoDTO {
 
     private Integer id_cuadrilla;
 
-    public EmpleadoDTO(Integer idEmpleado, String apellido, String cedula, String estado, String nombre) {
+    public EmpleadoDTO(Integer idEmpleado, String apellido, String cedula, String estado, String nombre, String nombreCuadrilla) {
         this.idEmpleado = idEmpleado;
         this.apellido = apellido;
         this.cedula = cedula;
         this.estado = estado;
         this.nombre = nombre;
+        this.nombreCuadrilla = nombreCuadrilla;
     }
 
     public EmpleadoDTO() {

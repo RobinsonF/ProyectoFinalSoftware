@@ -26,7 +26,7 @@ public class EmpleadoController {
         List<EmpleadoDTO> listaEmpleados = new ArrayList<>();
         for (Empleado empleado: empleados) {
             listaEmpleados.add(
-                    new EmpleadoDTO(empleado.getIdEmpleado(),empleado.getApellido(),empleado.getCedula(),empleado.getEstado(),empleado.getNombre())
+                    new EmpleadoDTO(empleado.getIdEmpleado(),empleado.getApellido(),empleado.getCedula(),empleado.getEstado(),empleado.getNombre(), empleado.getCuadrilla().getNombreCuadrilla())
             );
         }
         return new ResponseEntity<List<EmpleadoDTO>>(listaEmpleados, HttpStatus.OK);

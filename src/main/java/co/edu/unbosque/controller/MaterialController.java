@@ -27,7 +27,7 @@ public class MaterialController {
         List<MaterialDTO> listaMateriales = new ArrayList<>();
         for (Material material : materiales) {
             listaMateriales.add(
-                    new MaterialDTO(material.getIdMaterial(),material.getCantidad(),material.getEstado(),material.getNombreMaterial())
+                    new MaterialDTO(material.getIdMaterial(),material.getCantidad(),material.getEstado(),material.getNombreMaterial(), material.getTipomaterial().getNombre())
             );
         }
         return new ResponseEntity<List<MaterialDTO>>(listaMateriales, HttpStatus.OK);

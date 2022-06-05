@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,10 @@ public class OrdenTrabajoController {
 
         List<Ordentrabajo> ordenes = ordenTrabajoService.listaOrden();
         List<OrdenTrabajoDTO> listaOrdenes = new ArrayList<>();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         for (Ordentrabajo ordentrabajo: ordenes) {
             listaOrdenes.add(
-                    new OrdenTrabajoDTO(ordentrabajo.getIdTrabajo(),ordentrabajo.getEstado(),ordentrabajo.getFechaTrabajof(),ordentrabajo.getFechaTrabajoi(),ordentrabajo.getNombreTrabajo())
+                    new OrdenTrabajoDTO(ordentrabajo.getIdTrabajo(),ordentrabajo.getNombreTrabajo(), ordentrabajo.getCuadrilla().getNombreCuadrilla(), ordentrabajo.getZona().getNombre(), formato.format(ordentrabajo.getFechaTrabajoi()))
             );
         }
         return new ResponseEntity<List<OrdenTrabajoDTO>>(listaOrdenes, HttpStatus.OK);

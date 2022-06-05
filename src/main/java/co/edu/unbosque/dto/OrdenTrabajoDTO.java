@@ -37,6 +37,14 @@ public class OrdenTrabajoDTO {
         this.nombreTrabajo = nombreTrabajo;
     }
 
+    public OrdenTrabajoDTO(Integer idTrabajo, String nombreTrabajo, String nombreCuadrilla, String nombreZona, String fechaInicial) {
+        this.idTrabajo = idTrabajo;
+        this.nombreTrabajo = nombreTrabajo;
+        this.nombreCuadrilla = nombreCuadrilla;
+        this.nombreZona = nombreZona;
+        this.fechaInicial = fechaInicial;
+    }
+
     public OrdenTrabajoDTO() {
     }
 
