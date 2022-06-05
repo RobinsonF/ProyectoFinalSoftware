@@ -3,7 +3,7 @@ package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.UsuarioCuadrillaDTO;
 import co.edu.unbosque.entity.Ordentrabajo;
-import co.edu.unbosque.entity.UsuarioCuadrilla;
+import co.edu.unbosque.entity.Usuariocuadrilla;
 import co.edu.unbosque.service.UsuarioCuadrillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +22,9 @@ public class UsuarioCuadrillaController {
     @GetMapping("/listaUsuarioCuadrilla")
     public ResponseEntity<List<UsuarioCuadrillaDTO>> listaUsuarioCuadrilla(){
 
-        List<UsuarioCuadrilla> usuarioCuadrillas = usuarioCuadrillaService.listaUsuarioCuadrilla();
+        List<Usuariocuadrilla> usuarioCuadrillas = usuarioCuadrillaService.listaUsuarioCuadrilla();
         List<UsuarioCuadrillaDTO> listaUsuarioCuadrillas = new ArrayList<>();
-        for (UsuarioCuadrilla usuarioCuadrilla: usuarioCuadrillas) {
+        for (Usuariocuadrilla usuarioCuadrilla: usuarioCuadrillas) {
             listaUsuarioCuadrillas.add(
                     new UsuarioCuadrillaDTO(usuarioCuadrilla.getIdUsuariocuadrilla(),usuarioCuadrilla.getEstado())
             );
@@ -34,7 +34,7 @@ public class UsuarioCuadrillaController {
 
     @PostMapping("/crearUsuarioCuadrilla")
     public ResponseEntity<Ordentrabajo> crearUsuarioCuadrilla(@RequestBody UsuarioCuadrillaDTO usuarioCuadrillaDTO){
-        UsuarioCuadrilla usuarioCuadrilla = new UsuarioCuadrilla(usuarioCuadrillaDTO.getEstado());
+        Usuariocuadrilla usuarioCuadrilla = new Usuariocuadrilla(usuarioCuadrillaDTO.getEstado());
         usuarioCuadrillaService.registrarUsuarioCuadrilla(usuarioCuadrilla, usuarioCuadrillaDTO.getUsuario(),usuarioCuadrillaDTO.getCuadrilla());
         return new ResponseEntity(usuarioCuadrilla, HttpStatus.OK);
     }

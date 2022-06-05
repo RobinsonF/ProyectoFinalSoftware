@@ -17,4 +17,9 @@ public class ParametroService {
     public Parametro obtenerParametro(String tipo){
         return parametroRepository.obtenerParametro(tipo);
     }
+
+    public Integer obtenerParametro2(String tipo){
+        Parametro parametro = obtenerParametro(tipo);
+        return parametro.getValorInt();
+    }
 }

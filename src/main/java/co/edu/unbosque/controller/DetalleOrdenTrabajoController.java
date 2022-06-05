@@ -1,7 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.DetalleOrdenTrabajoDTO;
-import co.edu.unbosque.entity.DetalleOrdenTrabajo;
+import co.edu.unbosque.entity.Detalleordentrabajo;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.service.DetalleOrdenTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class DetalleOrdenTrabajoController {
     @GetMapping("/listaDetalleOrden")
     public ResponseEntity<List<DetalleOrdenTrabajoDTO>> listaDetalleOrden(){
 
-        List<DetalleOrdenTrabajo> detalleOrdenTrabajos = detalleOrdenTrabajoService.listaDetalleOrdenTrabajo();
+        List<Detalleordentrabajo> detalleordentrabajos = detalleOrdenTrabajoService.listaDetalleOrdenTrabajo();
         List<DetalleOrdenTrabajoDTO> listaDetalleOrdenes = new ArrayList<>();
-        for (DetalleOrdenTrabajo detalleOrdenTrabajo: detalleOrdenTrabajos) {
+        for (Detalleordentrabajo detalleOrdenTrabajo: detalleordentrabajos) {
             listaDetalleOrdenes.add(
                     new DetalleOrdenTrabajoDTO(detalleOrdenTrabajo.getIdDetalle(),detalleOrdenTrabajo.getEstado())
             );
@@ -34,7 +34,7 @@ public class DetalleOrdenTrabajoController {
 
     @PostMapping("/crearDetalleOrden")
     public ResponseEntity<Ordentrabajo> crearDetalleOrden(@RequestBody DetalleOrdenTrabajoDTO detalleOrdenTrabajoDTO){
-        DetalleOrdenTrabajo detalleOrdenTrabajo = new DetalleOrdenTrabajo(detalleOrdenTrabajoDTO.getEstado());
+        Detalleordentrabajo detalleOrdenTrabajo = new Detalleordentrabajo(detalleOrdenTrabajoDTO.getEstado());
         detalleOrdenTrabajoService.registrarDetalleOrdenTrabajo(detalleOrdenTrabajo, detalleOrdenTrabajoDTO.getOrden(),detalleOrdenTrabajoDTO.getMaterial());
         return new ResponseEntity(detalleOrdenTrabajo, HttpStatus.OK);
     }

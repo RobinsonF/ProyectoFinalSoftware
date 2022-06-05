@@ -2,7 +2,7 @@ package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.TurnoCuadrillaDTO;
 import co.edu.unbosque.entity.Ordentrabajo;
-import co.edu.unbosque.entity.TurnoCuadrilla;
+import co.edu.unbosque.entity.Turnocuadrilla;
 import co.edu.unbosque.service.TurnoCuadrillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +22,9 @@ public class TurnoCuadrillaController {
     @GetMapping("/listaTurnoCuadrilla")
     public ResponseEntity<List<TurnoCuadrillaDTO>> listaTurnoCuadrilla(){
 
-        List<TurnoCuadrilla> turnoCuadrillas = turnoCuadrillaService.listaTurnoCuadrilla();
+        List<Turnocuadrilla> turnocuadrillas = turnoCuadrillaService.listaTurnoCuadrilla();
         List<TurnoCuadrillaDTO> listaTurnoCuadrillas = new ArrayList<>();
-        for (TurnoCuadrilla turnoCuadrilla: turnoCuadrillas) {
+        for (Turnocuadrilla turnoCuadrilla: turnocuadrillas) {
             listaTurnoCuadrillas.add(
                     new TurnoCuadrillaDTO(turnoCuadrilla.getIdTurnocuadrilla(),turnoCuadrilla.getEstado())
             );
@@ -34,7 +34,7 @@ public class TurnoCuadrillaController {
 
     @PostMapping("/crearTurnoCuadrilla")
     public ResponseEntity<Ordentrabajo> crearTurnoCuadrilla(@RequestBody TurnoCuadrillaDTO turnoCuadrillaDTO){
-        TurnoCuadrilla turnoCuadrilla = new TurnoCuadrilla(turnoCuadrillaDTO.getEstado());
+        Turnocuadrilla turnoCuadrilla = new Turnocuadrilla(turnoCuadrillaDTO.getEstado());
         turnoCuadrillaService.registrarTurnoCuadrilla(turnoCuadrilla, turnoCuadrillaDTO.getTurno(),turnoCuadrillaDTO.getCuadrilla());
         return new ResponseEntity(turnoCuadrilla, HttpStatus.OK);
     }

@@ -1,15 +1,15 @@
 package co.edu.unbosque.repository;
 
-import co.edu.unbosque.entity.DetalleOrdenTrabajo;
+import co.edu.unbosque.entity.Detalleordentrabajo;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface DetalleOrdenTrabajoRepository {
-    List<DetalleOrdenTrabajo> listaDetalleOrdenTrabajos();
+    List<Detalleordentrabajo> listaDetalleOrdenTrabajos();
 
-    void registrar(DetalleOrdenTrabajo detalleOrdenTrabajo);
+    void registrar(Detalleordentrabajo detalleOrdenTrabajo);
 
-    Optional<DetalleOrdenTrabajo> buscarPorId(Integer id);
+    Optional<Detalleordentrabajo> buscarPorId(Integer id);
 }
 

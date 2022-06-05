@@ -28,12 +28,12 @@ public class Material implements Serializable {
 
 	//bi-directional many-to-one association to Detalleordentrabajo
 	@OneToMany(mappedBy="material")
-	private List<DetalleOrdenTrabajo> detalleOrdenTrabajos;
+	private List<Detalleordentrabajo> detalleordentrabajos;
 
 	//bi-directional many-to-one association to Tipomaterial
 	@ManyToOne
 	@JoinColumn(name="id_tipomaterial")
-	private TipoMaterial tipomaterial;
+	private Tipomaterial tipomaterial;
 
 	public Material() {
 	}
@@ -76,33 +76,33 @@ public class Material implements Serializable {
 		this.nombreMaterial = nombreMaterial;
 	}
 
-	public List<DetalleOrdenTrabajo> getDetalleordentrabajos() {
-		return this.detalleOrdenTrabajos;
+	public List<Detalleordentrabajo> getDetalleordentrabajos() {
+		return this.detalleordentrabajos;
 	}
 
-	public void setDetalleordentrabajos(List<DetalleOrdenTrabajo> detalleOrdenTrabajos) {
-		this.detalleOrdenTrabajos = detalleOrdenTrabajos;
+	public void setDetalleordentrabajos(List<Detalleordentrabajo> detalleordentrabajos) {
+		this.detalleordentrabajos = detalleordentrabajos;
 	}
 
-	public DetalleOrdenTrabajo addDetalleOrdentrabajo(DetalleOrdenTrabajo detalleordentrabajo) {
+	public Detalleordentrabajo addDetalleOrdentrabajo(Detalleordentrabajo detalleordentrabajo) {
 		getDetalleordentrabajos().add(detalleordentrabajo);
 		detalleordentrabajo.setMaterial(this);
 
 		return detalleordentrabajo;
 	}
 
-	public DetalleOrdenTrabajo removeDetalleordentrabajo(DetalleOrdenTrabajo detalleordentrabajo) {
+	public Detalleordentrabajo removeDetalleordentrabajo(Detalleordentrabajo detalleordentrabajo) {
 		getDetalleordentrabajos().remove(detalleordentrabajo);
 		detalleordentrabajo.setMaterial(null);
 
 		return detalleordentrabajo;
 	}
 
-	public TipoMaterial getTipomaterial() {
+	public Tipomaterial getTipomaterial() {
 		return this.tipomaterial;
 	}
 
-	public void setTipomaterial(TipoMaterial tipomaterial) {
+	public void setTipomaterial(Tipomaterial tipomaterial) {
 		this.tipomaterial = tipomaterial;
 	}
 

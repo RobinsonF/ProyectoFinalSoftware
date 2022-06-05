@@ -9,8 +9,8 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Usuariocuadrilla.findAll", query="SELECT u FROM UsuarioCuadrilla u")
-public class UsuarioCuadrilla implements Serializable {
+@NamedQuery(name="Usuariocuadrilla.findAll", query="SELECT u FROM Usuariocuadrilla u")
+public class Usuariocuadrilla implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,10 +30,10 @@ public class UsuarioCuadrilla implements Serializable {
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
-	public UsuarioCuadrilla() {
+	public Usuariocuadrilla() {
 	}
 
-	public UsuarioCuadrilla(String estado) {
+	public Usuariocuadrilla(String estado) {
 		this.estado = estado;
 	}
 

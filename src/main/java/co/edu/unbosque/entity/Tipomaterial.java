@@ -10,8 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Tipomaterial.findAll", query="SELECT t FROM TipoMaterial t")
-public class TipoMaterial implements Serializable {
+@NamedQuery(name="tipomaterial.findAll", query="SELECT t FROM Tipomaterial t")
+public class Tipomaterial implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,10 +29,10 @@ public class TipoMaterial implements Serializable {
 	@OneToMany(mappedBy="tipomaterial")
 	private List<Material> materials;
 
-	public TipoMaterial() {
+	public Tipomaterial() {
 	}
 
-	public TipoMaterial(String estado, String nombre, String descripcion) {
+	public Tipomaterial(String estado, String nombre, String descripcion) {
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.nombre = nombre;

@@ -18,24 +18,24 @@ public class TurnoCuadrillaService {
     @Autowired
     CuadrillaRepository cuadrillaRepository;
 
-    public List<TurnoCuadrilla> listaTurnoCuadrilla() {
+    public List<Turnocuadrilla> listaTurnoCuadrilla() {
         return turnoCuadrillaRepository.listaTurnoCuadrillas();
     }
-    public TurnoCuadrilla registrarTurnoCuadrilla(TurnoCuadrilla turnoCuadrilla, Integer id_turno, Integer id_cuadrilla) {
+    public Turnocuadrilla registrarTurnoCuadrilla(Turnocuadrilla turnoCuadrilla, Integer id_turno, Integer id_cuadrilla) {
 
-        TurnoCuadrilla turnoCuadrilla1 = new TurnoCuadrilla(turnoCuadrilla.getEstado());
+        Turnocuadrilla turnocuadrilla1 = new Turnocuadrilla(turnoCuadrilla.getEstado());
         Optional<Turnotrabajo> turnotrabajo = turnoTrabajoRepository.buscarPorId(id_turno);
         turnotrabajo.ifPresent(a -> {
-            a.addTurnoCuadrilla(turnoCuadrilla1);
+            a.addTurnoCuadrilla(turnocuadrilla1);
             turnoTrabajoRepository.registrar(a);
         });
         Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id_cuadrilla);
         cuadrilla.ifPresent(a -> {
-            a.addTurnoCuadrilla(turnoCuadrilla1);
+            a.addTurnoCuadrilla(turnocuadrilla1);
             cuadrillaRepository.registrar(a);
         });
-        turnoCuadrillaRepository.registrar(turnoCuadrilla1);
-        return turnoCuadrilla1;
+        turnoCuadrillaRepository.registrar(turnocuadrilla1);
+        return turnocuadrilla1;
 
 
     }

@@ -1,6 +1,6 @@
 package co.edu.unbosque.repository;
 
-import co.edu.unbosque.entity.TipoMaterial;
+import co.edu.unbosque.entity.Tipomaterial;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,26 +15,26 @@ public class TipoMaterialRepositoryImp implements TipoMaterialRepository {
     EntityManager entityManager;
 
     @Override
-    public Optional<TipoMaterial> buscarPorId(Integer id) {
-        TipoMaterial tipoMaterial = entityManager.find(TipoMaterial.class, id);
+    public Optional<Tipomaterial> buscarPorId(Integer id) {
+        Tipomaterial tipoMaterial = entityManager.find(Tipomaterial.class, id);
         return tipoMaterial != null ? Optional.of(tipoMaterial) : Optional.empty();
     }
 
     @Override
-    public List<TipoMaterial> listarTipos() {
-        String query = "FROM TipoMaterial";
+    public List<Tipomaterial> listarTipos() {
+        String query = "FROM Tipomaterial";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
-    public void registrar(TipoMaterial tipoMaterial) {
+    public void registrar(Tipomaterial tipoMaterial) {
         entityManager.merge(tipoMaterial);
     }
 
     @Override
-    public TipoMaterial buscarPorNombre(String nombre) {
+    public Tipomaterial buscarPorNombre(String nombre) {
         String query = "FROM TipoMaterial where nombre = '" + nombre + "'";
-        List<TipoMaterial> lista = entityManager.createQuery(query).getResultList();
+        List<Tipomaterial> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
         }else{

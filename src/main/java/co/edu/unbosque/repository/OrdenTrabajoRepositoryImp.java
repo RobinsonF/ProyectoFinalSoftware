@@ -22,7 +22,7 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
 
     @Override
     public List<Ordentrabajo> listaOrdenes() {
-        String query = "FROM ordentrabajo";
+        String query = "FROM Ordentrabajo";
         return entityManager.createQuery(query).getResultList();
     }
 

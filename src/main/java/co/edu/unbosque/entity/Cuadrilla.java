@@ -34,11 +34,11 @@ public class Cuadrilla implements Serializable {
 
 	//bi-directional many-to-one association to Turnocuadrilla
 	@OneToMany(mappedBy="cuadrilla")
-	private List<TurnoCuadrilla> turnoCuadrillas;
+	private List<Turnocuadrilla> turnocuadrillas;
 
 	//bi-directional many-to-one association to Usuariocuadrilla
 	@OneToMany(mappedBy="cuadrilla")
-	private List<UsuarioCuadrilla> usuarioCuadrillas;
+	private List<Usuariocuadrilla> usuarioCuadrillas;
 
 	public Cuadrilla() {
 	}
@@ -116,44 +116,44 @@ public class Cuadrilla implements Serializable {
 		return ordentrabajo;
 	}
 
-	public List<TurnoCuadrilla> getTurnocuadrillas() {
-		return this.turnoCuadrillas;
+	public List<Turnocuadrilla> getTurnocuadrillas() {
+		return this.turnocuadrillas;
 	}
 
-	public void setTurnocuadrillas(List<TurnoCuadrilla> turnoCuadrillas) {
-		this.turnoCuadrillas = turnoCuadrillas;
+	public void setTurnocuadrillas(List<Turnocuadrilla> turnocuadrillas) {
+		this.turnocuadrillas = turnocuadrillas;
 	}
 
-	public TurnoCuadrilla addTurnoCuadrilla(TurnoCuadrilla turnocuadrilla) {
+	public Turnocuadrilla addTurnoCuadrilla(Turnocuadrilla turnocuadrilla) {
 		getTurnocuadrillas().add(turnocuadrilla);
 		turnocuadrilla.setCuadrilla(this);
 
 		return turnocuadrilla;
 	}
 
-	public TurnoCuadrilla removeTurnocuadrilla(TurnoCuadrilla turnocuadrilla) {
+	public Turnocuadrilla removeTurnocuadrilla(Turnocuadrilla turnocuadrilla) {
 		getTurnocuadrillas().remove(turnocuadrilla);
 		turnocuadrilla.setCuadrilla(null);
 
 		return turnocuadrilla;
 	}
 
-	public List<UsuarioCuadrilla> getUsuariocuadrillas() {
+	public List<Usuariocuadrilla> getUsuariocuadrillas() {
 		return this.usuarioCuadrillas;
 	}
 
-	public void setUsuariocuadrillas(List<UsuarioCuadrilla> usuarioCuadrillas) {
+	public void setUsuariocuadrillas(List<Usuariocuadrilla> usuarioCuadrillas) {
 		this.usuarioCuadrillas = usuarioCuadrillas;
 	}
 
-	public UsuarioCuadrilla addUsuarioCuadrilla(UsuarioCuadrilla usuariocuadrilla) {
+	public Usuariocuadrilla addUsuarioCuadrilla(Usuariocuadrilla usuariocuadrilla) {
 		getUsuariocuadrillas().add(usuariocuadrilla);
 		usuariocuadrilla.setCuadrilla(this);
 
 		return usuariocuadrilla;
 	}
 
-	public UsuarioCuadrilla removeUsuariocuadrilla(UsuarioCuadrilla usuariocuadrilla) {
+	public Usuariocuadrilla removeUsuariocuadrilla(Usuariocuadrilla usuariocuadrilla) {
 		getUsuariocuadrillas().remove(usuariocuadrilla);
 		usuariocuadrilla.setCuadrilla(null);
 

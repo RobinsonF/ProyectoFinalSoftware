@@ -1,17 +1,16 @@
 package co.edu.unbosque.repository;
 
-import co.edu.unbosque.entity.Departamento;
-import co.edu.unbosque.entity.TipoMaterial;
+import co.edu.unbosque.entity.Tipomaterial;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TipoMaterialRepository {
-    Optional<TipoMaterial> buscarPorId(Integer id);
-    List<TipoMaterial> listarTipos();
-    void registrar (TipoMaterial tipoMaterial);
+    Optional<Tipomaterial> buscarPorId(Integer id);
+    List<Tipomaterial> listarTipos();
+    void registrar (Tipomaterial tipoMaterial);
 
-    TipoMaterial buscarPorNombre(String nombre);
+    Tipomaterial buscarPorNombre(String nombre);
 
     Integer obtenerIdPorNombre(String nombre);
 }

@@ -1,7 +1,6 @@
 package co.edu.unbosque.repository;
 
-import co.edu.unbosque.entity.TurnoCuadrilla;
-import co.edu.unbosque.entity.UsuarioCuadrilla;
+import co.edu.unbosque.entity.Turnocuadrilla;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,19 +15,19 @@ public class TurnoCuadrillaRepositoryImp implements TurnoCuadrillaRepository{
     @PersistenceContext
     EntityManager entityManager;
     @Override
-    public Optional<TurnoCuadrilla> buscarPorId(Integer id) {
-        TurnoCuadrilla turnoCuadrilla = entityManager.find(TurnoCuadrilla.class, id);
+    public Optional<Turnocuadrilla> buscarPorId(Integer id) {
+        Turnocuadrilla turnoCuadrilla = entityManager.find(Turnocuadrilla.class, id);
         return turnoCuadrilla != null ? Optional.of(turnoCuadrilla) : Optional.empty();
     }
 
     @Override
-    public List<TurnoCuadrilla> listaTurnoCuadrillas() {
+    public List<Turnocuadrilla> listaTurnoCuadrillas() {
         String query = "FROM TurnoCuadrilla";
         return entityManager.createQuery(query).getResultList();
     }
 
     @Override
-    public void registrar(TurnoCuadrilla turnoCuadrilla) {
+    public void registrar(Turnocuadrilla turnoCuadrilla) {
         entityManager.merge(turnoCuadrilla);
     }
 }

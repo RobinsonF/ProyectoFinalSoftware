@@ -2,7 +2,7 @@ package co.edu.unbosque.service;
 
 
 import co.edu.unbosque.entity.Material;
-import co.edu.unbosque.entity.TipoMaterial;
+import co.edu.unbosque.entity.Tipomaterial;
 import co.edu.unbosque.repository.MaterialRepository;
 import co.edu.unbosque.repository.TipoMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class MaterialService {
     public Material registrarMaterial(Material material, Integer id) {
 
         Material material1 = new Material(material.getCantidad(),material.getEstado(),material.getNombreMaterial());
-        Optional<TipoMaterial> tipoMaterial = tipoMaterialRepository.buscarPorId(id);
+        Optional<Tipomaterial> tipoMaterial = tipoMaterialRepository.buscarPorId(id);
         tipoMaterial.ifPresent(a -> {
             a.addMaterial(material1);
             tipoMaterialRepository.registrar(a);

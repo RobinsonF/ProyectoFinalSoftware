@@ -18,13 +18,13 @@ public class UsuarioCuadrillaService {
     @Autowired
     CuadrillaRepository cuadrillaRepository;
 
-    public List<UsuarioCuadrilla> listaUsuarioCuadrilla() {
+    public List<Usuariocuadrilla> listaUsuarioCuadrilla() {
         return usuarioCuadrillaRepository.listaUsuarioCuadrillas();
     }
 
-    public UsuarioCuadrilla registrarUsuarioCuadrilla(UsuarioCuadrilla usuarioCuadrilla, Integer id_usuario, Integer id_cuadrilla) {
+    public Usuariocuadrilla registrarUsuarioCuadrilla(Usuariocuadrilla usuarioCuadrilla, Integer id_usuario, Integer id_cuadrilla) {
 
-        UsuarioCuadrilla usuarioCuadrilla1 = new UsuarioCuadrilla(usuarioCuadrilla.getEstado());
+        Usuariocuadrilla usuarioCuadrilla1 = new Usuariocuadrilla(usuarioCuadrilla.getEstado());
         Optional<Usuario> usuario = usuarioRepository.buscarPorId(id_usuario);
         usuario.ifPresent(a -> {
             a.addUsuarioCuadrilla(usuarioCuadrilla1);

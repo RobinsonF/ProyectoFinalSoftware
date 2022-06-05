@@ -1,15 +1,15 @@
 package co.edu.unbosque.repository;
 
 
-import co.edu.unbosque.entity.UsuarioCuadrilla;
+import co.edu.unbosque.entity.Usuariocuadrilla;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioCuadrillaRepository {
-    List<UsuarioCuadrilla> listaUsuarioCuadrillas();
+    List<Usuariocuadrilla> listaUsuarioCuadrillas();
 
-    void registrar(UsuarioCuadrilla usuarioCuadrilla);
+    void registrar(Usuariocuadrilla usuarioCuadrilla);
 
-    Optional<UsuarioCuadrilla> buscarPorId(Integer id);
+    Optional<Usuariocuadrilla> buscarPorId(Integer id);
 }

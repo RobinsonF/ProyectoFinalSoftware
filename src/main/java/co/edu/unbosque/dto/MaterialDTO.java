@@ -13,6 +13,8 @@ public class MaterialDTO {
 
     private Integer ordentrabajo;
 
+    private String nombreOrden;
+
     public MaterialDTO() {
     }
 
@@ -61,5 +63,13 @@ public class MaterialDTO {
 
     public void setOrdentrabajo(Integer ordentrabajo) {
         this.ordentrabajo = ordentrabajo;
+    }
+
+    public String getNombreOrden() {
+        return nombreOrden;
+    }
+
+    public void setNombreOrden(String nombreOrden) {
+        this.nombreOrden = nombreOrden;
     }
 }

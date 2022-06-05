@@ -25,7 +25,7 @@ public class Turnotrabajo implements Serializable {
 
 	//bi-directional many-to-one association to Turnocuadrilla
 	@OneToMany(mappedBy="turnotrabajo")
-	private List<TurnoCuadrilla> turnoCuadrillas;
+	private List<Turnocuadrilla> turnocuadrillas;
 
 	public Turnotrabajo() {
 	}
@@ -59,22 +59,22 @@ public class Turnotrabajo implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<TurnoCuadrilla> getTurnocuadrillas() {
-		return this.turnoCuadrillas;
+	public List<Turnocuadrilla> getTurnocuadrillas() {
+		return this.turnocuadrillas;
 	}
 
-	public void setTurnocuadrillas(List<TurnoCuadrilla> turnoCuadrillas) {
-		this.turnoCuadrillas = turnoCuadrillas;
+	public void setTurnocuadrillas(List<Turnocuadrilla> turnocuadrillas) {
+		this.turnocuadrillas = turnocuadrillas;
 	}
 
-	public TurnoCuadrilla addTurnoCuadrilla(TurnoCuadrilla turnocuadrilla) {
+	public Turnocuadrilla addTurnoCuadrilla(Turnocuadrilla turnocuadrilla) {
 		getTurnocuadrillas().add(turnocuadrilla);
 		turnocuadrilla.setTurnotrabajo(this);
 
 		return turnocuadrilla;
 	}
 
-	public TurnoCuadrilla removeTurnocuadrilla(TurnoCuadrilla turnocuadrilla) {
+	public Turnocuadrilla removeTurnocuadrilla(Turnocuadrilla turnocuadrilla) {
 		getTurnocuadrillas().remove(turnocuadrilla);
 		turnocuadrilla.setTurnotrabajo(null);
 

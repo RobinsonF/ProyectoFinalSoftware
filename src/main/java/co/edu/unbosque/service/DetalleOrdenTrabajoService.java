@@ -19,24 +19,24 @@ public class DetalleOrdenTrabajoService {
     @Autowired
     MaterialRepository materialRepository;
 
-    public List<DetalleOrdenTrabajo> listaDetalleOrdenTrabajo() {
+    public List<Detalleordentrabajo> listaDetalleOrdenTrabajo() {
         return detalleOrdenTrabajoRepository.listaDetalleOrdenTrabajos();
     }
-    public DetalleOrdenTrabajo registrarDetalleOrdenTrabajo(DetalleOrdenTrabajo detalleOrdenTrabajo, Integer id_orden, Integer id_material) {
+    public Detalleordentrabajo registrarDetalleOrdenTrabajo(Detalleordentrabajo detalleOrdenTrabajo, Integer id_orden, Integer id_material) {
 
-        DetalleOrdenTrabajo detalleOrdenTrabajo1 = new DetalleOrdenTrabajo(detalleOrdenTrabajo.getEstado());
+        Detalleordentrabajo detalleordentrabajo1 = new Detalleordentrabajo(detalleOrdenTrabajo.getEstado());
         Optional<Ordentrabajo> ordentrabajo = ordenTrabajoRepository.buscarPorId(id_orden);
         ordentrabajo.ifPresent(a -> {
-            a.addDetalleOrdentrabajo(detalleOrdenTrabajo1);
+            a.addDetalleOrdentrabajo(detalleordentrabajo1);
             ordenTrabajoRepository.registrar(a);
         });
         Optional<Material> material = materialRepository.buscarPorId(id_material);
         material.ifPresent(a -> {
-            a.addDetalleOrdentrabajo(detalleOrdenTrabajo1);
+            a.addDetalleOrdentrabajo(detalleordentrabajo1);
             materialRepository.registrar(a);
         });
-        detalleOrdenTrabajoRepository.registrar(detalleOrdenTrabajo1);
-        return detalleOrdenTrabajo1;
+        detalleOrdenTrabajoRepository.registrar(detalleordentrabajo1);
+        return detalleordentrabajo1;
 
 
     }

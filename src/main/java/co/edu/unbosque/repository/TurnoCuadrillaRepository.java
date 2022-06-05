@@ -1,15 +1,14 @@
 package co.edu.unbosque.repository;
 
-import co.edu.unbosque.entity.TurnoCuadrilla;
-import co.edu.unbosque.entity.UsuarioCuadrilla;
+import co.edu.unbosque.entity.Turnocuadrilla;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TurnoCuadrillaRepository {
-    List<TurnoCuadrilla> listaTurnoCuadrillas();
+    List<Turnocuadrilla> listaTurnoCuadrillas();
 
-    void registrar(TurnoCuadrilla turnoCuadrilla);
+    void registrar(Turnocuadrilla turnoCuadrilla);
 
-    Optional<TurnoCuadrilla> buscarPorId(Integer id);
+    Optional<Turnocuadrilla> buscarPorId(Integer id);
 }

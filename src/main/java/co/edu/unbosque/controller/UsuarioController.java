@@ -54,13 +54,7 @@ public class UsuarioController {
         EstadoDTO estadoDTO = new EstadoDTO();
         Usuario usuario = new Usuario(usuarioDTO.getCorreo(), usuarioDTO.getDireccion(), "A", usuarioDTO.getLogin(), usuarioDTO.getNombre(), usuarioDTO.getPassword(), usuarioDTO.getTelefono(), usuarioDTO.getIntentos(), new Date());
         String mensajeCrear = usuarioService.registrarUsuario(usuario, usuarioDTO.getId_rol());
-        if(mensajeCrear.equals("El correo ya se encuentra registrado")){
-            estadoDTO.setMensaje("El correo ya se encuentra registrado");
-        }else if(mensajeCrear.equals("El login ya se encuentra registrado")){
-            estadoDTO.setMensaje("El login ya se encuentra registrado");
-        }else{
-            estadoDTO.setMensaje("Usuario registrado correctamente");
-        }
+        estadoDTO.setMensaje(mensajeCrear);
         return estadoDTO;
     }
 
