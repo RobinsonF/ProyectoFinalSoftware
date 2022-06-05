@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.CiudadDTO;
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Usuario;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ciudad")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CiudadController {
     @Autowired
     CiudadService ciudadService;
@@ -35,10 +36,12 @@ public class CiudadController {
     }
 
     @PostMapping("/crearCiudad")
-    public ResponseEntity<Ciudad> crearCiudad(@RequestBody CiudadDTO ciudadDTO){
-        Ciudad ciudad = new Ciudad(ciudadDTO.getEstado(),ciudadDTO.getNombre());
-        ciudadService.registrarCiudad(ciudad, ciudadDTO.getId_departamento());
-        return new ResponseEntity(ciudad, HttpStatus.OK);
+    public EstadoDTO crearCiudad(@RequestBody CiudadDTO ciudadDTO){
+        System.out.println(ciudadDTO.getNombre() + "  " + ciudadDTO.getNombreDepartamento());
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = ciudadService.registrarCiudad(ciudadDTO);
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 
     @PostMapping("/obtenerId/{id}")

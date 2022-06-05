@@ -19,9 +19,15 @@ public class OrdenTrabajoDTO {
 
     private String nombreTrabajo;
 
+    private String nombreCuadrilla;
+
+    private String nombreZona;
+
     private Integer cuadrilla;
 
     private Integer zona;
+
+    private String fechaInicial;
 
     public OrdenTrabajoDTO(Integer idTrabajo, String estado, Date fechaTrabajof, Date fechaTrabajoi, String nombreTrabajo) {
         this.idTrabajo = idTrabajo;
@@ -88,5 +94,29 @@ public class OrdenTrabajoDTO {
 
     public void setZona(Integer zona) {
         this.zona = zona;
+    }
+
+    public String getNombreCuadrilla() {
+        return nombreCuadrilla;
+    }
+
+    public void setNombreCuadrilla(String nombreCuadrilla) {
+        this.nombreCuadrilla = nombreCuadrilla;
+    }
+
+    public String getNombreZona() {
+        return nombreZona;
+    }
+
+    public void setNombreZona(String nombreZona) {
+        this.nombreZona = nombreZona;
+    }
+
+    public String getFechaInicial() {
+        return fechaInicial;
+    }
+
+    public void setFechaInicial(String fechaInicial) {
+        this.fechaInicial = fechaInicial;
     }
 }

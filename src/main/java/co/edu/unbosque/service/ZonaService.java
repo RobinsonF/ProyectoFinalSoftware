@@ -1,5 +1,6 @@
 package co.edu.unbosque.service;
 
+import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Zona;
 import co.edu.unbosque.repository.CiudadRepository;
@@ -24,16 +25,25 @@ public class ZonaService {
         return  zonaRepository.listaZonas();
     }
 
-    public Zona registrarZona(Zona zona, Integer id) {
+    Integer validarNombre(String nombre){
+        return zonaRepository.validarNombre(nombre);
+    }
 
-        Zona zona1 = new Zona(zona.getNombre(), zona.getEstado(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur());
-        Optional<Ciudad> ciudad = ciudadRepository.buscarPorId(id);
-        ciudad.ifPresent(a -> {
-            a.addZona(zona1);
-            ciudadRepository.registrar(a);
-        });
-        zonaRepository.registrar(zona1);
-        return zona1;
+    public String registrarZona(ZonaDTO zona) {
 
+        Integer id = ciudadRepository.obtenerIdPorNombre(zona.getNombreCiudad());
+
+        if(validarNombre(zona.getNombre())==1){
+            return "El nombre de la zona se encuentra en uso";
+        }else{
+            Zona zona1 = new Zona(zona.getNombre(), "A",zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur());
+            Optional<Ciudad> ciudad = ciudadRepository.buscarPorId(id);
+            ciudad.ifPresent(a -> {
+                a.addZona(zona1);
+                ciudadRepository.registrar(a);
+            });
+            zonaRepository.registrar(zona1);
+            return "Registrado correctamente";
+        }
     }
 }

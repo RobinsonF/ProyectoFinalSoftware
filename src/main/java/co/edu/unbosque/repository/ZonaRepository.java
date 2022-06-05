@@ -10,5 +10,11 @@ public interface ZonaRepository {
 
     void registrar(Zona zona);
 
+    Zona buscarPorNombre(String nombre);
+
+    Integer validarNombre(String nombre);
+
     Optional<Zona> buscarPorId(Integer id);
+
+    Integer obtenerIdPorNombre(String nombre);
 }

@@ -1,5 +1,6 @@
 package co.edu.unbosque.service;
 
+import co.edu.unbosque.dto.CiudadDTO;
 import co.edu.unbosque.entity.Auditoria;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Departamento;
@@ -28,19 +29,27 @@ public class CiudadService {
         return  ciudadRepository.listaCiudades();
     }
 
-    public Ciudad registrarCiudad(Ciudad ciudad, Integer id) {
-
-        Ciudad ciudad1 = new Ciudad("A",ciudad.getNombre());
-        Optional<Departamento> departamento = departamentoRepository.buscarPorId(id);
-        departamento.ifPresent(a -> {
-            a.addCiudad(ciudad1);
-            departamentoRepository.registrar(a);
-        });
-        ciudadRepository.registrar(ciudad1);
-        return ciudad1;
+    public String registrarCiudad(CiudadDTO ciudad) {
+        Integer id = departamentoRepository.obtenerIdPorNombre(ciudad.getNombreDepartamento());
+        if(validarNombre(ciudad.getNombre())==1){
+            return "El nombre de la ciudad se encuentra en uso";
+        }else{
+            Ciudad ciudad1 = new Ciudad("A",ciudad.getNombre());
+            Optional<Departamento> departamento = departamentoRepository.buscarPorId(id);
+            departamento.ifPresent(a -> {
+                a.addCiudad(ciudad1);
+                departamentoRepository.registrar(a);
+            });
+            ciudadRepository.registrar(ciudad1);
+            return "Registrado correctamente";
+        }
     }
 
     public Integer obtenerIdPorNombre(String nombre){
         return ciudadRepository.obtenerIdPorNombre(nombre);
+    }
+
+    public Integer validarNombre(String nombre){
+        return ciudadRepository.validarNombre(nombre);
     }
 }

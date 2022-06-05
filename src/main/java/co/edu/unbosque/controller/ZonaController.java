@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Zona;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequestMapping("/zona")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ZonaController {
     @Autowired
     ZonaService zonaService;
@@ -32,9 +33,10 @@ public class ZonaController {
     }
 
     @PostMapping("/crearZona")
-    public ResponseEntity<Ciudad> crearZona(@RequestBody ZonaDTO zonaDTO){
-        Zona zona = new Zona(zonaDTO.getNombre(), "A",zonaDTO.getLimiteNorte(),zonaDTO.getLimiteOccidente(),zonaDTO.getLimiteOriente(),zonaDTO.getLimiteSur());
-        zonaService.registrarZona(zona, zonaDTO.getId_ciudad());
-        return new ResponseEntity(zona, HttpStatus.OK);
+    public EstadoDTO crearZona(@RequestBody ZonaDTO zonaDTO){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = zonaService.registrarZona(zonaDTO);
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 }

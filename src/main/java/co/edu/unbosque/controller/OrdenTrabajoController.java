@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orden")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class OrdenTrabajoController {
     @Autowired
     OrdenTrabajoService ordenTrabajoService;
@@ -36,9 +37,10 @@ public class OrdenTrabajoController {
     }
 
     @PostMapping("/crearOrden")
-    public ResponseEntity<Ordentrabajo> crearOrden(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO){
-        Ordentrabajo ordentrabajo = new Ordentrabajo("A",ordenTrabajoDTO.getFechaTrabajof(),ordenTrabajoDTO.getFechaTrabajoi(),ordenTrabajoDTO.getNombreTrabajo());
-        ordenTrabajoService.registrarOrden(ordentrabajo, ordenTrabajoDTO.getZona(),ordenTrabajoDTO.getCuadrilla());
-        return new ResponseEntity(ordentrabajo, HttpStatus.OK);
+    public EstadoDTO crearOrden(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = ordenTrabajoService.registrarOrden(ordenTrabajoDTO);
+        estadoDTO.setMensaje(mensaje);
+        return estadoDTO;
     }
 }
