@@ -41,4 +41,8 @@ public class CuadrillaService {
     public Integer validarNombre(String nombre){
         return cuadrillaRepository.validarNombre(nombre);
     }
+
+    public void eliminarCuadrilla(Integer id){
+        cuadrillaRepository.eliminarCuadrilla(id);
+    }
 }

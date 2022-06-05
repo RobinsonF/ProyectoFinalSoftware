@@ -19,4 +19,6 @@ public interface CiudadRepository {
     Integer validarNombre(String nombre);
 
     Integer obtenerIdPorNombre(String nombre);
+
+    void eliminarCiudad(Integer id);
 }

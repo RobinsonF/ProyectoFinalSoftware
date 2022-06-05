@@ -15,4 +15,6 @@ public interface MaterialRepository {
     Optional<Material> buscarPorId(Integer id);
 
     Integer validarNombre(String nombre);
+
+    void eliminarMaterial(Integer id);
 }

@@ -22,8 +22,15 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
     }
 
     @Override
+    public void eliminarEmpleado(Integer id) {
+        Empleado empleado = entityManager.find(Empleado.class, id);
+        empleado.setEstado("I");
+        entityManager.merge(empleado);
+    }
+
+    @Override
     public List<Empleado> listaEmpleados() {
-        String query = "FROM Empleado";
+        String query = "FROM Empleado WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

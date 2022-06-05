@@ -53,4 +53,7 @@ public class OrdenTrabajoService {
             return e.getMessage();
         }
     }
+    public void eliminarOrden(Integer id){
+        ordenTrabajoRepository.eliminarOrden(id);
+    }
 }

@@ -21,8 +21,15 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
     }
 
     @Override
+    public void eliminarOrden(Integer id) {
+        Ordentrabajo ordentrabajo = entityManager.find(Ordentrabajo.class, id);
+        ordentrabajo.setEstado("I");
+        entityManager.merge(ordentrabajo);
+    }
+
+    @Override
     public List<Ordentrabajo> listaOrdenes() {
-        String query = "FROM Ordentrabajo";
+        String query = "FROM Ordentrabajo WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

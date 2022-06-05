@@ -48,8 +48,15 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
     }
 
     @Override
+    public void eliminarCuadrilla(Integer id) {
+        Cuadrilla cuadrilla = entityManager.find(Cuadrilla.class, id);
+        cuadrilla.setEstado("I");
+        entityManager.merge(cuadrilla);
+    }
+
+    @Override
     public List<Cuadrilla> listaCuadrillas() {
-        String query = "FROM Cuadrilla";
+        String query = "FROM Cuadrilla WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

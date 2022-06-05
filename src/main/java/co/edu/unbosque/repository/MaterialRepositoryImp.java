@@ -31,8 +31,15 @@ public class MaterialRepositoryImp implements MaterialRepository {
     }
 
     @Override
+    public void eliminarMaterial(Integer id) {
+        Material material = entityManager.find(Material.class, id);
+        material.setEstado("I");
+        entityManager.merge(material);
+    }
+
+    @Override
     public List<Material> listaMateriales() {
-        String query = "FROM Material";
+        String query = "FROM Material WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

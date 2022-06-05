@@ -39,4 +39,12 @@ public class EmpleadoController {
         estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
+
+    @PutMapping("/eliminarEmpleado")
+    public EstadoDTO eliminarEmplado(@RequestParam Integer id){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        empleadoService.eliminarEmpleado(id);
+        estadoDTO.setMensaje("Empleado eliminado");
+        return estadoDTO;
+    }
 }

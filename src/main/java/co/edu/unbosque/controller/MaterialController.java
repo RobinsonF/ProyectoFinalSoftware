@@ -40,4 +40,12 @@ public class MaterialController {
         estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
+
+    @PutMapping("/eliminarMaterial")
+    public EstadoDTO eliminarCiudad(@RequestParam Integer id){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        materialService.eliminarMaterial(id);
+        estadoDTO.setMensaje("Material eliminado");
+        return estadoDTO;
+    }
 }

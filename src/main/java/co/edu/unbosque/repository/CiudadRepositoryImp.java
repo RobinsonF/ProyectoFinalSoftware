@@ -49,8 +49,15 @@ public class CiudadRepositoryImp implements CiudadRepository{
     }
 
     @Override
+    public void eliminarCiudad(Integer id) {
+        Ciudad ciudad = entityManager.find(Ciudad.class, id);
+        ciudad.setEstado("I");
+        entityManager.merge(ciudad);
+    }
+
+    @Override
     public List<Ciudad> listaCiudades() {
-        String query = "FROM Ciudad";
+        String query = "FROM Ciudad WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

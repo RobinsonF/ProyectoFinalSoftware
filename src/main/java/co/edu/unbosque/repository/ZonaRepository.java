@@ -17,4 +17,6 @@ public interface ZonaRepository {
     Optional<Zona> buscarPorId(Integer id);
 
     Integer obtenerIdPorNombre(String nombre);
+
+    void eliminarZona(Integer id);
 }

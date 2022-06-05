@@ -17,4 +17,6 @@ public interface CuadrillaRepository {
     Integer validarNombre(String nombre);
 
     Integer obtenerIdPorNombre(String nombre);
+
+    void eliminarCuadrilla(Integer id);
 }

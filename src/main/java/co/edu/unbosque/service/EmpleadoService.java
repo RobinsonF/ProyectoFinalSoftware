@@ -37,6 +37,9 @@ public class EmpleadoService {
         });
         empleadoRepository.registrar(empleado1);
         return "Registrado correctamente";
+    }
 
+    public void eliminarEmpleado(Integer id){
+        empleadoRepository.eliminarEmpleado(id);
     }
 }

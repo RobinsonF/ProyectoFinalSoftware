@@ -24,7 +24,7 @@ public class DepartamentoRepositoryImp implements DepartamentoRepository{
 
     @Override
     public List<Departamento> listaDepartamentos() {
-        String query = "FROM Departamento";
+        String query = "FROM Departamento WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 
@@ -57,5 +57,12 @@ public class DepartamentoRepositoryImp implements DepartamentoRepository{
     @Override
     public Integer obtenerIdPorNombre(String nombre) {
         return buscarPorNombre(nombre).getIdDepartamento();
+    }
+
+    @Override
+    public void eliminarDepartamento(Integer id) {
+        Departamento departamento = entityManager.find(Departamento.class, id);
+        departamento.setEstado("I");
+        entityManager.merge(departamento);
     }
 }

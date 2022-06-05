@@ -36,4 +36,8 @@ public class DepartamentoService {
     public Integer validarNombre(String nombre){
         return departamentoRepository.validarNombre(nombre);
     }
+
+    public void eliminarDepartamento(Integer id){
+        departamentoRepository.eliminarDepartamento(id);
+    }
 }

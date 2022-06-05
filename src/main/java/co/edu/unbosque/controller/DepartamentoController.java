@@ -46,4 +46,12 @@ public class DepartamentoController {
     public Integer obtenerId(@RequestBody DepartamentoDTO departamentoDTO){
         return departamentoService.obtenerIdPorNombre(departamentoDTO.getNombre());
     }
+
+    @PutMapping("/eliminarDepartamento")
+    public EstadoDTO eliminarDepartamento(@RequestParam Integer id){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        departamentoService.eliminarDepartamento(id);
+        estadoDTO.setMensaje("Departamento eliminada");
+        return estadoDTO;
+    }
 }

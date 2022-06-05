@@ -12,4 +12,6 @@ public interface EmpleadoRepository {
 
     Optional<Empleado> buscarPorId(Integer id);
 
+    void eliminarEmpleado(Integer id);
+
 }

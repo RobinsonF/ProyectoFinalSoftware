@@ -45,4 +45,12 @@ public class OrdenTrabajoController {
         estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
+
+    @PutMapping("/eliminarOrden")
+    public EstadoDTO eliminarCiudad(@RequestParam Integer id){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        ordenTrabajoService.eliminarOrden(id);
+        estadoDTO.setMensaje("Orden eliminada");
+        return estadoDTO;
+    }
 }

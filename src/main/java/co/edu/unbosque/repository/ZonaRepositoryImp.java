@@ -30,8 +30,15 @@ public class ZonaRepositoryImp implements ZonaRepository{
     }
 
     @Override
+    public void eliminarZona(Integer id) {
+        Zona zona = entityManager.find(Zona.class, id);
+        zona.setEstado("I");
+        entityManager.merge(zona);
+    }
+
+    @Override
     public List<Zona> listaZonas() {
-        String query = "FROM Zona";
+        String query = "FROM Zona WHERE estado = 'A'";
         return entityManager.createQuery(query).getResultList();
     }
 

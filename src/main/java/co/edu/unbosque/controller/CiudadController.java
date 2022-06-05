@@ -49,4 +49,12 @@ public class CiudadController {
         return ciudadService.obtenerIdPorNombre(ciudadDTO.getNombre());
     }
 
+    @PutMapping("/eliminarCiudad")
+    public EstadoDTO eliminarCiudad(@RequestParam Integer id){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        ciudadService.eliminarCiudad(id);
+        estadoDTO.setMensaje("Ciudad eliminada");
+        return estadoDTO;
+    }
+
 }

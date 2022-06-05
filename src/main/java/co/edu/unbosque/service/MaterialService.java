@@ -46,4 +46,8 @@ public class MaterialService {
     public Integer validarNombre(String nombre){
         return materialRepository.validarNombre(nombre);
     }
+
+    public void eliminarMaterial(Integer id){
+        materialRepository.eliminarMaterial(id);
+    }
 }

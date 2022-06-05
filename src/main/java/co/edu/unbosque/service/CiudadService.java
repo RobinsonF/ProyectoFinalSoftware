@@ -52,4 +52,8 @@ public class CiudadService {
     public Integer validarNombre(String nombre){
         return ciudadRepository.validarNombre(nombre);
     }
+
+    public void eliminarCiudad(Integer id){
+        ciudadRepository.eliminarCiudad(id);
+    }
 }

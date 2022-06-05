@@ -46,4 +46,8 @@ public class ZonaService {
             return "Registrado correctamente";
         }
     }
+
+    public void eliminarZona(Integer id){
+        zonaRepository.eliminarZona(id);
+    }
 }

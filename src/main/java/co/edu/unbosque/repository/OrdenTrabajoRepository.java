@@ -12,4 +12,6 @@ public interface OrdenTrabajoRepository {
     void registrar(Ordentrabajo ordentrabajo);
 
     Optional<Ordentrabajo> buscarPorId(Integer id);
+
+    void eliminarOrden(Integer id);
 }

@@ -17,4 +17,6 @@ public interface DepartamentoRepository {
     Integer validarNombre(String nombre);
 
     Integer obtenerIdPorNombre(String nombre);
+
+    void eliminarDepartamento(Integer id);
 }
