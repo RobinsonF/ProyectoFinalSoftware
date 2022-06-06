@@ -19,14 +19,6 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
-/**
- * @author <a href="mailto:4softwaredevelopers@gmail.com">Jordy Rodríguezr</a>
- * @project demo-spring-boot-jasper
- * @class JasperComponent
- * @description
- * @HU_CU_REQ
- * @date 17 sep. 2021
- */
 @Component
 public class JasperReportManager {
 
