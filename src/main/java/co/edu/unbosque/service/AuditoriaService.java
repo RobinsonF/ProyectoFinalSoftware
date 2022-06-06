@@ -37,7 +37,6 @@ public class AuditoriaService {
             auditoriaRepository.registrar(auditoria1);
             return auditoria1;
 
-
     }
 
     public void eliminarAuditoria(Integer id){

@@ -33,7 +33,7 @@ public class AuditoriaController {
         return new ResponseEntity<List<AuditoriaDTO>>(listaAuditorias, HttpStatus.OK);
     }
 
-    @PostMapping("/crearUsuario")
+    @PostMapping("/crearAuditoria")
     public ResponseEntity<Usuario> crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
         Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),auditoriaDTO.getFecha());
         auditoriaService.registrarAuditoria(auditoria, auditoriaDTO.getId_usuario());

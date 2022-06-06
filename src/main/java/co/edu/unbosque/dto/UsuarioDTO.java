@@ -14,6 +14,7 @@ private String correo;
 private Integer id_rol;
 private String password;
 
+private String nombreRol;
 private String password2;
 
 private Integer intentos;
@@ -21,13 +22,14 @@ private Integer intentos;
     public UsuarioDTO(){
 
     }
-    public UsuarioDTO(int id_usuario, String nombre, String login, String direccion, String telefono, String correo) {
+    public UsuarioDTO(int id_usuario, String nombre, String login, String direccion, String telefono, String correo, String nombreRol) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.login = login;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
+        this.nombreRol = nombreRol;
     }
 
     public  String shaEncode(String str) throws Exception {
@@ -131,5 +133,13 @@ private Integer intentos;
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
 }

@@ -36,8 +36,9 @@ public class UsuarioController {
                             usuario.getLogin(),
                             usuario.getDireccion(),
                             usuario.getTelefono(),
-                            usuario.getCorreo())
-            );
+                            usuario.getCorreo(),
+                            usuario.getRol().getNombre()
+            ));
         }
         return new ResponseEntity<List<UsuarioDTO>>(listaUsuarios, HttpStatus.OK);
     }
@@ -45,7 +46,7 @@ public class UsuarioController {
     @GetMapping("/obtenerUsuario")
     public UsuarioDTO obtenerUsuario(@RequestParam Integer id) {
         Usuario usuario = usuarioService.obtenerUsuario(id);
-        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsuario(), usuario.getNombre(), usuario.getLogin(), usuario.getDireccion(), usuario.getTelefono(), usuario. getCorreo());
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getIdUsuario(), usuario.getNombre(), usuario.getLogin(), usuario.getDireccion(), usuario.getTelefono(), usuario. getCorreo(), usuario.getRol().getNombre());
         return usuarioDTO;
     }
 
