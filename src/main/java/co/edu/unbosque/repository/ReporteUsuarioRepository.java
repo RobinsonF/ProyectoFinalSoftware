@@ -7,4 +7,6 @@ import java.util.Map;
 public interface ReporteUsuarioRepository {
 
     ReporteUsuarioDTO obtenerReporteUsuario(Map<String, Object> params);
+
+    ReporteUsuarioDTO obtenerReporteCuadrilla(Map<String, Object> params);
 }
