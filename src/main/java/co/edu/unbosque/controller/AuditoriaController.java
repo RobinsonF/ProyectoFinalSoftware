@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class AuditoriaController {
 
     @PostMapping("/crearAuditoria")
     public ResponseEntity<Usuario> crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
-        Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),auditoriaDTO.getFecha());
+        Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),new Date());
         auditoriaService.registrarAuditoria(auditoria, auditoriaDTO.getId_usuario());
         return new ResponseEntity(auditoria, HttpStatus.OK);
     }
