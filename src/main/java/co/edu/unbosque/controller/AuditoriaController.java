@@ -34,6 +34,17 @@ public class AuditoriaController {
         return new ResponseEntity<List<AuditoriaDTO>>(listaAuditorias, HttpStatus.OK);
     }
 
+    @GetMapping("/listaAuditoriaFecha")
+    public ResponseEntity<List<AuditoriaDTO>> listaAuditoriaPorFechas(@RequestParam String fecha1, String fecha2, Integer id){
+        SimpleDateFormat formato = new SimpleDateFormat("hh: mm: ss a dd-MM-YYYY");
+        List<Auditoria> auditorias = auditoriaService.obtenerAuditoriasPorFechas(fecha1,fecha2, id);
+        List<AuditoriaDTO> listaAuditorias = new ArrayList<>();
+        for (Auditoria auditoria: auditorias) {
+            listaAuditorias.add(new AuditoriaDTO(auditoria.getEvento(), auditoria.getUsuario().getNombre(), formato.format(auditoria.getFecha())));
+        }
+        return new ResponseEntity<List<AuditoriaDTO>>(listaAuditorias, HttpStatus.OK);
+    }
+
     @PostMapping("/crearAuditoria")
     public ResponseEntity<Usuario> crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
         Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),new Date());

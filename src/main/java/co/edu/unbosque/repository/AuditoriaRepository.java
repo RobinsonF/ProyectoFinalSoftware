@@ -19,4 +19,6 @@ public interface AuditoriaRepository {
     Auditoria obtenerAuditoriaPorId(Auditoria auditoria);;
 
     void editarEliminar(Integer id);
+
+    List<Auditoria> obtenerAuditoriasPorFecha(String fecha1, String fecha2, Integer id);
 }

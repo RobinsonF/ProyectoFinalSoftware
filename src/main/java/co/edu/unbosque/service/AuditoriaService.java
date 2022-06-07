@@ -26,6 +26,10 @@ public class AuditoriaService {
         return  auditoriaRepository.getAuditorias(id);
     }
 
+    public List<Auditoria> obtenerAuditoriasPorFechas(String fecha1, String fecha2, Integer id){
+        return auditoriaRepository.obtenerAuditoriasPorFecha(fecha1, fecha2, id);
+    }
+
     public Auditoria registrarAuditoria(Auditoria auditoria, Integer id) {
 
             Auditoria auditoria1 = new Auditoria(auditoria.getEstado(),auditoria.getEvento(),auditoria.getFecha());
@@ -43,20 +47,4 @@ public class AuditoriaService {
         auditoriaRepository.eliminar(id);
     }
 
-
-    public AuditoriaRepository getAuditoriaRepository() {
-        return auditoriaRepository;
-    }
-
-    public void setAuditoriaRepository(AuditoriaRepository auditoriaRepository) {
-        this.auditoriaRepository = auditoriaRepository;
-    }
-
-    public UsuarioRepository getUsuarioRepository() {
-        return usuarioRepository;
-    }
-
-    public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
 }

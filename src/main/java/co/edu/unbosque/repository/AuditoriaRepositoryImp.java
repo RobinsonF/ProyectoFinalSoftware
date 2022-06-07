@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,5 +69,24 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
         Auditoria auditoria = entityManager.find(Auditoria.class, id);
 
 
+    }
+
+    @Override
+    public List<Auditoria> obtenerAuditoriasPorFecha(String fecha1, String fecha2, Integer id) {
+        try {
+            String query = "";
+            SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha3 = formato.parse(fecha1);
+            Date fecha4 = formato.parse(fecha2);
+            if(fecha3.after(fecha4)){
+                query = "FROM Auditoria where fecha >= '" + fecha2 + "' and fecha <= '" + fecha1 + "' and id_usuario = " + id;
+            } else{
+                query = "FROM Auditoria where fecha >= '" + fecha1 + "' and fecha <= '" + fecha2 + "'";
+            }
+            return entityManager.createQuery(query).getResultList();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
