@@ -26,7 +26,7 @@ public class ZonaController {
         List<ZonaDTO> listaZonas = new ArrayList<>();
         for (Zona zona: zonas) {
             listaZonas.add(
-                    new ZonaDTO(zona.getIdZona(),zona.getNombre(), zona.getCiudad().getNombre(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur())
+                    new ZonaDTO(zona.getIdZona(),zona.getNombre(), zona.getCiudad().getNombre(),zona.getLimiteNorte(),zona.getLimiteOccidente(),zona.getLimiteOriente(),zona.getLimiteSur(), zona.getOrdentrabajos().size())
             );
         }
         return new ResponseEntity<List<ZonaDTO>>(listaZonas, HttpStatus.OK);

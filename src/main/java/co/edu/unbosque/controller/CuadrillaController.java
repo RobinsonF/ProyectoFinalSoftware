@@ -27,7 +27,7 @@ public class CuadrillaController {
         List<CuadrillaDTO> listaCuadrillas = new ArrayList<>();
         for (Cuadrilla cuadrilla: cuadrillas) {
             listaCuadrillas.add(
-                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla())
+                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla(), cuadrilla.getOrdentrabajos().size())
             );
         }
         return new ResponseEntity<List<CuadrillaDTO>>(listaCuadrillas, HttpStatus.OK);

@@ -20,6 +20,9 @@ public class ZonaDTO {
 
     private Integer id_ciudad;
 
+
+    private Integer numeroOrdenes;
+
     public ZonaDTO() {
     }
 
@@ -32,7 +35,7 @@ public class ZonaDTO {
         this.limiteSur = limiteSur;
     }
 
-    public ZonaDTO(Integer idZona, String nombre, String nombreCiudad, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
+    public ZonaDTO(Integer idZona, String nombre, String nombreCiudad, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur, Integer numeroOrdenes) {
         this.idZona = idZona;
         this.nombre = nombre;
         this.nombreCiudad = nombreCiudad;
@@ -40,6 +43,7 @@ public class ZonaDTO {
         this.limiteOccidente = limiteOccidente;
         this.limiteOriente = limiteOriente;
         this.limiteSur = limiteSur;
+        this.numeroOrdenes = numeroOrdenes;
     }
 
     public Integer getIdZona() {
@@ -112,5 +116,13 @@ public class ZonaDTO {
 
     public void setNombreCiudad(String nombreCiudad) {
         this.nombreCiudad = nombreCiudad;
+    }
+
+    public Integer getNumeroOrdenes() {
+        return numeroOrdenes;
+    }
+
+    public void setNumeroOrdenes(Integer numeroOrdenes) {
+        this.numeroOrdenes = numeroOrdenes;
     }
 }
