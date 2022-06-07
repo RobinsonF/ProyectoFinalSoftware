@@ -50,6 +50,14 @@ public class UsuarioController {
         return usuarioDTO;
     }
 
+    @GetMapping("/obtenerUsuarioCorreo")
+    public EstadoDTO obtenerUsuarioPorCorreo(@RequestParam String correo) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        Integer id = usuarioService.obtenerIdPorCorreo(correo);
+        estadoDTO.setMensaje(id+"");
+        return estadoDTO;
+    }
+
     @PostMapping("/crearUsuario")
     public EstadoDTO crearUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         EstadoDTO estadoDTO = new EstadoDTO();

@@ -132,4 +132,9 @@ public class UsuarioService {
 
     }
 
+    public Integer obtenerIdPorCorreo(String correo){
+        Usuario usuario = usuarioRepository.buscarPorCorreo(correo);
+        return usuario.getIdUsuario();
+    }
+
 }
