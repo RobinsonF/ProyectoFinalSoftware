@@ -27,6 +27,10 @@ public class EmpleadoService {
         return  empleadoRepository.listaEmpleados();
     }
 
+    public List<EmpleadoDTO> listaPorUsuario(Integer id){
+        return empleadoRepository.listaPorUsuario(id);
+    }
+
     public String registrarEmpleado(EmpleadoDTO empleado) {
         Integer id = cuadrillaRepository.obtenerIdPorNombre(empleado.getNombreCuadrilla());
         Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),"A",empleado.getNombre());

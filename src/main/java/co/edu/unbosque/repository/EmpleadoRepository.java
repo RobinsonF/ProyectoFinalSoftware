@@ -1,5 +1,6 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.entity.Empleado;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface EmpleadoRepository {
     Optional<Empleado> buscarPorId(Integer id);
 
     void eliminarEmpleado(Integer id);
+
+    List<EmpleadoDTO> listaPorUsuario(Integer id);
 
 }

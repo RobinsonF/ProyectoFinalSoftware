@@ -26,6 +26,14 @@ public class EmpleadoDTO {
         this.nombreCuadrilla = nombreCuadrilla;
     }
 
+    public EmpleadoDTO(Integer idEmpleado, String nombre, String apellido, String cedula, String nombreCuadrilla) {
+        this.idEmpleado = idEmpleado;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.nombreCuadrilla = nombreCuadrilla;
+    }
+
     public EmpleadoDTO() {
     }
 

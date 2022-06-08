@@ -32,6 +32,12 @@ public class EmpleadoController {
         return new ResponseEntity<List<EmpleadoDTO>>(listaEmpleados, HttpStatus.OK);
     }
 
+    @GetMapping("/listaEmpleadoUsuario")
+    public ResponseEntity<List<EmpleadoDTO>> listaEmpleadoUsuario(@RequestParam Integer id){
+        List<EmpleadoDTO> listaEmpleados = empleadoService.listaPorUsuario(id);
+        return new ResponseEntity<List<EmpleadoDTO>>(listaEmpleados, HttpStatus.OK);
+    }
+
     @PostMapping("/crearEmpleado")
     public EstadoDTO crearEmpleado(@RequestBody EmpleadoDTO empleadoDTO){
         EstadoDTO estadoDTO = new EstadoDTO();
