@@ -33,6 +33,12 @@ public class CuadrillaController {
         return new ResponseEntity<List<CuadrillaDTO>>(listaCuadrillas, HttpStatus.OK);
     }
 
+    @GetMapping("/listaCuadrillaUsuario")
+    public ResponseEntity<List<CuadrillaDTO>> listaCuadrillaUsuario(@RequestParam Integer id){
+        List<CuadrillaDTO> cuadrillas = cuadrillaService.listaCuadrillaPorUsuario(id);
+        return new ResponseEntity<List<CuadrillaDTO>>(cuadrillas, HttpStatus.OK);
+    }
+
     @PostMapping("/crearCuadrilla")
     public EstadoDTO crearCuadrilla(@RequestBody CuadrillaDTO cuadrillaDTO){
         EstadoDTO estadoDTO = new EstadoDTO();
@@ -41,9 +47,11 @@ public class CuadrillaController {
         return estadoDTO;
     }
 
-    @PostMapping("/obtenerId/{id}")
-    public Integer obtenerId(@RequestBody CuadrillaDTO cuadrillaDTO){
-        return cuadrillaService.obtenerIdPorNombre(cuadrillaDTO.getNombreCuadrilla());
+    @GetMapping("/obtenerId")
+    public EstadoDTO obtenerId(@RequestParam String nombre){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        estadoDTO.setMensaje(cuadrillaService.obtenerIdPorNombre(nombre)+"");
+        return estadoDTO;
     }
 
     @PutMapping("/eliminarCuadrilla")

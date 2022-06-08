@@ -1,20 +1,25 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Usuario;
+import co.edu.unbosque.entity.Usuariocuadrilla;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional
-public class CuadrillaRepositoryImp implements CuadrillaRepository{
+public class CuadrillaRepositoryImp implements CuadrillaRepository {
     @PersistenceContext
     EntityManager entityManager;
+
     @Override
     public Optional<Cuadrilla> buscarPorId(Integer id) {
         Cuadrilla cuadrilla = entityManager.find(Cuadrilla.class, id);
@@ -25,9 +30,9 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
     public Cuadrilla buscarPorNombre(String nombre) {
         String query = "FROM Cuadrilla where nombre_cuadrilla = '" + nombre + "'";
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
-        if(lista.size()!= 0){
+        if (lista.size() != 0) {
             return lista.get(0);
-        }else{
+        } else {
             return null;
         }
     }
@@ -35,9 +40,9 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
     @Override
     public Integer validarNombre(String nombre) {
         Cuadrilla cuadrilla = buscarPorNombre(nombre);
-        if(cuadrilla != null){
+        if (cuadrilla != null) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }
@@ -52,6 +57,19 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository{
         Cuadrilla cuadrilla = entityManager.find(Cuadrilla.class, id);
         cuadrilla.setEstado("I");
         entityManager.merge(cuadrilla);
+    }
+
+    @Override
+    public List<CuadrillaDTO> listaCuadrillaUsuario(Integer id) {
+        String query = "select c.idCuadrilla, c.nombreCuadrilla from Cuadrilla c, Usuariocuadrilla u, Usuario u2 where c.idCuadrilla  = u.cuadrilla.idCuadrilla and u.usuario.idUsuario = u2.idUsuario and u2.idUsuario = " + id + " and c.estado = 'A'";
+        List<CuadrillaDTO> listaDTO = new ArrayList<>();
+        Query q = entityManager.createQuery(query);
+        List<Object[]> datos = q.getResultList();
+        for (Object[] obj : datos) {
+            Cuadrilla cuadrilla = buscarPorNombre(obj[1].toString());
+            listaDTO.add(new CuadrillaDTO(Integer.parseInt(obj[0].toString()),obj[1].toString(), cuadrilla.getOrdentrabajos().size()));
+        }
+        return listaDTO;
     }
 
     @Override

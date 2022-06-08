@@ -12,4 +12,5 @@ public interface UsuarioCuadrillaRepository {
     void registrar(Usuariocuadrilla usuarioCuadrilla);
 
     Optional<Usuariocuadrilla> buscarPorId(Integer id);
+
 }

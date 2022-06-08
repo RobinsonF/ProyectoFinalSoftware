@@ -33,6 +33,7 @@ public class LoginController {
         Integer intentosUsuario = loginService.obtenerIntentos(usuario.getCorreo());
         Integer intentosBloqueo = parametroService.obtenerParametro2("I");
         Integer cambiarContra = parametroService.obtenerParametro2("C");
+        String rol = usuarioService.obtenerRol(usuario.getCorreo());
 
         EstadoDTO estadoDTO = new EstadoDTO();
         if(intentosUsuario >= intentosBloqueo){
@@ -46,6 +47,7 @@ public class LoginController {
                 if(cambiarContra<=diffrence){
                     estadoDTO.setMensaje("Para poder iniciar sesión es necesario cambiar la contraseña");
                 }
+                estadoDTO.setRol(rol);
                 estadoDTO.setEstado(token);
             }else{
                 estadoDTO.setEstado("FAIL");

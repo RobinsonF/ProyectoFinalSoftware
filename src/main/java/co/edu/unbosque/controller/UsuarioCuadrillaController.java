@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.UsuarioCuadrillaDTO;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.entity.Usuariocuadrilla;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequestMapping("/usuarioCuadrilla")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioCuadrillaController {
     @Autowired
     UsuarioCuadrillaService usuarioCuadrillaService;
@@ -33,9 +34,11 @@ public class UsuarioCuadrillaController {
     }
 
     @PostMapping("/crearUsuarioCuadrilla")
-    public ResponseEntity<Ordentrabajo> crearUsuarioCuadrilla(@RequestBody UsuarioCuadrillaDTO usuarioCuadrillaDTO){
-        Usuariocuadrilla usuarioCuadrilla = new Usuariocuadrilla(usuarioCuadrillaDTO.getEstado());
+    public EstadoDTO crearUsuarioCuadrilla(@RequestBody UsuarioCuadrillaDTO usuarioCuadrillaDTO){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        Usuariocuadrilla usuarioCuadrilla = new Usuariocuadrilla("A");
         usuarioCuadrillaService.registrarUsuarioCuadrilla(usuarioCuadrilla, usuarioCuadrillaDTO.getUsuario(),usuarioCuadrillaDTO.getCuadrilla());
-        return new ResponseEntity(usuarioCuadrilla, HttpStatus.OK);
+        estadoDTO.setMensaje("Cuadrilla creada");
+        return estadoDTO;
     }
 }

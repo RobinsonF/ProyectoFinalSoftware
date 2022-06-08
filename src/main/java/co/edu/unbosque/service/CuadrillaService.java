@@ -24,6 +24,11 @@ public class CuadrillaService {
         return cuadrillaRepository.listaCuadrillas();
     }
 
+    public List<CuadrillaDTO> listaCuadrillaPorUsuario(Integer id) {
+        return cuadrillaRepository.listaCuadrillaUsuario(id);
+    }
+
+
     public String registrarCuadrilla(CuadrillaDTO cuadrillaDTO) {
         Cuadrilla cuadrilla1 = new Cuadrilla("A",cuadrillaDTO.getNombreCuadrilla());
         if(validarNombre(cuadrillaDTO.getNombreCuadrilla())==1){

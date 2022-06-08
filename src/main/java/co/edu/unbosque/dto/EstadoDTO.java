@@ -4,6 +4,7 @@ public class EstadoDTO {
     private String estado;
     private String mensaje;
 
+    private String rol;
     public EstadoDTO(String estado, String mensaje) {
         this.estado = estado;
         this.mensaje = mensaje;
@@ -27,5 +28,13 @@ public class EstadoDTO {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }
