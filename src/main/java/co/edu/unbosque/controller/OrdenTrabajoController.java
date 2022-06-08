@@ -38,6 +38,12 @@ public class OrdenTrabajoController {
         return new ResponseEntity<List<OrdenTrabajoDTO>>(listaOrdenes, HttpStatus.OK);
     }
 
+    @GetMapping("/listaOrdenUsuario")
+    public ResponseEntity<List<OrdenTrabajoDTO>> listaOrden(@RequestParam Integer id){
+        List<OrdenTrabajoDTO> listaOrdenes = ordenTrabajoService.listaPorUsuario(id);
+        return new ResponseEntity<List<OrdenTrabajoDTO>>(listaOrdenes, HttpStatus.OK);
+    }
+
     @PostMapping("/crearOrden")
     public EstadoDTO crearOrden(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO) {
         EstadoDTO estadoDTO = new EstadoDTO();

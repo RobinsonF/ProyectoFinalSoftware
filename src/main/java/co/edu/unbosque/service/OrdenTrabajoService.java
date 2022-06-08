@@ -31,6 +31,10 @@ public class OrdenTrabajoService {
         return ordenTrabajoRepository.listaOrdenes();
     }
 
+    public List<OrdenTrabajoDTO> listaPorUsuario(Integer id){
+        return ordenTrabajoRepository.listaPorUsuario(id);
+    }
+
     public String registrarOrden(OrdenTrabajoDTO ordentrabajo) {
         try{
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");

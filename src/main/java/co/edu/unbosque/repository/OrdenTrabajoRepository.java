@@ -1,5 +1,6 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.entity.Zona;
 
@@ -14,4 +15,6 @@ public interface OrdenTrabajoRepository {
     Optional<Ordentrabajo> buscarPorId(Integer id);
 
     void eliminarOrden(Integer id);
+
+    List<OrdenTrabajoDTO> listaPorUsuario(Integer id);
 }

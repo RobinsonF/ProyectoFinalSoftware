@@ -30,6 +30,8 @@ public class CuadrillaDTO {
         this.numeroOrdenes = numeroOrdenes;
     }
 
+
+
     public CuadrillaDTO(Integer idCuadrilla, String nombreCuadrilla, Integer numeroOrdenes) {
         this.idCuadrilla = idCuadrilla;
         this.nombreCuadrilla = nombreCuadrilla;
