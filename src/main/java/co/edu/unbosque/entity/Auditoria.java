@@ -2,6 +2,7 @@ package co.edu.unbosque.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -23,8 +24,7 @@ public class Auditoria implements Serializable {
 
 	private String evento;
 
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	private Timestamp fecha;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -34,7 +34,7 @@ public class Auditoria implements Serializable {
 	public Auditoria() {
 	}
 
-	public Auditoria(String estado, String evento, Date fecha) {
+	public Auditoria(String estado, String evento, Timestamp fecha) {
 		this.estado = estado;
 		this.evento = evento;
 		this.fecha = fecha;
@@ -64,11 +64,11 @@ public class Auditoria implements Serializable {
 		this.evento = evento;
 	}
 
-	public Date getFecha() {
+	public Timestamp getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
 

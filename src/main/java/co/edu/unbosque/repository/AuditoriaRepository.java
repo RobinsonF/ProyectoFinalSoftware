@@ -12,6 +12,8 @@ public interface AuditoriaRepository {
     Optional<Auditoria> buscarPorId(Integer id);
     List<Auditoria> getAuditorias(Integer id);
 
+    List<Auditoria> getAuditorias();
+
     void eliminar(Integer id);
 
     void registrar(Auditoria auditoria);
@@ -21,4 +23,6 @@ public interface AuditoriaRepository {
     void editarEliminar(Integer id);
 
     List<Auditoria> obtenerAuditoriasPorFecha(String fecha1, String fecha2, Integer id);
+
+    void actualizarFecha(String fecha, Integer id);
 }

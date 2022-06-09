@@ -35,6 +35,11 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
         return entityManager.createQuery(query).getResultList();
     }
 
+    public List<Auditoria> getAuditorias() {
+        String query = "FROM Auditoria";
+        return entityManager.createQuery(query).getResultList();
+    }
+
     @Override
     public void eliminar(Integer id) {
         Auditoria auditoria = entityManager.find(Auditoria.class, id);
@@ -88,5 +93,13 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+
+    @Override
+    public void actualizarFecha(String fecha, Integer id) {
+        String query = "update Auditoria set fecha = '" + fecha + "' where idAuditoria = " + id;
+        System.out.println(query);
+        entityManager.createQuery(query).executeUpdate();
     }
 }

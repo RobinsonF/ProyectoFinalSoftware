@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.AuditoriaDTO;
+import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Auditoria;
 import co.edu.unbosque.entity.Usuario;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,10 +48,14 @@ public class AuditoriaController {
     }
 
     @PostMapping("/crearAuditoria")
-    public ResponseEntity<Usuario> crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
-        Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),new Date());
+    public EstadoDTO crearAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
+        EstadoDTO estadoDTO = new EstadoDTO();
+        Date date = new Date();
+        Timestamp time = new Timestamp(date.getYear(),date.getMonth(), date.getDay() , date.getHours(),date.getMinutes(),date.getSeconds(), date.getSeconds());
+        Auditoria auditoria = new Auditoria("A",auditoriaDTO.getEvento(),time);
         auditoriaService.registrarAuditoria(auditoria, auditoriaDTO.getId_usuario());
-        return new ResponseEntity(auditoria, HttpStatus.OK);
+        estadoDTO.setMensaje("Creado correctamente");
+        return estadoDTO;
     }
 
     @PostMapping("/eliminarAuditoria/{id}")

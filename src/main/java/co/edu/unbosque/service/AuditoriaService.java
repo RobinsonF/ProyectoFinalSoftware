@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class AuditoriaService {
     }
 
     public Auditoria registrarAuditoria(Auditoria auditoria, Integer id) {
-
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Auditoria auditoria1 = new Auditoria(auditoria.getEstado(),auditoria.getEvento(),auditoria.getFecha());
             Optional<Usuario> usuario = usuarioRepository.buscarPorId(id);
             usuario.ifPresent(a -> {
@@ -39,6 +40,9 @@ public class AuditoriaService {
                 usuarioRepository.registrar(a);
             });
             auditoriaRepository.registrar(auditoria1);
+            List<Auditoria> list = auditoriaRepository.getAuditorias();
+            Auditoria auditoria2 = list.get(list.size()-1);
+            auditoriaRepository.actualizarFecha(formato.format(auditoria.getFecha()), auditoria2.getIdAuditoria());
             return auditoria1;
 
     }
