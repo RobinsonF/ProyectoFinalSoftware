@@ -99,4 +99,52 @@ public class ReporteController {
         return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
                 .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
     }
+
+    @GetMapping(path = "/graficaCuadrillas")
+    public ResponseEntity<Resource> reporteGraficaCuadrillas(@RequestParam Map<String, Object> params) {
+        ReporteUsuarioDTO dto = reporteRepository.obtenerGraficaCuadrillas(params);
+
+        InputStreamResource streamResource = new InputStreamResource(dto.getStream());
+        MediaType mediaType = null;
+        if (params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name())) {
+            mediaType = MediaType.APPLICATION_OCTET_STREAM;
+        } else {
+            mediaType = MediaType.APPLICATION_PDF;
+        }
+
+        return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
+                .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
+    }
+
+    @GetMapping(path = "/ordenesCumplidas")
+    public ResponseEntity<Resource> reporteOrdenesCumplidas(@RequestParam Map<String, Object> params) {
+        ReporteUsuarioDTO dto = reporteRepository.obtenerGraficaOrdenesCumplidas(params);
+
+        InputStreamResource streamResource = new InputStreamResource(dto.getStream());
+        MediaType mediaType = null;
+        if (params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name())) {
+            mediaType = MediaType.APPLICATION_OCTET_STREAM;
+        } else {
+            mediaType = MediaType.APPLICATION_PDF;
+        }
+
+        return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
+                .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
+    }
+
+    @GetMapping(path = "/ordenesNoCumplidas")
+    public ResponseEntity<Resource> reporteOrdenesNoCumplidas(@RequestParam Map<String, Object> params) {
+        ReporteUsuarioDTO dto = reporteRepository.obtenerGraficaOrdenesNoCumplidas(params);
+
+        InputStreamResource streamResource = new InputStreamResource(dto.getStream());
+        MediaType mediaType = null;
+        if (params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name())) {
+            mediaType = MediaType.APPLICATION_OCTET_STREAM;
+        } else {
+            mediaType = MediaType.APPLICATION_PDF;
+        }
+
+        return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
+                .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
+    }
 }

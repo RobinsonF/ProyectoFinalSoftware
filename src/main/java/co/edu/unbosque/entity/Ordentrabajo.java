@@ -33,6 +33,12 @@ public class Ordentrabajo implements Serializable {
 	@Column(name="nombre_trabajo")
 	private String nombreTrabajo;
 
+	@Column(name="cumplido")
+	private String cumplido;
+
+	@Column(name="direccion")
+	private String direccion;
+
 	//bi-directional many-to-one association to Detalleordentrabajo
 	@OneToMany(mappedBy="ordentrabajo")
 	private List<Detalleordentrabajo> detalleordentrabajos;
@@ -135,4 +141,19 @@ public class Ordentrabajo implements Serializable {
 		this.zona = zona;
 	}
 
+	public String getCumplido() {
+		return cumplido;
+	}
+
+	public void setCumplido(String cumplido) {
+		this.cumplido = cumplido;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 }
