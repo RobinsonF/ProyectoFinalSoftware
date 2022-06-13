@@ -47,8 +47,4 @@ public class AuditoriaService {
 
     }
 
-    public void eliminarAuditoria(Integer id){
-        auditoriaRepository.eliminar(id);
-    }
-
 }

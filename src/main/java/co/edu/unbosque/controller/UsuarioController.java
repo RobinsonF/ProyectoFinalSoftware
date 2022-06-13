@@ -99,9 +99,11 @@ public class UsuarioController {
         return usuarioService.obtenerIntentos(usuarioDTO.getId_usuario());
     }
 
-    @PostMapping("/usuarioRol/{id}")
-    public String obtenerRol(@RequestBody UsuarioDTO usuarioDTO) {
-        return usuarioService.obtenerRol(usuarioDTO.getCorreo());
+    @GetMapping("/usuarioRol")
+    public EstadoDTO obtenerRol(@RequestParam String correo) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        estadoDTO.setMensaje(usuarioService.obtenerRol(correo));
+        return estadoDTO;
     }
 
     @PostMapping("/obtenerId/{id}")

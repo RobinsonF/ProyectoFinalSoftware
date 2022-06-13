@@ -14,13 +14,10 @@ public interface AuditoriaRepository {
 
     List<Auditoria> getAuditorias();
 
-    void eliminar(Integer id);
-
     void registrar(Auditoria auditoria);
 
     Auditoria obtenerAuditoriaPorId(Auditoria auditoria);;
 
-    void editarEliminar(Integer id);
 
     List<Auditoria> obtenerAuditoriasPorFecha(String fecha1, String fecha2, Integer id);
 

@@ -57,10 +57,4 @@ public class AuditoriaController {
         estadoDTO.setMensaje("Creado correctamente");
         return estadoDTO;
     }
-
-    @PostMapping("/eliminarAuditoria/{id}")
-    public String eliminarAuditoria(@RequestBody AuditoriaDTO auditoriaDTO){
-        auditoriaService.eliminarAuditoria(auditoriaDTO.getIdAuditoria());
-        return auditoriaDTO.getIdAuditoria() + "";
-    }
 }

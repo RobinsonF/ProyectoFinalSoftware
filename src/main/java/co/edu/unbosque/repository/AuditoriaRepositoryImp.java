@@ -41,12 +41,6 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
     }
 
     @Override
-    public void eliminar(Integer id) {
-        Auditoria auditoria = entityManager.find(Auditoria.class, id);
-        entityManager.remove(auditoria);
-    }
-
-    @Override
     public void registrar(Auditoria auditoria) {
         entityManager.merge(auditoria);
     }
@@ -69,12 +63,6 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
         }
     }
 
-    @Override
-    public void editarEliminar(Integer id) {
-        Auditoria auditoria = entityManager.find(Auditoria.class, id);
-
-
-    }
 
     @Override
     public List<Auditoria> obtenerAuditoriasPorFecha(String fecha1, String fecha2, Integer id) {
@@ -99,7 +87,6 @@ public class AuditoriaRepositoryImp implements AuditoriaRepository {
     @Override
     public void actualizarFecha(String fecha, Integer id) {
         String query = "update Auditoria set fecha = '" + fecha + "' where idAuditoria = " + id;
-        System.out.println(query);
         entityManager.createQuery(query).executeUpdate();
     }
 }
