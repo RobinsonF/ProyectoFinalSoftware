@@ -50,4 +50,10 @@ public class ZonaService {
     public void eliminarZona(Integer id){
         zonaRepository.eliminarZona(id);
     }
+
+    public ZonaDTO buscarPorId(Integer id){
+        Zona zona = zonaRepository.buscarPorId2(id);
+        ZonaDTO zonaDTO = new ZonaDTO(zona.getNombre(), zona.getLimiteNorte(), zona.getLimiteOccidente(), zona.getLimiteOriente(), zona.getLimiteSur());
+        return zonaDTO;
+    }
 }

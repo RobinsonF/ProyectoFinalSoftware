@@ -29,6 +29,9 @@ public class OrdenTrabajoDTO {
 
     private String fechaInicial;
 
+    private String direccion;
+
+
     public OrdenTrabajoDTO(Integer idTrabajo, String estado, Date fechaTrabajof, Date fechaTrabajoi, String nombreTrabajo) {
         this.idTrabajo = idTrabajo;
         this.estado = estado;
@@ -126,5 +129,13 @@ public class OrdenTrabajoDTO {
 
     public void setFechaInicial(String fechaInicial) {
         this.fechaInicial = fechaInicial;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

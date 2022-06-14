@@ -40,7 +40,7 @@ public class OrdenTrabajoService {
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
             Integer id_zona = zonaRepository.obtenerIdPorNombre(ordentrabajo.getNombreZona());
             Integer id_cuadrilla = cuadrillaRepository.obtenerIdPorNombre(ordentrabajo.getNombreCuadrilla());
-            Ordentrabajo ordentrabajo1 = new Ordentrabajo("A",ordentrabajo.getFechaTrabajof(),formato.parse(ordentrabajo.getFechaInicial()),ordentrabajo.getNombreTrabajo());
+            Ordentrabajo ordentrabajo1 = new Ordentrabajo("A",ordentrabajo.getFechaTrabajof(),formato.parse(ordentrabajo.getFechaInicial()),ordentrabajo.getNombreTrabajo(), ordentrabajo.getDireccion(), "N");
             Optional<Zona> zona = zonaRepository.buscarPorId(id_zona);
             zona.ifPresent(a -> {
                 a.addOrdentrabajo(ordentrabajo1);

@@ -35,6 +35,14 @@ public class ZonaDTO {
         this.limiteSur = limiteSur;
     }
 
+    public ZonaDTO(String nombre, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur) {
+        this.nombre = nombre;
+        this.limiteNorte = limiteNorte;
+        this.limiteOccidente = limiteOccidente;
+        this.limiteOriente = limiteOriente;
+        this.limiteSur = limiteSur;
+    }
+
     public ZonaDTO(Integer idZona, String nombre, String nombreCiudad, String limiteNorte, String limiteOccidente, String limiteOriente, String limiteSur, Integer numeroOrdenes) {
         this.idZona = idZona;
         this.nombre = nombre;

@@ -56,11 +56,13 @@ public class Ordentrabajo implements Serializable {
 	public Ordentrabajo() {
 	}
 
-	public Ordentrabajo(String estado, Date fechaTrabajof, Date fechaTrabajoi, String nombreTrabajo) {
+	public Ordentrabajo(String estado, Date fechaTrabajof, Date fechaTrabajoi, String nombreTrabajo, String direccion, String cumplido) {
 		this.estado = estado;
 		this.fechaTrabajof = fechaTrabajof;
 		this.fechaTrabajoi = fechaTrabajoi;
 		this.nombreTrabajo = nombreTrabajo;
+		this.direccion = direccion;
+		this.cumplido = cumplido;
 	}
 
 	public Integer getIdTrabajo() {

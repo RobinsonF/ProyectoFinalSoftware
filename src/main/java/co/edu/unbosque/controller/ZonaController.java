@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/zona")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,6 +32,11 @@ public class ZonaController {
             );
         }
         return new ResponseEntity<List<ZonaDTO>>(listaZonas, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtenerZona")
+    public ZonaDTO obtenerPorid(@RequestParam Integer id){
+        return zonaService.buscarPorId(id);
     }
 
     @PostMapping("/crearZona")

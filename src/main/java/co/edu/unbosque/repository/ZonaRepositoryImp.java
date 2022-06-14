@@ -18,6 +18,12 @@ public class ZonaRepositoryImp implements ZonaRepository{
     EntityManager entityManager;
 
     @Override
+    public Zona buscarPorId2(Integer id) {
+        Zona zona = entityManager.find(Zona.class, id);
+        return zona;
+    }
+
+    @Override
     public Optional<Zona> buscarPorId(Integer id) {
         Zona zona = entityManager.find(Zona.class, id);
         return zona != null ? Optional.of(zona) : Optional.empty();

@@ -14,6 +14,8 @@ public interface ZonaRepository {
 
     Integer validarNombre(String nombre);
 
+    Zona buscarPorId2(Integer id);
+
     Optional<Zona> buscarPorId(Integer id);
 
     Integer obtenerIdPorNombre(String nombre);
