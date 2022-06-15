@@ -68,6 +68,7 @@ public class MaterialController {
         Material material = materialService.buscarPorId(id);
         MaterialDTO materialDTO = new MaterialDTO();
         materialDTO.setNombreMaterial(material.getNombreMaterial());
+        materialDTO.setCantidad(material.getCantidad());
         return materialDTO;
     }
 }
