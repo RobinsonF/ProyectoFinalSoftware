@@ -60,6 +60,8 @@ public class EmpleadoController {
     public EmpleadoDTO buscarPorId(@RequestParam Integer id){
         Empleado empleado = empleadoService.buscarPorId(id);
         EmpleadoDTO empleadoDTO = new EmpleadoDTO();
+        empleadoDTO.setNombre(empleado.getNombre());
+        empleadoDTO.setApellido(empleado.getApellido());
         empleadoDTO.setCedula(empleado.getCedula());
         return empleadoDTO;
     }
