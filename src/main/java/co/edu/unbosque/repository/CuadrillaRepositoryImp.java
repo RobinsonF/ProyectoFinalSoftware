@@ -28,7 +28,7 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
 
     @Override
     public Cuadrilla buscarPorId2(Integer id) {
-        String query = "FROM Material where id_cuadrilla = " + id;
+        String query = "FROM Cuadrilla where id_cuadrilla = " + id;
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
         return lista.get(0);
     }
