@@ -74,7 +74,7 @@ public class MaterialRepositoryImp implements MaterialRepository {
 
     @Override
     public Material buscarPorNombre2(String nombreMaterial, String nombreMaterial2) {
-        String query = "FROM Material where nombreMaterial not in ('" + nombreMaterial2 + "') and nombre = '" + nombreMaterial + "'";
+        String query = "FROM Material where nombreMaterial not in ('" + nombreMaterial2 + "') and nombreMaterial = '" + nombreMaterial + "'";
         List<Material> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
