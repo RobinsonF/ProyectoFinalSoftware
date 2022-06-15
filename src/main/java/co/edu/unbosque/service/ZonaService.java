@@ -56,4 +56,18 @@ public class ZonaService {
         ZonaDTO zonaDTO = new ZonaDTO(zona.getNombre(), zona.getLimiteNorte(), zona.getLimiteOccidente(), zona.getLimiteOriente(), zona.getLimiteSur());
         return zonaDTO;
     }
+
+    public Integer validarNombre2(String nombre, String nombre2){
+        return zonaRepository.validarNombre2(nombre, nombre2);
+    }
+
+    public String editarZona(ZonaDTO zonaDTO){
+        Zona zona = zonaRepository.buscarPorId2(zonaDTO.getIdZona());
+        if(validarNombre2(zonaDTO.getNombre(), zona.getNombre())==1){
+            return "El nombre ya se encuentra registrado";
+        }else{
+            zonaRepository.editarZona(zonaDTO);
+            return "Guardado Correctamente";
+        }
+    }
 }

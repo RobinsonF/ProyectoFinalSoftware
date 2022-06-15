@@ -70,7 +70,7 @@ public class OrdenTrabajoService {
     public String editarOrden(OrdenTrabajoDTO ordenTrabajoDTO){
         Ordentrabajo ordentrabajo = ordenTrabajoRepository.buscarPorId2(ordenTrabajoDTO.getIdTrabajo());
         if(validarNombre2(ordenTrabajoDTO.getNombreTrabajo(), ordentrabajo.getNombreTrabajo())==1){
-            return "La cedula ya se encuentra registrada";
+            return "El nombre ya se encuentra registrado";
         }else{
             ordenTrabajoRepository.editarOrden(ordenTrabajoDTO);
             return "Guardado Correctamente";
