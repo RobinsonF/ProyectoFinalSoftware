@@ -3,6 +3,7 @@ package co.edu.unbosque.controller;
 import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.dto.EstadoDTO;
+import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.service.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,14 @@ public class EmpleadoController {
         empleadoService.eliminarEmpleado(id);
         estadoDTO.setMensaje("Empleado eliminado");
         return estadoDTO;
+    }
+
+    @GetMapping("/obtenerEmpleado")
+    public EmpleadoDTO buscarPorId(@RequestParam Integer id){
+        Empleado empleado = empleadoService.buscarPorId(id);
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
+        empleadoDTO.setCedula(empleado.getCedula());
+        return empleadoDTO;
     }
 
     @PutMapping("/editarEmpleado")
