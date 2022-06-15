@@ -81,7 +81,7 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
 
     @Override
     public Cuadrilla buscarPorNombre2(String nombre, String nombre2) {
-        String query = "FROM Cuadrilla where nombre_cuadrilla not in ('" + nombre2 + "') and nombre = '" + nombre +"'";
+        String query = "FROM Cuadrilla where nombre_cuadrilla not in ('" + nombre2 + "') and nombre_cuadrilla = '" + nombre +"'";
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
