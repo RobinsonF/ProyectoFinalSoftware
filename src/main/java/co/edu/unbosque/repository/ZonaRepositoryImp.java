@@ -36,10 +36,16 @@ public class ZonaRepositoryImp implements ZonaRepository{
     }
 
     @Override
-    public void eliminarZona(Integer id) {
+    public String eliminarZona(Integer id) {
         Zona zona = entityManager.find(Zona.class, id);
-        zona.setEstado("I");
-        entityManager.merge(zona);
+        if(zona.getOrdentrabajos().size()==0){
+            zona.setEstado("I");
+            entityManager.merge(zona);
+            return "Eliminado correctamente";
+        }else{
+            return "No se puede elimianr la zona porque cuenta con ordendes de trabajo activas";
+        }
+
     }
 
     @Override

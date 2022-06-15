@@ -22,7 +22,7 @@ public interface ZonaRepository {
 
     Integer obtenerIdPorNombre(String nombre);
 
-    void eliminarZona(Integer id);
+    String eliminarZona(Integer id);
 
     Zona buscarPorNombre2(String nombre, String nombre2);
 

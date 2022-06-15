@@ -49,10 +49,10 @@ public class ZonaController {
     }
 
     @PutMapping("/eliminarZona")
-    public EstadoDTO eliminarCuadrilla(@RequestParam Integer id){
+    public EstadoDTO eliminarZona(@RequestParam Integer id){
         EstadoDTO estadoDTO = new EstadoDTO();
-        zonaService.eliminarZona(id);
-        estadoDTO.setMensaje("Zona eliminada");
+        String mensaje = zonaService.eliminarZona(id);
+        estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
 

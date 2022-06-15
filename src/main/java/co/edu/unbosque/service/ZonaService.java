@@ -47,8 +47,8 @@ public class ZonaService {
         }
     }
 
-    public void eliminarZona(Integer id){
-        zonaRepository.eliminarZona(id);
+    public String eliminarZona(Integer id){
+        return zonaRepository.eliminarZona(id);
     }
 
     public ZonaDTO buscarPorId(Integer id){
