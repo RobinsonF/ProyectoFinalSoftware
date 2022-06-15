@@ -14,14 +14,19 @@ public interface ReporteRepository {
 
     ReporteUsuarioDTO obtenerReporteOrdenes(Map<String, Object> params);
 
+    ReporteUsuarioDTO obtenerReporteOrdenes2(Map<String, Object> params);
+
     ReporteUsuarioDTO obtenerReporteEmpleados(Map<String, Object> params);
 
+    ReporteUsuarioDTO obtenerReporteEmpleados2(Map<String, Object> params);
+
     ReporteUsuarioDTO obtenerGraficaCuadrillas(Map<String, Object> params);
+
+    ReporteUsuarioDTO obtenerGraficaCuadrillas2(Map<String, Object> params);
 
     ReporteUsuarioDTO obtenerReporteCuadrilla2(Map<String, Object> params);
 
     ReporteUsuarioDTO obtenerGraficaOrdenesCumplidas(Map<String, Object> params);
-
 
     ReporteUsuarioDTO obtenerGraficaOrdenesNoCumplidas(Map<String, Object> params);
 

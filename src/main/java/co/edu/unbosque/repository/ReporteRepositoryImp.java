@@ -119,9 +119,55 @@ public class ReporteRepositoryImp implements ReporteRepository {
     }
 
     @Override
+    public ReporteUsuarioDTO obtenerReporteOrdenes2(Map<String, Object> params) {
+        try{
+            String fileName = "ordenes2";
+            ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
+            String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
+                    : ".pdf";
+            dto.setFileName(fileName + extension);
+
+            ByteArrayOutputStream stream = jasperReportManager.export(fileName, params.get("tipo").toString(), params,
+                    dataSource.getConnection());
+
+            byte[] bs = stream.toByteArray();
+            dto.setStream(new ByteArrayInputStream(bs));
+            dto.setLength(bs.length);
+
+            return dto;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public ReporteUsuarioDTO obtenerReporteEmpleados(Map<String, Object> params) {
         try{
             String fileName = "empleados";
+            ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
+            String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
+                    : ".pdf";
+            dto.setFileName(fileName + extension);
+
+            ByteArrayOutputStream stream = jasperReportManager.export(fileName, params.get("tipo").toString(), params,
+                    dataSource.getConnection());
+
+            byte[] bs = stream.toByteArray();
+            dto.setStream(new ByteArrayInputStream(bs));
+            dto.setLength(bs.length);
+
+            return dto;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public ReporteUsuarioDTO obtenerReporteEmpleados2(Map<String, Object> params) {
+        try{
+            String fileName = "empleados2";
             ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
             String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
                     : ".pdf";
@@ -165,9 +211,9 @@ public class ReporteRepositoryImp implements ReporteRepository {
     }
 
     @Override
-    public ReporteUsuarioDTO obtenerReporteCuadrilla2(Map<String, Object> params) {
+    public ReporteUsuarioDTO obtenerGraficaCuadrillas2(Map<String, Object> params) {
         try{
-            String fileName = "cuadrillas2";
+            String fileName = "graficaCuadrillas2";
             ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
             String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
                     : ".pdf";
@@ -188,6 +234,27 @@ public class ReporteRepositoryImp implements ReporteRepository {
     }
 
     @Override
+    public ReporteUsuarioDTO obtenerReporteCuadrilla2(Map<String, Object> params) {
+        try{
+            String fileName = "cuadrillas2";
+            ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
+            String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
+                    : ".pdf";
+            dto.setFileName(fileName + extension);
+            ByteArrayOutputStream stream = jasperReportManager.export(fileName, params.get("tipo").toString(), params,
+                    dataSource.getConnection());
+            byte[] bs = stream.toByteArray();
+            dto.setStream(new ByteArrayInputStream(bs));
+            dto.setLength(bs.length);
+
+            return dto;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public ReporteUsuarioDTO obtenerGraficaOrdenesCumplidas(Map<String, Object> params) {
         try{
             String fileName = "ordenesCumplidas";
@@ -195,10 +262,8 @@ public class ReporteRepositoryImp implements ReporteRepository {
             String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
                     : ".pdf";
             dto.setFileName(fileName + extension);
-
             ByteArrayOutputStream stream = jasperReportManager.export(fileName, params.get("tipo").toString(), params,
                     dataSource.getConnection());
-
             byte[] bs = stream.toByteArray();
             dto.setStream(new ByteArrayInputStream(bs));
             dto.setLength(bs.length);

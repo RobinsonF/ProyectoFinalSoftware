@@ -57,7 +57,11 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
     public Empleado buscarPorCedula(String cedula) {
         String query = "FROM Empleado where cedula = '" + cedula + "'";
         List<Empleado> lista = entityManager.createQuery(query).getResultList();
-        return lista.get(0);
+        if(lista.size()==0){
+            return null;
+        }else {
+            return lista.get(0);
+        }
     }
 
     @Override
