@@ -76,4 +76,8 @@ public class OrdenTrabajoService {
             return "Guardado Correctamente";
         }
     }
+
+    public Ordentrabajo buscarPorId(Integer id){
+        return ordenTrabajoRepository.buscarPorId2(id);
+    }
 }
