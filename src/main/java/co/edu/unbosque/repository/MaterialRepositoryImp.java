@@ -6,6 +6,7 @@ import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Material;
 
 
+import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -24,6 +25,12 @@ public class MaterialRepositoryImp implements MaterialRepository {
     public Optional<Material> buscarPorId(Integer id) {
         Material material = entityManager.find(Material.class, id);
         return material != null ? Optional.of(material) : Optional.empty();
+    }
+    @Override
+    public Material buscarPorId2(Integer id) {
+        String query = "FROM Material where id_material = " + id;
+        List<Material> lista = entityManager.createQuery(query).getResultList();
+        return lista.get(0);
     }
 
     @Override
@@ -66,13 +73,22 @@ public class MaterialRepositoryImp implements MaterialRepository {
     }
 
     @Override
-    public Material validarNombre2(String nombre, String nombre2) {
-        String query = "FROM Material where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
+    public Material buscarPorNombre2(String nombreMaterial, String nombreMaterial2) {
+        String query = "FROM Material where nombreMaterial not in ('" + nombreMaterial2 + "') and nombre = '" + nombreMaterial + "'";
         List<Material> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
         } else {
             return null;
+        }
+    }
+    @Override
+    public Integer validarNombre2(String nombre, String nombre2) {
+        Material material = buscarPorNombre2(nombre, nombre2);
+        if(material == null){
+            return 0;
+        }else{
+            return 1;
         }
     }
 

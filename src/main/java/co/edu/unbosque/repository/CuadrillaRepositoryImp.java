@@ -2,6 +2,7 @@ package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.entity.Cuadrilla;
+import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
@@ -72,13 +73,23 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
     }
 
     @Override
-    public Cuadrilla validarNombre2(String nombre, String nombre2) {
-        String query = "FROM Cuadrilla where nombre not in ('" + nombre2 + "') and nombre = '" + nombre +"'";
+    public Cuadrilla buscarPorNombre2(String nombre, String nombre2) {
+        String query = "FROM Cuadrilla where nombre_cuadrilla not in ('" + nombre2 + "') and nombre = '" + nombre +"'";
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
         }else{
             return null;
+        }
+    }
+
+    @Override
+    public Integer validarNombre2(String nombre, String nombre2) {
+        Cuadrilla cuadrilla = buscarPorNombre2(nombre, nombre2);
+        if(cuadrilla == null){
+            return 0;
+        }else{
+            return 1;
         }
     }
 

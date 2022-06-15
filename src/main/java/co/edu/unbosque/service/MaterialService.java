@@ -42,6 +42,9 @@ public class MaterialService {
             return "Registrado correctamente";
         }
     }
+    public Integer validarNombre2(String nombre, String nombre2){
+        return materialRepository.validarNombre2(nombre, nombre2);
+    }
 
     public Integer validarNombre(String nombre){
         return materialRepository.validarNombre(nombre);
@@ -49,5 +52,15 @@ public class MaterialService {
 
     public void eliminarMaterial(Integer id){
         materialRepository.eliminarMaterial(id);
+    }
+
+    public String editarMaterial(MaterialDTO materialDTO){
+        Material material = materialRepository.buscarPorId2(materialDTO.getIdMaterial());
+        if(validarNombre2(materialDTO.getNombreMaterial(), material.getNombreMaterial())==1){
+            return "El nombre ya se encuentra registrado";
+        }else{
+            materialRepository.editarMaterial(materialDTO);
+            return "Guardado Correctamente";
+        }
     }
 }

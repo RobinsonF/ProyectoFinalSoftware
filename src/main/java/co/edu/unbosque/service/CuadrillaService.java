@@ -1,6 +1,7 @@
 package co.edu.unbosque.service;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.*;
 import co.edu.unbosque.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,15 @@ public class CuadrillaService {
 
     public void eliminarCuadrilla(Integer id){
         cuadrillaRepository.eliminarCuadrilla(id);
+    }
+
+    public String editarCuadrilla(CuadrillaDTO cuadrillaDTO){
+        Cuadrilla cuadrilla = cuadrillaRepository.buscarPorId2(cuadrillaDTO.getIdCuadrilla());
+        if(validarNombre2(materialDTO.getNombreMaterial(), material.getNombreMaterial())==1){
+            return "El nombre ya se encuentra registrado";
+        }else{
+            materialRepository.editarMaterial(materialDTO);
+            return "Guardado Correctamente";
+        }
     }
 }
