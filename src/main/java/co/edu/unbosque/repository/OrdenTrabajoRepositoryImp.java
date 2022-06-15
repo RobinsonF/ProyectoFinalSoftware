@@ -72,7 +72,7 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
 
     @Override
     public Ordentrabajo buscarPorNombre2(String nombre, String nombre2) {
-        String query = "FROM Ordentrabajo where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
+        String query = "FROM Ordentrabajo where nombreTrabajo not in ('" + nombre2 + "') and nombreTrabajo = '" + nombre + "'";
         List<Ordentrabajo> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
