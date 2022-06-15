@@ -1,10 +1,8 @@
 package co.edu.unbosque.controller;
 
-import co.edu.unbosque.dto.EstadoDTO;
-import co.edu.unbosque.dto.MaterialDTO;
-import co.edu.unbosque.dto.OrdenTrabajoDTO;
-import co.edu.unbosque.dto.ZonaDTO;
+import co.edu.unbosque.dto.*;
 import co.edu.unbosque.entity.Ciudad;
+import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.entity.Zona;
 import co.edu.unbosque.service.OrdenTrabajoService;
@@ -71,5 +69,13 @@ public class OrdenTrabajoController {
             estadoDTO.setMensaje(mensaje);
         }
         return estadoDTO;
+    }
+
+    @GetMapping("/obtenerOrden")
+    public OrdenTrabajoDTO buscarPorId(@RequestParam Integer id){
+        Ordentrabajo ordentrabajo = ordenTrabajoService.buscarPorId(id);
+        OrdenTrabajoDTO ordenTrabajoDTO = new OrdenTrabajoDTO();
+        ordenTrabajoDTO.setNombreTrabajo(ordentrabajo.getNombreTrabajo());
+        return ordenTrabajoDTO;
     }
 }
