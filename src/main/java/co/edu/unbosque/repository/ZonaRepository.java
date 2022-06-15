@@ -1,5 +1,8 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.MaterialDTO;
+import co.edu.unbosque.dto.ZonaDTO;
+import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Zona;
 
 import java.util.List;
@@ -21,4 +24,9 @@ public interface ZonaRepository {
     Integer obtenerIdPorNombre(String nombre);
 
     void eliminarZona(Integer id);
+
+    Zona validarNombre2(String nombre, String nombre2);
+
+    void editarZona(ZonaDTO zonaDTO);
+
 }

@@ -22,6 +22,6 @@ public interface OrdenTrabajoRepository {
 
     Ordentrabajo validarNombre2(String nombre, String nombre2);
 
-    void editarMaterial(OrdenTrabajoDTO ordenTrabajoDTO);
+    void editarOrden(OrdenTrabajoDTO ordenTrabajoDTO);
 
 }

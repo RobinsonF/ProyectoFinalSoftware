@@ -1,8 +1,10 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.entity.Cuadrilla;
+import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Ordentrabajo;
 import org.springframework.stereotype.Repository;
 
@@ -58,6 +60,25 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
 
     @Override
     public void registrar(Ordentrabajo ordentrabajo) {
+        entityManager.merge(ordentrabajo);
+    }
+
+    @Override
+    public Ordentrabajo validarNombre2(String nombre, String nombre2) {
+        String query = "FROM Ordentrabajo where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
+        List<Ordentrabajo> lista = entityManager.createQuery(query).getResultList();
+        if (lista.size() != 0) {
+            return lista.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void editarOrden(OrdenTrabajoDTO ordenTrabajoDTO) {
+        Ordentrabajo ordentrabajo = entityManager.find(Ordentrabajo.class, ordenTrabajoDTO.getIdTrabajo());
+        ordentrabajo.setNombreTrabajo(ordenTrabajoDTO.getNombreTrabajo());
+        ordentrabajo.setDireccion(ordenTrabajoDTO.getDireccion());
         entityManager.merge(ordentrabajo);
     }
 }

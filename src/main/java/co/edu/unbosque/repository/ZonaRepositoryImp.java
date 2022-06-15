@@ -1,6 +1,9 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.MaterialDTO;
+import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
+import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Usuario;
 import co.edu.unbosque.entity.Zona;
 import org.springframework.stereotype.Repository;
@@ -72,5 +75,27 @@ public class ZonaRepositoryImp implements ZonaRepository{
         }else{
             return 0;
         }
+    }
+
+    @Override
+    public Zona validarNombre2(String nombre, String nombre2) {
+        String query = "FROM Zona where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
+        List<Zona> lista = entityManager.createQuery(query).getResultList();
+        if (lista.size() != 0) {
+            return lista.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void editarZona(ZonaDTO zonaDTO) {
+        Zona zona = entityManager.find(Zona.class, zonaDTO.getIdZona());
+        zona.setNombre(zonaDTO.getNombre());
+        zona.setLimiteNorte(zonaDTO.getLimiteNorte());
+        zona.setLimiteOccidente(zonaDTO.getLimiteOccidente());
+        zona.setLimiteOriente(zonaDTO.getLimiteOriente());
+        zona.setLimiteSur(zonaDTO.getLimiteSur());
+        entityManager.merge(zona);
     }
 }
