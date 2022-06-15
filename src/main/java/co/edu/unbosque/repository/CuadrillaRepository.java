@@ -2,6 +2,7 @@ package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.entity.Cuadrilla;
+import co.edu.unbosque.entity.Material;
 
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface CuadrillaRepository {
 
     void registrar(Cuadrilla cuadrilla);
     Optional<Cuadrilla> buscarPorId(Integer id);
+    Cuadrilla buscarPorId2(Integer id);
 
     Cuadrilla buscarPorNombre(String nombre);
 

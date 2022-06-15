@@ -44,6 +44,9 @@ public class CuadrillaService {
         return cuadrillaRepository.obtenerIdPorNombre(nombre);
     }
 
+    public Integer validarNombre2(String nombre, String nombre2){
+        return cuadrillaRepository.validarNombre2(nombre, nombre2);
+    }
     public Integer validarNombre(String nombre){
         return cuadrillaRepository.validarNombre(nombre);
     }
@@ -54,10 +57,10 @@ public class CuadrillaService {
 
     public String editarCuadrilla(CuadrillaDTO cuadrillaDTO){
         Cuadrilla cuadrilla = cuadrillaRepository.buscarPorId2(cuadrillaDTO.getIdCuadrilla());
-        if(validarNombre2(materialDTO.getNombreMaterial(), material.getNombreMaterial())==1){
+        if(validarNombre2(cuadrillaDTO.getNombreCuadrilla(), cuadrilla.getNombreCuadrilla())==1){
             return "El nombre ya se encuentra registrado";
         }else{
-            materialRepository.editarMaterial(materialDTO);
+            cuadrillaRepository.editarCuadrilla(cuadrillaDTO);
             return "Guardado Correctamente";
         }
     }
