@@ -69,8 +69,9 @@ public class UsuarioController {
 
     @PutMapping("/eliminarUsuario")
     public EstadoDTO eliminarUsuario(@RequestParam Integer id) {
-        usuarioService.eliminarUsuario(id);
-        EstadoDTO estadoDTO = new EstadoDTO(id + "", "Funciona");
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = usuarioService.eliminarUsuario(id);
+        estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
 

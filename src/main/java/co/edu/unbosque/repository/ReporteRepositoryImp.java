@@ -165,6 +165,29 @@ public class ReporteRepositoryImp implements ReporteRepository {
     }
 
     @Override
+    public ReporteUsuarioDTO obtenerReporteCuadrilla2(Map<String, Object> params) {
+        try{
+            String fileName = "cuadrillas2";
+            ReporteUsuarioDTO dto = new ReporteUsuarioDTO();
+            String extension = params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name()) ? ".xlsx"
+                    : ".pdf";
+            dto.setFileName(fileName + extension);
+
+            ByteArrayOutputStream stream = jasperReportManager.export(fileName, params.get("tipo").toString(), params,
+                    dataSource.getConnection());
+
+            byte[] bs = stream.toByteArray();
+            dto.setStream(new ByteArrayInputStream(bs));
+            dto.setLength(bs.length);
+
+            return dto;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public ReporteUsuarioDTO obtenerGraficaOrdenesCumplidas(Map<String, Object> params) {
         try{
             String fileName = "ordenesCumplidas";

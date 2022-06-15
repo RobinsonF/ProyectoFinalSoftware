@@ -35,7 +35,7 @@ public class DepartamentoRepositoryImp implements DepartamentoRepository{
 
     @Override
     public Departamento buscarPorNombre(String nombre) {
-        String query = "FROM Departamento where nombre = '" + nombre + "'";
+        String query = "FROM Departamento where lower(nombre) = '" + nombre.toLowerCase() + "'";
         List<Departamento> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);

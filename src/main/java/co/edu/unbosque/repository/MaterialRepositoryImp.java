@@ -63,7 +63,7 @@ public class MaterialRepositoryImp implements MaterialRepository {
 
     @Override
     public Material buscarPorNombre(String nombre) {
-        String query = "FROM Material where nombreMaterial = '" + nombre + "'";
+        String query = "FROM Material where lower(nombreMaterial) = '" + nombre.toLowerCase() + "'";
         List<Material> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
@@ -74,7 +74,7 @@ public class MaterialRepositoryImp implements MaterialRepository {
 
     @Override
     public Material buscarPorNombre2(String nombreMaterial, String nombreMaterial2) {
-        String query = "FROM Material where nombreMaterial not in ('" + nombreMaterial2 + "') and nombreMaterial = '" + nombreMaterial + "'";
+        String query = "FROM Material where lower(nombreMaterial) not in ('" + nombreMaterial2.toLowerCase() + "') and lower(nombreMaterial) = '" + nombreMaterial.toLowerCase() + "'";
         List<Material> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);

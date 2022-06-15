@@ -52,6 +52,22 @@ public class ReporteController {
                 .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
     }
 
+    @GetMapping(path = "/cuadrillasP")
+    public ResponseEntity<Resource> reporteCuadrillas2(@RequestParam Map<String, Object> params) {
+        ReporteUsuarioDTO dto = reporteRepository.obtenerReporteCuadrilla2(params);
+
+        InputStreamResource streamResource = new InputStreamResource(dto.getStream());
+        MediaType mediaType = null;
+        if (params.get("tipo").toString().equalsIgnoreCase(TipoReporteEnum.EXCEL.name())) {
+            mediaType = MediaType.APPLICATION_OCTET_STREAM;
+        } else {
+            mediaType = MediaType.APPLICATION_PDF;
+        }
+
+        return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
+                .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
+    }
+
     @GetMapping(path = "/materiales")
     public ResponseEntity<Resource> reporteMateriales(@RequestParam Map<String, Object> params) {
         ReporteUsuarioDTO dto = reporteRepository.obtenerReporteMaterial(params);

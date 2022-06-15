@@ -34,6 +34,8 @@ public class UsuarioService {
             return "El correo ya se encuentra registrado";
         }else if(validarLogin(usuario.getLogin()) == 1){
             return "El login ya se encuentra registrado";
+        }else if(validarTelefono(usuario.getTelefono()) == 1){
+            return "El telefono ya se encuentra registrado";
         }else{
             try {
                 usuarioDTO = new UsuarioDTO();
@@ -56,8 +58,9 @@ public class UsuarioService {
         return usuarioRepository.buscarPorId2(id);
     }
 
-    public void eliminarUsuario(Integer id){
-        usuarioRepository.eliminar(id);
+    public String eliminarUsuario(Integer id){
+
+        return usuarioRepository.eliminar(id);
     }
 
     public void desbloquearUsuario(Integer id){
@@ -77,6 +80,14 @@ public class UsuarioService {
 
     public Integer validarCorreo(String correo){
         return usuarioRepository.validarCorreo(correo);
+    }
+
+    public Integer validarTelefono(String telefono){
+        return usuarioRepository.validarTelefono(telefono);
+    }
+
+    public Integer validarTelefono2(String telefono, String telefono2){
+        return usuarioRepository.validarTelefono2(telefono, telefono2);
     }
 
     public Integer validarLogin(String login){
@@ -109,6 +120,8 @@ public class UsuarioService {
             return "El correo ya se encuentra registrado";
         }else if(validarLogin2(usuarioDTO.getLogin(), usuario.getLogin())==1){
             return "El login ya se encuentra registrado";
+        }else if(validarTelefono2(usuarioDTO.getTelefono(), usuario.getTelefono())==1){
+            return "El telefono ya se encuentra registrado";
         }else{
             usuarioRepository.editarUsuario(usuarioDTO);
             return "Guardado Correctamente";

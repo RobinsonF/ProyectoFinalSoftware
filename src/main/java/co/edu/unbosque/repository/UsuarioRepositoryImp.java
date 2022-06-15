@@ -27,10 +27,15 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public void eliminar(Integer id) {
+    public String eliminar(Integer id) {
         Usuario usuario = entityManager.find(Usuario.class, id);
-        usuario.setEstado("I");
-        entityManager.merge(usuario);
+        if(usuario.getUsuariocuadrillas().size()!=0){
+            return "No es posible eliminar al usuario porque cuanta con cuadrillas activas";
+        }else {
+            usuario.setEstado("I");
+            entityManager.merge(usuario);
+            return "Eliminado correctamente";
+        }
     }
 
     @Override
@@ -42,7 +47,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     public Usuario obtenerUsuarioPorCredenciales(Usuario usuario) {
         try {
             usuarioDTO = new UsuarioDTO();
-            String query = "FROM Usuario WHERE correo = " + "'" + usuario.getCorreo() + "'";
+            String query = "FROM Usuario WHERE lower(correo) = " + "'" + usuario.getCorreo().toLowerCase() + "' and estado = 'A'";
 
             List<Usuario> lista = entityManager.createQuery(query).getResultList();
 
@@ -80,7 +85,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorCorreo(String correo) {
-        String query = "FROM Usuario where correo = '" + correo + "'";
+        String query = "FROM Usuario where lower(correo) = '" + correo.toLowerCase() + "'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
@@ -91,7 +96,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorLogin(String login) {
-        String query = "FROM Usuario where login = '" + login + "'";
+        String query = "FROM Usuario where lower(login) = '" + login.toLowerCase() + "'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
@@ -102,7 +107,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorCorreo2(String correo, String correo2) {
-        String query = "FROM Usuario where correo not in ('" + correo2 + "') and correo = '" + correo +"'";
+        String query = "FROM Usuario where lower(correo) not in ('" + correo2.toLowerCase() + "') and lower(correo) = '" + correo.toLowerCase() +"'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
@@ -113,7 +118,29 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorLogin2(String login, String login2) {
-        String query = "FROM Usuario where login not in ('" + login2 + "') and login = '" + login +"'";
+        String query = "FROM Usuario where lower(login) not in ('" + login2.toLowerCase() + "') and lower(login) = '" + login.toLowerCase() +"'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorTelefono(String telefono) {
+        String query = "FROM Usuario where telefono = '" + telefono + "'";
+        List<Usuario> lista = entityManager.createQuery(query).getResultList();
+        if(lista.size()!= 0){
+            return lista.get(0);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario buscarPorTelefono2(String telefono, String telefono2) {
+        String query = "FROM Usuario where telefono not in ('" + telefono2 + "') and telefono = '" + telefono +"'";
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
@@ -124,7 +151,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorPass(String pass, String pass2, String correo) {
-        String query = "FROM Usuario where correo = '" + correo +"' and password = '" + pass2 + "'";
+        String query = "FROM Usuario where lower(correo) = '" + correo.toLowerCase() +"' and password = '" + pass2 + "'";
         System.out.println(query);
         List<Usuario> lista = entityManager.createQuery(query).getResultList();
         System.out.println(lista.size());
@@ -231,6 +258,26 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     @Override
     public Integer validarLogin2(String login, String login2) {
         Usuario usuario = buscarPorLogin2(login, login2);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
+    public Integer validarTelefono(String telefono) {
+        Usuario usuario = buscarPorTelefono(telefono);
+        if(usuario == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
+    public Integer validarTelefono2(String telefono, String telefono2) {
+        Usuario usuario = buscarPorTelefono2(telefono, telefono2);
         if(usuario == null){
             return 0;
         }else{

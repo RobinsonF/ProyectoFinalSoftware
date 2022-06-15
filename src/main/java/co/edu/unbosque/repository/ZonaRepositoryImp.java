@@ -55,7 +55,7 @@ public class ZonaRepositoryImp implements ZonaRepository{
 
     @Override
     public Zona buscarPorNombre(String nombre) {
-        String query = "FROM Zona where nombre = '" + nombre + "'";
+        String query = "FROM Zona where lower(nombre) = '" + nombre.toLowerCase() + "'";
         List<Zona> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
@@ -76,7 +76,7 @@ public class ZonaRepositoryImp implements ZonaRepository{
 
     @Override
     public Zona buscarPorNombre2(String nombre, String nombre2) {
-        String query = "FROM Zona where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
+        String query = "FROM Zona where lower(nombre) not in ('" + nombre2.toLowerCase() + "') and lower(nombre) = '" + nombre.toLowerCase() + "'";
         List<Zona> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);

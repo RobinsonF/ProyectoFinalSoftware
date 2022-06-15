@@ -11,7 +11,7 @@ public interface UsuarioRepository {
 
     List<Usuario> getUsuarios();
 
-    void eliminar(Integer id);
+    String eliminar(Integer id);
 
     void registrar(Usuario usuario);
 
@@ -28,6 +28,10 @@ public interface UsuarioRepository {
     Usuario buscarPorCorreo2(String correo, String correo2);
 
     Usuario buscarPorLogin2(String login, String correo2);
+
+    Usuario buscarPorTelefono(String telefono);
+
+    Usuario buscarPorTelefono2(String telefono, String telefono2);
 
     Usuario buscarPorPass(String pass, String pass2, String correo);
 
@@ -54,6 +58,10 @@ public interface UsuarioRepository {
     Integer validarLogin(String login);
 
     Integer validarLogin2(String login, String login2);
+
+    Integer validarTelefono(String telefono);
+
+    Integer validarTelefono2(String telefono, String telefono2);
 
     Integer validarPassword(String pass, String pass2, String correo);
 

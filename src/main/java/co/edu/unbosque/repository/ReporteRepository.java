@@ -18,6 +18,8 @@ public interface ReporteRepository {
 
     ReporteUsuarioDTO obtenerGraficaCuadrillas(Map<String, Object> params);
 
+    ReporteUsuarioDTO obtenerReporteCuadrilla2(Map<String, Object> params);
+
     ReporteUsuarioDTO obtenerGraficaOrdenesCumplidas(Map<String, Object> params);
 
 

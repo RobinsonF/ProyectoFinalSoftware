@@ -24,7 +24,7 @@ public class CiudadRepositoryImp implements CiudadRepository{
 
     @Override
     public Ciudad buscarPorNombre(String nombre) {
-        String query = "FROM Ciudad where nombre = '" + nombre + "'";
+        String query = "FROM Ciudad where lower(nombre) = '" + nombre.toLowerCase() + "'";
         List<Ciudad> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);
