@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.EstadoDTO;
+import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
 import co.edu.unbosque.entity.Zona;
@@ -52,6 +53,18 @@ public class ZonaController {
         EstadoDTO estadoDTO = new EstadoDTO();
         zonaService.eliminarZona(id);
         estadoDTO.setMensaje("Zona eliminada");
+        return estadoDTO;
+    }
+
+    @PutMapping("/editarZona")
+    public EstadoDTO editarZona(@RequestBody ZonaDTO zonaDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = zonaService.editarZona(zonaDTO);
+        if(mensaje.equals("El nombre ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
+        }
         return estadoDTO;
     }
 }
