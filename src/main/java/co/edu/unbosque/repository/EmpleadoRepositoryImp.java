@@ -5,6 +5,7 @@ import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.entity.Material;
+import co.edu.unbosque.entity.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -53,6 +54,13 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
     }
 
     @Override
+    public Empleado buscarPorCedula(String cedula) {
+        String query = "FROM Empleado where cedula = '" + cedula + "'";
+        List<Empleado> lista = entityManager.createQuery(query).getResultList();
+        return lista.get(0);
+    }
+
+    @Override
     public Empleado buscarPorCedula2(String cedula, String cedula2) {
         String query = "FROM Empleado where cedula not in ('" + cedula2 + "') and cedula = '" + cedula +"'";
         List<Empleado> lista = entityManager.createQuery(query).getResultList();
@@ -66,6 +74,16 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
     @Override
     public Integer validarCedula2(String cedula, String cedula2) {
         Empleado empleado = buscarPorCedula2(cedula, cedula2);
+        if(empleado == null){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
+    public Integer validarCedula(String cedula) {
+        Empleado empleado = buscarPorCedula(cedula);
         if(empleado == null){
             return 0;
         }else{

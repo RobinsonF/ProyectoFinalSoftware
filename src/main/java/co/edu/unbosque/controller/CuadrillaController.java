@@ -27,7 +27,7 @@ public class CuadrillaController {
         List<CuadrillaDTO> listaCuadrillas = new ArrayList<>();
         for (Cuadrilla cuadrilla: cuadrillas) {
             listaCuadrillas.add(
-                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla(), cuadrilla.getOrdentrabajos().size())
+                    new CuadrillaDTO(cuadrilla.getIdCuadrilla(),cuadrilla.getEstado(),cuadrilla.getNombreCuadrilla(), cuadrilla.getOrdentrabajos().size(), cuadrilla.getEmpleados().size())
             );
         }
         return new ResponseEntity<List<CuadrillaDTO>>(listaCuadrillas, HttpStatus.OK);
@@ -65,8 +65,8 @@ public class CuadrillaController {
     @PutMapping("/eliminarCuadrilla")
     public EstadoDTO eliminarCuadrilla(@RequestParam Integer id){
         EstadoDTO estadoDTO = new EstadoDTO();
-        cuadrillaService.eliminarCuadrilla(id);
-        estadoDTO.setMensaje("Cuadrilla eliminada");
+        String mensaje = cuadrillaService.eliminarCuadrilla(id);
+        estadoDTO.setMensaje(mensaje);
         return estadoDTO;
     }
 

@@ -22,9 +22,13 @@ public interface EmpleadoRepository {
 
     Empleado buscarPorId2(Integer id);
 
+    Empleado buscarPorCedula(String cedula);
+
     Empleado buscarPorCedula2(String cedula, String cedula2);
 
     Integer validarCedula2(String cedula, String cedula2);
+
+    Integer validarCedula(String cedula);
 
     void editarEmpleado(EmpleadoDTO empleadoDTO);
 

@@ -33,15 +33,19 @@ public class EmpleadoService {
     }
 
     public String registrarEmpleado(EmpleadoDTO empleado) {
-        Integer id = cuadrillaRepository.obtenerIdPorNombre(empleado.getNombreCuadrilla());
-        Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),"A",empleado.getNombre());
-        Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id);
-        cuadrilla.ifPresent(a -> {
-            a.addEmpleado(empleado1);
-            cuadrillaRepository.registrar(a);
-        });
-        empleadoRepository.registrar(empleado1);
-        return "Registrado correctamente";
+        if(empleadoRepository.validarCedula(empleado.getCedula()) != 0){
+            return "La cédula se encuentra en uso";
+        }else {
+            Integer id = cuadrillaRepository.obtenerIdPorNombre(empleado.getNombreCuadrilla());
+            Empleado empleado1 = new Empleado(empleado.getApellido(),empleado.getCedula(),"A",empleado.getNombre());
+            Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id);
+            cuadrilla.ifPresent(a -> {
+                a.addEmpleado(empleado1);
+                cuadrillaRepository.registrar(a);
+            });
+            empleadoRepository.registrar(empleado1);
+            return "Registrado correctamente";
+        }
     }
 
     public void eliminarEmpleado(Integer id){

@@ -35,7 +35,7 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
 
     @Override
     public Cuadrilla buscarPorNombre(String nombre) {
-        String query = "FROM Cuadrilla where nombre_cuadrilla = '" + nombre + "'";
+        String query = "FROM Cuadrilla where lower(nombre_cuadrilla) = '" + nombre.toLowerCase() + "'";
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
@@ -60,10 +60,17 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
     }
 
     @Override
-    public void eliminarCuadrilla(Integer id) {
+    public String eliminarCuadrilla(Integer id) {
         Cuadrilla cuadrilla = entityManager.find(Cuadrilla.class, id);
-        cuadrilla.setEstado("I");
-        entityManager.merge(cuadrilla);
+        if(cuadrilla.getOrdentrabajos().size() != 0) {
+            return "La cuadrilla no se puede eliminar porque tiene ordenes activas";
+        }else if(cuadrilla.getEmpleados().size() != 0){
+            return "La cuadrilla no se puede eliminar porque tiene empleados activos";
+        } else{
+            cuadrilla.setEstado("I");
+            entityManager.merge(cuadrilla);
+            return "Eliminada correctamente";
+        }
     }
 
     @Override
@@ -74,14 +81,14 @@ public class CuadrillaRepositoryImp implements CuadrillaRepository {
         List<Object[]> datos = q.getResultList();
         for (Object[] obj : datos) {
             Cuadrilla cuadrilla = buscarPorNombre(obj[1].toString());
-            listaDTO.add(new CuadrillaDTO(Integer.parseInt(obj[0].toString()),obj[1].toString(), cuadrilla.getOrdentrabajos().size()));
+            listaDTO.add(new CuadrillaDTO(Integer.parseInt(obj[0].toString()),obj[1].toString(), cuadrilla.getOrdentrabajos().size(), cuadrilla.getEmpleados().size(), cuadrilla.getEstado()));
         }
         return listaDTO;
     }
 
     @Override
     public Cuadrilla buscarPorNombre2(String nombre, String nombre2) {
-        String query = "FROM Cuadrilla where nombre_cuadrilla not in ('" + nombre2 + "') and nombre_cuadrilla = '" + nombre +"'";
+        String query = "FROM Cuadrilla where lower(nombre_cuadrilla) not in ('" + nombre2.toLowerCase() + "') and lower(nombre_cuadrilla) = '" + nombre.toLowerCase() +"'";
         List<Cuadrilla> lista = entityManager.createQuery(query).getResultList();
         if(lista.size()!= 0){
             return lista.get(0);

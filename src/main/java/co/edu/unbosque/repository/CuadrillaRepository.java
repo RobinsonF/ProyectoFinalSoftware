@@ -21,7 +21,7 @@ public interface CuadrillaRepository {
 
     Integer obtenerIdPorNombre(String nombre);
 
-    void eliminarCuadrilla(Integer id);
+    String eliminarCuadrilla(Integer id);
 
     List<CuadrillaDTO> listaCuadrillaUsuario(Integer id);
 

@@ -43,18 +43,23 @@ public class OrdenTrabajoService {
             Integer id_zona = zonaRepository.obtenerIdPorNombre(ordentrabajo.getNombreZona());
             Integer id_cuadrilla = cuadrillaRepository.obtenerIdPorNombre(ordentrabajo.getNombreCuadrilla());
             Ordentrabajo ordentrabajo1 = new Ordentrabajo("A",ordentrabajo.getFechaTrabajof(),formato.parse(ordentrabajo.getFechaInicial()),ordentrabajo.getNombreTrabajo(), ordentrabajo.getDireccion(), "N");
-            Optional<Zona> zona = zonaRepository.buscarPorId(id_zona);
-            zona.ifPresent(a -> {
-                a.addOrdentrabajo(ordentrabajo1);
-                zonaRepository.registrar(a);
-            });
+
             Optional<Cuadrilla> cuadrilla = cuadrillaRepository.buscarPorId(id_cuadrilla);
-            cuadrilla.ifPresent(a -> {
-                a.addOrdentrabajo(ordentrabajo1);
-                cuadrillaRepository.registrar(a);
-            });
-            ordenTrabajoRepository.registrar(ordentrabajo1);
-            return "Registrado correctamente";
+            if(cuadrilla.get().getEmpleados().size()==0){
+                return "La cuadrilla no cuenta con empleados actualmente";
+            }else{
+                cuadrilla.ifPresent(a -> {
+                    a.addOrdentrabajo(ordentrabajo1);
+                    cuadrillaRepository.registrar(a);
+                });
+                Optional<Zona> zona = zonaRepository.buscarPorId(id_zona);
+                zona.ifPresent(a -> {
+                    a.addOrdentrabajo(ordentrabajo1);
+                    zonaRepository.registrar(a);
+                });
+                ordenTrabajoRepository.registrar(ordentrabajo1);
+                return "Registrado correctamente";
+            }
         }catch (Exception e){
             return e.getMessage();
         }

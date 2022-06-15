@@ -31,7 +31,7 @@ public class CuadrillaService {
 
 
     public String registrarCuadrilla(CuadrillaDTO cuadrillaDTO) {
-        Cuadrilla cuadrilla1 = new Cuadrilla("A",cuadrillaDTO.getNombreCuadrilla());
+        Cuadrilla cuadrilla1 = new Cuadrilla("A",cuadrillaDTO.getNombreCuadrilla().toLowerCase());
         if(validarNombre(cuadrillaDTO.getNombreCuadrilla())==1){
             return "El nombre de la cuadrilla se encuentra en uso";
         }else{
@@ -51,8 +51,8 @@ public class CuadrillaService {
         return cuadrillaRepository.validarNombre(nombre);
     }
 
-    public void eliminarCuadrilla(Integer id){
-        cuadrillaRepository.eliminarCuadrilla(id);
+    public String eliminarCuadrilla(Integer id){
+        return cuadrillaRepository.eliminarCuadrilla(id);
     }
 
     public String editarCuadrilla(CuadrillaDTO cuadrillaDTO){

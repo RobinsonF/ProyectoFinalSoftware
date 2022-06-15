@@ -6,6 +6,7 @@ import co.edu.unbosque.entity.Usuario;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.criteria.CriteriaBuilder;
 
 public class CuadrillaDTO {
     private Integer idCuadrilla;
@@ -23,19 +24,24 @@ public class CuadrillaDTO {
 
     private Integer numeroOrdenes;
 
-    public CuadrillaDTO(Integer idCuadrilla, String estado, String nombreCuadrilla, Integer numeroOrdenes) {
+    private Integer numeroEmpleados;
+
+    public CuadrillaDTO(Integer idCuadrilla, String estado, String nombreCuadrilla, Integer numeroOrdenes, Integer numeroEmpleados) {
         this.idCuadrilla = idCuadrilla;
         this.estado = estado;
         this.nombreCuadrilla = nombreCuadrilla;
         this.numeroOrdenes = numeroOrdenes;
+        this.numeroEmpleados = numeroEmpleados;
     }
 
 
 
-    public CuadrillaDTO(Integer idCuadrilla, String nombreCuadrilla, Integer numeroOrdenes) {
+    public CuadrillaDTO(Integer idCuadrilla, String nombreCuadrilla, Integer numeroOrdenes, Integer numeroEmpleados, String estado) {
         this.idCuadrilla = idCuadrilla;
         this.nombreCuadrilla = nombreCuadrilla;
         this.numeroOrdenes = numeroOrdenes;
+        this.numeroEmpleados = numeroEmpleados;
+        this.estado = estado;
     }
 
     public CuadrillaDTO() {
@@ -96,5 +102,13 @@ public class CuadrillaDTO {
 
     public void setNumeroOrdenes(Integer numeroOrdenes) {
         this.numeroOrdenes = numeroOrdenes;
+    }
+
+    public Integer getNumeroEmpleados() {
+        return numeroEmpleados;
+    }
+
+    public void setNumeroEmpleados(Integer numeroEmpleados) {
+        this.numeroEmpleados = numeroEmpleados;
     }
 }
