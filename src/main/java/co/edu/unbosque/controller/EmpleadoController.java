@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.CuadrillaDTO;
 import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.entity.Empleado;
@@ -51,6 +52,18 @@ public class EmpleadoController {
         EstadoDTO estadoDTO = new EstadoDTO();
         empleadoService.eliminarEmpleado(id);
         estadoDTO.setMensaje("Empleado eliminado");
+        return estadoDTO;
+    }
+
+    @PutMapping("/editarEmpleado")
+    public EstadoDTO editarEmpleado(@RequestBody EmpleadoDTO empleadoDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = empleadoService.editarEmpleado(empleadoDTO);
+        if(mensaje.equals("La cedula ya se encuentra registrada")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
+        }
         return estadoDTO;
     }
 }

@@ -62,4 +62,16 @@ public class CuadrillaController {
         return estadoDTO;
     }
 
+    @PutMapping("/editarCuadrilla")
+    public EstadoDTO editarCuadrilla(@RequestBody CuadrillaDTO cuadrillaDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = cuadrillaService.editarCuadrilla(cuadrillaDTO);
+        if(mensaje.equals("El nombre ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
+        }
+        return estadoDTO;
+    }
+
 }

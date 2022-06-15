@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.Ciudad;
@@ -46,6 +47,18 @@ public class MaterialController {
         EstadoDTO estadoDTO = new EstadoDTO();
         materialService.eliminarMaterial(id);
         estadoDTO.setMensaje("Material eliminado");
+        return estadoDTO;
+    }
+
+    @PutMapping("/editarMaterial")
+    public EstadoDTO editarMaterial(@RequestBody MaterialDTO materialDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = materialService.editarMaterial(materialDTO);
+        if(mensaje.equals("El nombre ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
+        }
         return estadoDTO;
     }
 }
