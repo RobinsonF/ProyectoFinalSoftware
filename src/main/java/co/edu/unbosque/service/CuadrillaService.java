@@ -64,4 +64,8 @@ public class CuadrillaService {
             return "Guardado Correctamente";
         }
     }
+
+    public Cuadrilla buscarPorId(Integer id){
+        return cuadrillaRepository.buscarPorId2(id);
+    }
 }

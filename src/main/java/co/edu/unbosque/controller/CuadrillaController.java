@@ -54,6 +54,14 @@ public class CuadrillaController {
         return estadoDTO;
     }
 
+    @GetMapping("/obtenerCuadrilla")
+    public CuadrillaDTO buscarPorId(@RequestParam Integer id){
+        Cuadrilla cuadrilla = cuadrillaService.buscarPorId(id);
+        CuadrillaDTO cuadrillaDTO = new CuadrillaDTO();
+        cuadrillaDTO.setNombreCuadrilla(cuadrilla.getNombreCuadrilla());
+        return cuadrillaDTO;
+    }
+
     @PutMapping("/eliminarCuadrilla")
     public EstadoDTO eliminarCuadrilla(@RequestParam Integer id){
         EstadoDTO estadoDTO = new EstadoDTO();
