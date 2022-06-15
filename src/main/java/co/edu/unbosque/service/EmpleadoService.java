@@ -61,4 +61,8 @@ public class EmpleadoService {
             return "Guardado Correctamente";
         }
     }
+
+    public Empleado buscarPorId(Integer id){
+        return empleadoRepository.buscarPorId2(id);
+    }
 }
