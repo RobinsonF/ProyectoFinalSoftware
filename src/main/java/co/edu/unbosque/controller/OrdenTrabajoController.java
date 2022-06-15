@@ -76,6 +76,7 @@ public class OrdenTrabajoController {
         Ordentrabajo ordentrabajo = ordenTrabajoService.buscarPorId(id);
         OrdenTrabajoDTO ordenTrabajoDTO = new OrdenTrabajoDTO();
         ordenTrabajoDTO.setNombreTrabajo(ordentrabajo.getNombreTrabajo());
+        ordenTrabajoDTO.setDireccion(ordentrabajo.getDireccion());
         return ordenTrabajoDTO;
     }
 }
