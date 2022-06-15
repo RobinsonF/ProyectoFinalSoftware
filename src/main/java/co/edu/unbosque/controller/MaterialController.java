@@ -4,6 +4,7 @@ import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.dto.EstadoDTO;
 import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.Ciudad;
+import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,13 @@ public class MaterialController {
             estadoDTO.setMensaje(mensaje);
         }
         return estadoDTO;
+    }
+
+    @GetMapping("/obtenerMaterial")
+    public MaterialDTO buscarPorId(@RequestParam Integer id){
+        Material material = materialService.buscarPorId(id);
+        MaterialDTO materialDTO = new MaterialDTO();
+        materialDTO.setNombreMaterial(material.getNombreMaterial());
+        return materialDTO;
     }
 }
