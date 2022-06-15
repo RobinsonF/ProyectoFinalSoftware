@@ -1,6 +1,7 @@
 package co.edu.unbosque.controller;
 
 import co.edu.unbosque.dto.EstadoDTO;
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.dto.ZonaDTO;
 import co.edu.unbosque.entity.Ciudad;
@@ -57,6 +58,18 @@ public class OrdenTrabajoController {
         EstadoDTO estadoDTO = new EstadoDTO();
         ordenTrabajoService.eliminarOrden(id);
         estadoDTO.setMensaje("Orden eliminada");
+        return estadoDTO;
+    }
+
+    @PutMapping("/editarOrden")
+    public EstadoDTO editarOrden(@RequestBody OrdenTrabajoDTO ordenTrabajoDTO) {
+        EstadoDTO estadoDTO = new EstadoDTO();
+        String mensaje = ordenTrabajoService.editarOrden(ordenTrabajoDTO);
+        if(mensaje.equals("El nombre ya se encuentra registrado")){
+            estadoDTO.setMensaje(mensaje);
+        }else{
+            estadoDTO.setMensaje(mensaje);
+        }
         return estadoDTO;
     }
 }
