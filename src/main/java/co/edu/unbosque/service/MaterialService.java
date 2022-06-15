@@ -2,6 +2,7 @@ package co.edu.unbosque.service;
 
 
 import co.edu.unbosque.dto.MaterialDTO;
+import co.edu.unbosque.entity.Cuadrilla;
 import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Tipomaterial;
 import co.edu.unbosque.repository.MaterialRepository;
@@ -62,5 +63,9 @@ public class MaterialService {
             materialRepository.editarMaterial(materialDTO);
             return "Guardado Correctamente";
         }
+    }
+
+    public Material buscarPorId(Integer id){
+        return materialRepository.buscarPorId2(id);
     }
 }
