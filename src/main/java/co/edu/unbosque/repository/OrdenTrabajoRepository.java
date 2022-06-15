@@ -1,6 +1,8 @@
 package co.edu.unbosque.repository;
 
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.dto.OrdenTrabajoDTO;
+import co.edu.unbosque.entity.Material;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.entity.Zona;
 
@@ -17,4 +19,9 @@ public interface OrdenTrabajoRepository {
     void eliminarOrden(Integer id);
 
     List<OrdenTrabajoDTO> listaPorUsuario(Integer id);
+
+    Ordentrabajo validarNombre2(String nombre, String nombre2);
+
+    void editarMaterial(OrdenTrabajoDTO ordenTrabajoDTO);
+
 }

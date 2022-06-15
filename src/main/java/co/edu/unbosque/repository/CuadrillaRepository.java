@@ -1,6 +1,7 @@
 package co.edu.unbosque.repository;
 
 import co.edu.unbosque.dto.CuadrillaDTO;
+import co.edu.unbosque.dto.UsuarioDTO;
 import co.edu.unbosque.entity.Cuadrilla;
 
 
@@ -22,4 +23,8 @@ public interface CuadrillaRepository {
     void eliminarCuadrilla(Integer id);
 
     List<CuadrillaDTO> listaCuadrillaUsuario(Integer id);
+
+    Cuadrilla validarNombre2(String nombre, String nombre2);
+
+    void editarCuadrilla(CuadrillaDTO cuadrillaDTO);
 }

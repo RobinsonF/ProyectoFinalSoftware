@@ -1,5 +1,7 @@
 package co.edu.unbosque.repository;
 
+
+import co.edu.unbosque.dto.MaterialDTO;
 import co.edu.unbosque.entity.Material;
 
 import java.util.List;
@@ -17,4 +19,9 @@ public interface MaterialRepository {
     Integer validarNombre(String nombre);
 
     void eliminarMaterial(Integer id);
+
+    Material validarNombre2(String nombre, String nombre2);
+
+    void editarMaterial(MaterialDTO materialDTO);
+
 }

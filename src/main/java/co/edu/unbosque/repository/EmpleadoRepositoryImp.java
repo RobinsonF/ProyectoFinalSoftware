@@ -54,4 +54,15 @@ public class EmpleadoRepositoryImp implements EmpleadoRepository {
     public void registrar(Empleado empleado) {
         entityManager.merge(empleado);
     }
+
+
+    @Override
+    public void editarEmpleado(EmpleadoDTO empleadoDTO) {
+        Empleado empleado = entityManager.find(Empleado.class, empleadoDTO.getIdEmpleado());
+        empleado.setApellido(empleadoDTO.getApellido());
+        empleado.setCedula(empleadoDTO.getCedula());
+        empleado.setNombre(empleadoDTO.getNombre());
+        entityManager.merge(empleado);
+
+    }
 }
