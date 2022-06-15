@@ -1,8 +1,10 @@
 package co.edu.unbosque.service;
 
 
+import co.edu.unbosque.dto.EmpleadoDTO;
 import co.edu.unbosque.dto.OrdenTrabajoDTO;
 import co.edu.unbosque.entity.Cuadrilla;
+import co.edu.unbosque.entity.Empleado;
 import co.edu.unbosque.entity.Ordentrabajo;
 import co.edu.unbosque.entity.Zona;
 import co.edu.unbosque.repository.CuadrillaRepository;
@@ -59,5 +61,19 @@ public class OrdenTrabajoService {
     }
     public void eliminarOrden(Integer id){
         ordenTrabajoRepository.eliminarOrden(id);
+    }
+
+    public Integer validarNombre2(String nombre, String nombre2){
+        return ordenTrabajoRepository.validarNombre2(nombre, nombre2);
+    }
+
+    public String editarOrden(OrdenTrabajoDTO ordenTrabajoDTO){
+        Ordentrabajo ordentrabajo = ordenTrabajoRepository.buscarPorId2(ordenTrabajoDTO.getIdTrabajo());
+        if(validarNombre2(ordenTrabajoDTO.getNombreTrabajo(), ordentrabajo.getNombreTrabajo())==1){
+            return "La cedula ya se encuentra registrada";
+        }else{
+            ordenTrabajoRepository.editarOrden(ordenTrabajoDTO);
+            return "Guardado Correctamente";
+        }
     }
 }

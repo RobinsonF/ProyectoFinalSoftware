@@ -28,6 +28,13 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
     }
 
     @Override
+    public Ordentrabajo buscarPorId2(Integer id) {
+        String query = "FROM Ordentrabajo where id_trabajo = " + id;
+        List<Ordentrabajo> lista = entityManager.createQuery(query).getResultList();
+        return lista.get(0);
+    }
+
+    @Override
     public void eliminarOrden(Integer id) {
         Ordentrabajo ordentrabajo = entityManager.find(Ordentrabajo.class, id);
         ordentrabajo.setEstado("I");
@@ -64,13 +71,23 @@ public class OrdenTrabajoRepositoryImp implements OrdenTrabajoRepository{
     }
 
     @Override
-    public Ordentrabajo validarNombre2(String nombre, String nombre2) {
+    public Ordentrabajo buscarPorNombre2(String nombre, String nombre2) {
         String query = "FROM Ordentrabajo where nombre not in ('" + nombre2 + "') and nombre = '" + nombre + "'";
         List<Ordentrabajo> lista = entityManager.createQuery(query).getResultList();
         if (lista.size() != 0) {
             return lista.get(0);
         } else {
             return null;
+        }
+    }
+
+    @Override
+    public Integer validarNombre2(String nombre, String nombre2) {
+        Ordentrabajo ordentrabajo = buscarPorNombre2(nombre, nombre2);
+        if(ordentrabajo == null){
+            return 0;
+        }else{
+            return 1;
         }
     }
 
